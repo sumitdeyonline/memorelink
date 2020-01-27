@@ -1,0 +1,404 @@
+
+<searchheader></searchheader>
+
+
+
+
+<div class="container">
+    <div class="single">
+        <div class="form-container">
+            <h2>User Profile</h2>
+
+
+            <!--form #userProfile="ngForm" (ngSubmit)="userProfileSubmit(userProfile)"-->
+
+
+                <h3 class="title" style="color: red;">Profile</h3>&nbsp;
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;">First Name : </label>
+                    </div>
+                    <div class="col">
+                      {{uprofile =='undefined' || uprofile == null?'':uprofile.FirstName}}
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="LastName">Last Name</label>
+                    </div>
+                    <div class="col">
+                      {{uprofile =='undefined' || uprofile == null?'':uprofile.LastName}}
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Sex">Sex</label>
+                    </div>
+                    <div class="col">
+                      {{uprofile =='undefined' || uprofile == null?'':uprofile.Sex}}
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Email">Email</label>
+                    </div>
+                    <div class="col">
+                      {{uprofile =='undefined' || uprofile == null?'':uprofile.Email}}
+                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"  for="HomePhone">Home Phone</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.HomePhone}}
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="CellPhone">Cell Phone</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.CellPhone}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Address1">Address</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.Address1}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Address2"></label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.Address2}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-2">
+                            <label style="font-weight: bold;" for="Country">Country</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.Country}}
+                    </div>
+
+
+
+
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="State">State</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.State}}
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="City">City</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.City}}
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="ZipCode">Zip</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.ZipCode}}
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"  for="FaceBookURL">Facebook URL</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.FaceBookURL}}
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="LinkedinURL">Linkedin URL</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.LinkedinURL}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="PersonalWebsite">Personal Website</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.PersonalWebsite}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Job Looking</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="EmploymentType">Employment Type</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.EmploymentType}}
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="DesiredPosition">Desired Position</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.DesiredPosition}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="DesiredSalary">Desired Salary</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.DesiredSalary}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="IsRelocate">Relocate ?</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.IsRelocate == true?'Yes':'No'}}
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="IsTravel">Travell ?</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.IsTravel == true?'Yes':'No'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Professional Experience</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="YearsofExperince">Years of Experience</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.YearsofExperince}}
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="WorkAuthorization">Work Authorization</label>
+                    </div>
+                    <div class="col">
+                        {{uprofile =='undefined' || uprofile == null?'':uprofile.WorkAuthorization}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="SecurityClearance">Security Clearance</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.SecurityClearance== true?'Yes':'No'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="CoverLetter">Cover Letter</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.CoverLetter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="ResumeURL">Resume</label>
+                </div>
+                <div class="col">
+                    <a href="{{uResumes =='undefined' || uResumes == null?'':uResumes[0].ResumeURL}}" target="_blank">{{uResumes =='undefined' || uResumes == null?'':uResumes[0].ResumeFileName}}</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+            <!--uploadresume></uploadresume-->
+
+
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                    <!--a href="{{fileUpload.url}}">{{fileUpload.name}}</a>
+                    <button-- (click)='deleteFileUpload(fileUpload)' class="btn btn-danger btn-xs" style="float: right">Delete</button-->
+
+                </div>
+            </div>
+
+
+
+            <hr/>
+            <h3 class="title" style="color: red;">Education</h3>&nbsp;
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Education">Education</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.Education}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="institute">Institute</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.institute}}
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="instituteCity">Institute City</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.instituteCity}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="instituteCountry">Institute Country</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.instituteCountry}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <hr/>
+            <h3 class="title" style="color: red;">Skillset</h3>&nbsp;
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="SkillSet">SkillSet</label>
+                </div>
+                <div class="col">
+                    {{uprofile =='undefined' || uprofile == null?'':uprofile.SkillSet}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+            <div class="row">
+
+            </div>
+            <!--/form-->
+        </div>
+    </div>
+</div>
+

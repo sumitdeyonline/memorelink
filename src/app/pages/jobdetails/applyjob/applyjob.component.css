@@ -1,0 +1,8 @@
+.applyjob-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.applyjob-container > * {
+  width: 100%;
+}

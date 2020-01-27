@@ -1,0 +1,531 @@
+<searchheader></searchheader>
+
+
+
+
+<div class="container">
+    <div class="single">
+        <div class="form-container">
+            <h2>User Profile</h2>
+
+
+            <form #userProfile="ngForm" (ngSubmit)="userProfileSubmit(userProfile)">
+
+
+                <h3 class="title" style="color: red;">Profile</h3>&nbsp;
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="FirstName">First Name : </label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="FirstName" [disabled]="!isUpdateProfile" #FirstName="ngModel" id="FirstName" [ngModel]="uProfile.selectedUserProfile?.FirstName" (ngModelChange)="uProfile.selectedUserProfile.FirstName" class="form-control input-sm" required/>
+
+                        <div style="color: red;" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched)">
+                            Please Enter First Name
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="LastName">Last Name</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="LastName" [disabled]="!isUpdateProfile" #LastName="ngModel" id="LastName" [ngModel]="uProfile.selectedUserProfile?.LastName" (ngModelChange)="uProfile.selectedUserProfile.LastName" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="LastName.invalid && (LastName.dirty || LastName.touched)">
+                          Please Enter Last Name
+                        </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Sex">Sex</label>
+                    </div>
+                    <div class="col">
+
+                        <label class="radio-inline">
+                            <input type="radio" ngModel name="Sex" [disabled]="!isUpdateProfile" #Sex="ngModel" id="Sex" [ngModel]="uProfile.selectedUserProfile?.Sex" (ngModelChange)="uProfile.selectedUserProfile.Sex" value="Male" required>Male
+                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="radio-inline">
+                            <input type="radio" ngModel name="Sex" [disabled]="!isUpdateProfile" #Sex="ngModel" id="Sex" [ngModel]="uProfile.selectedUserProfile?.Sex" (ngModelChange)="uProfile.selectedUserProfile.Sex" value="Female" required>Female
+                        </label>
+                        <div style="color: red;" *ngIf="Sex.invalid && (Sex.dirty || Sex.touched)">
+                          Gendar Required
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Email">Email</label>
+                    </div>
+                    <div class="col">
+                        <input type="email" ngModel name="Email" [disabled]="!isUpdateProfile" #Email="ngModel" id="Email" [ngModel]="uProfile.selectedUserProfile?.Email" (ngModelChange)="uProfile.selectedUserProfile.Email" class="form-control input-sm" required/>
+                        <!--div style="color: red;"*ngIf="Email.errors.required && (Email.dirty  || Email.touched)"-->
+                        <div style="color: red;"*ngIf="Email.invalid && (Email.dirty  || Email.touched)">
+                            Please enter the valid Email
+                        </div>
+                        <!--div style="color: red;" *ngIf="Email.email && (Email.dirty  || Email.touched)">
+                            Email must be a valid email address
+                        </div-->
+                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"  for="HomePhone">Home Phone</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="HomePhone" [disabled]="!isUpdateProfile" #HomePhone="ngModel" id="HomePhone" [ngModel]="uProfile.selectedUserProfile?.HomePhone" (ngModelChange)="uProfile.selectedUserProfile.HomePhone" class="form-control input-sm"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="CellPhone">Cell Phone</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="CellPhone" [disabled]="!isUpdateProfile" #CellPhone="ngModel" id="CellPhone" [ngModel]="uProfile.selectedUserProfile?.CellPhone" (ngModelChange)="uProfile.selectedUserProfile.CellPhone" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="CellPhone.invalid && (CellPhone.dirty || CellPhone.touched)">
+                            Please Enter Cell Phone
+                        </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Address1">Address</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="Address1" [disabled]="!isUpdateProfile" #Address1="ngModel" id="Address1" [ngModel]="uProfile.selectedUserProfile?.Address1" (ngModelChange)="uProfile.selectedUserProfile.Address1" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="Address1.invalid && (Address1.dirty || Address1.touched)">
+                            Please Enter Address
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Address2"></label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="Address2" [disabled]="!isUpdateProfile" #Address2="ngModel" id="Address2" [ngModel]="uProfile.selectedUserProfile?.Address2" (ngModelChange)="uProfile.selectedUserProfile.Address2" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-2">
+                            <label style="font-weight: bold;" for="Country">Country</label>
+                    </div>
+                    <div class="col">
+                        <select ngModel name="Country" [disabled]="!isUpdateProfile" #Country="ngModel" id="Country" [ngModel]="uProfile.selectedUserProfile?.Country" (ngModelChange)="uProfile.selectedUserProfile.Country" class="form-control input-sm" (change)="getState($event.target.value)" required>
+                            <option >Select Country</option>
+                            <option [value]="country.countryID" *ngFor="let country of countries">{{country.CountryName}}</option>
+                            <!--option>USA</option-->
+                        </select>
+                        <div style="color: red;" *ngIf="Country.invalid && (Country.dirty || Country.touched)">
+                            Please Enter Country
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="State">State</label>
+                    </div>
+                    <div class="col">
+                        <select ngModel name="State" [disabled]="!isUpdateProfile" #State="ngModel" id="State" [ngModel]="uProfile.selectedUserProfile?.State" (ngModelChange)="uProfile.selectedUserProfile.State" class="form-control input-sm" required>
+                            <option>Select State</option>
+                            <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}</option>
+                            <!--option label="AL" value="AL">AL</option>
+                            <option label="AK" value="AK">AK</option>
+                            <option label="AZ" value="AZ">AZ</option>
+                            <option label="AR" value="AR">AR</option>
+                            <option label="CA" value="CA">CA</option>
+                            <option label="CO" value="CO">CO</option>
+                            <option label="CT" value="CT">CT</option>
+                            <option label="DE" value="DE">DE</option>
+                            <option label="DC" value="DC">DC</option>
+                            <option label="FL" value="FL">FL</option>
+                            <option label="GA" value="GA">GA</option>
+                            <option label="HI" value="HI">HI</option>
+                            <option label="ID" value="ID">ID</option>
+                            <option label="IL" value="IL">IL</option>
+                            <option label="IN" value="IN">IN</option>
+                            <option label="IA" value="IA">IA</option>
+                            <option label="KS" value="KS">KS</option>
+                            <option label="KY" value="KY">KY</option>
+                            <option label="LA" value="LA">LA</option>
+                            <option label="ME" value="ME">ME</option>
+                            <option label="MD" value="MD">MD</option>
+                            <option label="MA" value="MA">MA</option>
+                            <option label="MI" value="MI">MI</option>
+                            <option label="MN" value="MN">MN</option>
+                            <option label="MS" value="MS">MS</option>
+                            <option label="MO" value="MO">MO</option>
+                            <option label="MT" value="MT">MT</option>
+                            <option label="NE" value="NE">NE</option>
+                            <option label="NV" value="NV">NV</option>
+                            <option label="NH" value="NH">NH</option>
+                            <option label="NJ" value="NJ">NJ</option>
+                            <option label="NM" value="NM">NM</option>
+                            <option label="NY" value="NY">NY</option>
+                            <option label="NC" value="NC">NC</option>
+                            <option label="ND" value="ND">ND</option>
+                            <option label="OH" value="OH">OH</option>
+                            <option label="OK" value="OK">OK</option>
+                            <option label="OR" value="OR">OR</option>
+                            <option label="PA" value="PA">PA</option>
+                            <option label="RI" value="RI">RI</option>
+                            <option label="SC" value="SC">SC</option>
+                            <option label="SD" value="SD">SD</option>
+                            <option label="TN" value="TN">TN</option>
+                            <option label="TX" value="TX">TX</option>
+                            <option label="UT" value="UT">UT</option>
+                            <option label="VT" value="VT">VT</option>
+                            <option label="VA" value="VA">VA</option>
+                            <option label="WA" value="WA">WA</option>
+                            <option label="WV" value="WV">WV</option>
+                            <option label="WI" value="WI">WI</option>
+                            <option label="WY" value="WY">WY</option-->
+                        </select>
+                        <div style="color: red;" *ngIf="State.invalid && (State.dirty || State.touched)">
+                            Please Enter State
+                        </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="City">City</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="City" [disabled]="!isUpdateProfile" #City="ngModel" id="City" [ngModel]="uProfile.selectedUserProfile?.City" (ngModelChange)="uProfile.selectedUserProfile.City" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="City.invalid && (City.dirty || City.touched)">
+                            Please Enter City
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="ZipCode">Zip</label>
+                    </div>
+                    <div class="col">
+                        <input type="number" ngModel name="ZipCode" [disabled]="!isUpdateProfile" #ZipCode="ngModel" id="ZipCode" [ngModel]="uProfile.selectedUserProfile?.ZipCode" (ngModelChange)="uProfile.selectedUserProfile.ZipCode" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="ZipCode.invalid && (ZipCode.dirty || ZipCode.touched)">
+                            Please Enter valid Zip Code
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"  for="FaceBookURL">Facebook URL</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="FaceBookURL" [disabled]="!isUpdateProfile" #FaceBookURL="ngModel" id="FaceBookURL" [ngModel]="uProfile.selectedUserProfile?.FaceBookURL" (ngModelChange)="uProfile.selectedUserProfile.FaceBookURL" class="form-control input-sm"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="LinkedinURL">Linkedin URL</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="LinkedinURL" [disabled]="!isUpdateProfile" #LinkedinURL="ngModel" id="LinkedinURL" [ngModel]="uProfile.selectedUserProfile?.LinkedinURL" (ngModelChange)="uProfile.selectedUserProfile.LinkedinURL" class="form-control input-sm"/>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="PersonalWebsite">Personal Website</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="PersonalWebsite" [disabled]="!isUpdateProfile" #PersonalWebsite="ngModel" id="PersonalWebsite" [ngModel]="uProfile.selectedUserProfile?.PersonalWebsite" (ngModelChange)="uProfile.selectedUserProfile.PersonalWebsite" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Job Looking</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="EmploymentType">Employment Type</label>
+                    </div>
+                    <div class="col">
+                        <select ngModel name="EmploymentType" [disabled]="!isUpdateProfile" #EmploymentType="ngModel" id="EmploymentType" [ngModel]="uProfile.selectedUserProfile?.EmploymentType" (ngModelChange)="uProfile.selectedUserProfile.EmploymentType" class="form-control input-sm">
+                            <option>Select Employment Type</option>
+                            <option>Part Time</option>
+                            <option>Full Time</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="DesiredPosition">Desired Position</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="DesiredPosition" [disabled]="!isUpdateProfile" #DesiredPosition="ngModel" id="DesiredPosition" [ngModel]="uProfile.selectedUserProfile?.DesiredPosition" (ngModelChange)="uProfile.selectedUserProfile.DesiredPosition" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="DesiredSalary">Desired Salary</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="DesiredSalary" [disabled]="!isUpdateProfile" #DesiredSalary="ngModel" id="DesiredSalary" [ngModel]="uProfile.selectedUserProfile?.DesiredSalary" (ngModelChange)="uProfile.selectedUserProfile.DesiredSalary" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="IsRelocate">Relocate ?</label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" ngModel name="IsRelocate" [disabled]="!isUpdateProfile" #IsRelocate="ngModel" id="IsRelocate" [ngModel]="uProfile.selectedUserProfile?.IsRelocate" (ngModelChange)="uProfile.selectedUserProfile.IsRelocate" checked data-toggle="toggle" data-onstyle="primary">
+                        <!--select ngModel name="IsRelocate" #IsRelocate="ngModel" id="IsRelocate" [(ngModel)]="uProfile.selectedUserProfile.IsRelocate" class="form-control input-sm">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select-->
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="IsTravel">Travell ?</label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" ngModel name="IsTravel" [disabled]="!isUpdateProfile" #IsTravel="ngModel" id="IsTravel" [ngModel]="uProfile.selectedUserProfile?.IsTravel" (ngModelChange)="uProfile.selectedUserProfile.IsTravel" checked data-toggle="toggle" data-onstyle="primary">
+                        <!--select ngModel name="IsTravel" #IsTravel="ngModel" id="IsTravel" [(ngModel)]="uProfile.selectedUserProfile.IsTravel" class="form-control input-sm">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Professional Experience</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="YearsofExperince">Years of Experience</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="YearsofExperince" [disabled]="!isUpdateProfile" #YearsofExperince="ngModel" id="YearsofExperince" [ngModel]="uProfile.selectedUserProfile?.YearsofExperince" (ngModelChange)="uProfile.selectedUserProfile.YearsofExperince" class="form-control input-sm"/>
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="WorkAuthorization">Work Authorization</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="WorkAuthorization" [disabled]="!isUpdateProfile" #WorkAuthorization="ngModel" id="WorkAuthorization" [ngModel]="uProfile.selectedUserProfile?.WorkAuthorization" (ngModelChange)="uProfile.selectedUserProfile.WorkAuthorization" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="SecurityClearance">Security Clearance</label>
+                </div>
+                <div class="col">
+                    <input type="checkbox" ngModel name="SecurityClearance" [disabled]="!isUpdateProfile" #SecurityClearance="ngModel" id="SecurityClearance" [ngModel]="uProfile.selectedUserProfile?.SecurityClearance" (ngModelChange)="uProfile.selectedUserProfile.SecurityClearance" checked data-toggle="toggle" data-onstyle="primary">
+
+                    <!--select ngModel name="SecurityClearance" #SecurityClearance="ngModel" id="SecurityClearance" [(ngModel)]="uProfile.selectedUserProfile.SecurityClearance" class="form-control input-sm">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="CoverLetter">Cover Letter</label>
+                </div>
+                <div class="col">
+                    <textarea cols="77" rows="4" ngModel name="CoverLetter" [disabled]="!isUpdateProfile" #CoverLetter="ngModel" id="CoverLetter" [ngModel]="uProfile.selectedUserProfile?.CoverLetter" (ngModelChange)="uProfile.selectedUserProfile.CoverLetter" class="form-control input-sm"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <uploadresume></uploadresume>
+            <!--div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;">Resume Upload</label>
+                </div>
+                <div class="col">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped"
+                                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                                    aria-valuemin="0" aria-valuemax="100"
+                                    [ngStyle]="{width:progress.percentage+'%'}">
+                                    {{progress.percentage}}%</div>
+                    </div>
+                    <label class="btn btn-default"> <input type="file" name="fileUpload" (change)="selectFile($event)">
+                    </label>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload(userProfile)">Upload</button>
+                    &nbsp; <a href="{{rUploadService.downloadURL}}" [hidden]="!fileUploadEnabled && isUpdate" target="_blank">Resume1</a>
+                    &nbsp; <a href="{{uProfile.selectedUserProfile?.ResumeURL}}" [hidden]="!fileUploadEnabled && !isUpdate" target="_blank">Resume</a>
+                    <div style="color: green;" *ngIf="!fileUploadEnabled">
+                        Please Upload Resume(.doc, .docx, .pdf, .ppt, .pptx)
+                    </div>
+                </div>
+            </div-->
+
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                    <!--a href="{{fileUpload.url}}">{{fileUpload.name}}</a>
+                    <button-- (click)='deleteFileUpload(fileUpload)' class="btn btn-danger btn-xs" style="float: right">Delete</button-->
+
+                </div>
+            </div>
+
+
+
+            <hr/>
+            <h3 class="title" style="color: red;">Education</h3>&nbsp;
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Education">Education</label>
+                </div>
+                <div class="col">
+                    <input type="text" ngModel name="Education" [disabled]="!isUpdateProfile" #Education="ngModel" id="Education" [ngModel]="uProfile.selectedUserProfile?.Education" (ngModelChange)="uProfile.selectedUserProfile.Education" class="form-control input-sm"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="institute">Institute</label>
+                </div>
+                <div class="col">
+                    <input type="text" ngModel name="institute" [disabled]="!isUpdateProfile" #institute="ngModel" id="institute" [ngModel]="uProfile.selectedUserProfile?.institute" (ngModelChange)="uProfile.selectedUserProfile.institute" class="form-control input-sm"/>
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="instituteCity">Institute City</label>
+                </div>
+                <div class="col">
+                    <input type="text" ngModel name="instituteCity" [disabled]="!isUpdateProfile" #instituteCity="ngModel" id="instituteCity" [ngModel]="uProfile.selectedUserProfile?.instituteCity" (ngModelChange)="uProfile.selectedUserProfile.instituteCity" class="form-control input-sm"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="instituteCountry">Institute Country</label>
+                </div>
+                <div class="col">
+                    <input type="text" ngModel name="instituteCountry" [disabled]="!isUpdateProfile" #instituteCountry="ngModel" id="instituteCountry" [ngModel]="uProfile.selectedUserProfile?.instituteCountry" (ngModelChange)="uProfile.selectedUserProfile.instituteCountry" class="form-control input-sm"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <hr/>
+            <h3 class="title" style="color: red;">Skillset</h3>&nbsp;
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="SkillSet">SkillSet</label>
+                </div>
+                <div class="col">
+                    <textarea cols="77" rows="4" ngModel name="SkillSet" [disabled]="!isUpdateProfile" #SkillSet="ngModel" id="SkillSet" [ngModel]="uProfile.selectedUserProfile?.SkillSet" (ngModelChange)="uProfile.selectedUserProfile.SkillSet" class="form-control input-sm"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-actions floatRight">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" class="btn btn-primary btn-sm" [disabled]="!userProfile.valid || !isUpdateProfile">
+                </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-actions floatRight">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="{{editProfileText}}" class="btn btn-primary btn-sm" [disabled]="!isUpdate" (click)="EnableEdit()">
+              </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

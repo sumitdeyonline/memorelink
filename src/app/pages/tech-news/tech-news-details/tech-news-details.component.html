@@ -1,0 +1,19 @@
+
+<searchheader></searchheader>
+
+<div class="container">
+    <div class="single">
+        <div class="form-container">
+
+            <h2>News Details</h2>
+              <a [routerLink]="['']" class="read-more"><<Back</a>
+              <div *ngFor="let tnews of techNewsDetails">
+                <b>{{tnews.fields.subHeader}}</b>
+                <br><br>
+                <img src="{{ tnews.fields.detailPageImageUrl}}"/>
+                <br>
+                <div [innerHTML]="tnews.fields.detailText | mdToHtml"></div>
+              </div>
+        </div>
+    </div>
+</div>

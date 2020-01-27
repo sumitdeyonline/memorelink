@@ -1,0 +1,24 @@
+<div class="banner_1">
+	<div class="container">
+		<div id="search_wrapper1">
+		   <form #f="ngForm" (ngSubmit)="searchjob(f.value)">
+				<div id="search_form" class="clearfix">
+						&nbsp;
+					<h1>Start your job search</h1>
+					<p>
+					<input type="text" class="text" required="required" ngModel name="keyword" #username="ngModel" id="keyword" placeholder="" value="{{ keyword }}" [ngModel]="keyword">
+          <input type="text" class="text" required="required" value= "location" ngModel name="location" #username="ngModel" id="location" placeholder="" value="{{ location }}" [ngModel]="location">
+          <!--input type="text" class="text" required="required" value= "location" ngModel name="location" #username="ngModel" id="location" placeholder="{{ location }}" value="Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Location';}"-->
+					<label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
+					</p>
+
+				</div>
+			</form>
+		</div>
+   </div>
+</div>
+
+
+
+
+

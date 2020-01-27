@@ -1,0 +1,205 @@
+
+<searchheader></searchheader>
+
+<div class="container">
+
+    <div class="single">
+        <div class="row">
+         <div class="col-md-4">
+             <div class="col_3">
+               <h3>Get Access</h3>
+
+
+               <signup-confirm [signupSucessMessage] = "valueservicesSucessMessage"></signup-confirm>
+               <div id="site_form" [hidden]="valueservicesSucessMessage != null && valueservicesSucessMessage !=''">
+                <p style="color: red;" *ngIf="valueservicesMessage != null && valueservicesMessage !=''">
+                    {{ valueservicesMessage }}
+                </p>
+
+                <form #valueservicesForm="ngForm" (ngSubmit)="signUpValueServices(valueservicesForm.value)">
+                  <div *ngIf ="!_auth.isAuthenticated()">
+                    <!--label for="username">User Email:</label> <input type="text" [value]="signup.username"  ngModel name="username" #username="ngModel" id="username" email class="required input_field" required/-->
+                    <label for="email">Email</label>
+                    <input type="text" 
+                    ngModel name="email" 
+                    #email="ngModel" 
+                    id="email" 
+                    [ngModel]="udetails.selectedValueServices?.email"
+                    (ngModelChange)="udetails.selectedValueServices.email" 
+                    class="form-control input-sm" required/>
+
+
+                    <div style="color: red;"*ngIf="email.invalid && email.errors?.email && (email.dirty  || email.touched)">
+                      Please enter the valid Email
+                    </div>
+
+                    <!--div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger">
+                      <div *ngIf="email.errors.required">
+                        Email id required
+                      </div>
+                      <div *ngIf="email.errors.email">
+                        Please Enter a valid Email
+                      </div>
+                    </div-->
+                    <!--div style="color: red;" *ngIf="auth0Error != null && auth0Error !=''">
+                      {{ auth0Error }}
+                    </div-->
+
+
+                    <label for="password">Password:</label> <input type="password" [disabled]="_auth.isAuthenticated()" ngModel name="password" #password="ngModel" id="password" [ngModel]="udetails.selectedValueServices?.password" (ngModelChange)="udetails.selectedValueServices.password" class="form-control input-sm" required/>
+                    <div style="color: red;" *ngIf="Fieldlength(password.value) < 5 && password.touched">
+                      Password must be at least 5 characters long.
+                    </div>
+                    <!--div *ngIf="password.invalid && (password.dirty || password.touched)"
+                    class="alert alert-danger">
+                      <div *ngIf="password.errors.required">
+                        Password required
+                      </div>
+                      <div *ngIf="password.errors.minLength">
+                        Password must be at least 5 characters long.
+                      </div>
+                    </div-->
+
+                    <label for="repassword">Re Enter Password:</label> <input type="password" [disabled]="_auth.isAuthenticated()" ngModel name="repassword" #repassword="ngModel" id="repassword" [ngModel]="udetails.selectedValueServices?.repassword" (ngModelChange)="udetails.selectedValueServices.repassword" class="form-control input-sm" required/>
+
+                    <div style="color: red;" *ngIf="Fieldlength(repassword.value) < 5 && repassword.touched">
+                      Password must be at least 5 characters long.
+                    </div>
+                    <div style="color: red;" *ngIf="password.value!=repassword.value">
+                      Re-enter the same password
+                    </div>
+                    <!--div *ngIf="repassword.invalid && (repassword.dirty || repassword.touched)"
+                    class="alert alert-danger">
+                      <div *ngIf="repassword.errors.required">
+                        Password required
+                      </div>
+                      <div *ngIf="repassword.errors.minLength">
+                        Re Password must be at least 5 characters long.
+                      </div>
+                    </div-->
+
+                  
+
+                    <!--div class="cleaner_h10"></div-->
+                    <!--input type="submit" value=" SignUp" id="submit" name="submit" class="submit_btn float_l" /-->
+                  </div>
+                  <!--label for="postjob">Post Job Service</label> <input type="checkbox" ngModel name="postjob" #postjob="ngModel" id="postjob" [ngModel]="udetails.selectedValueServices?.postjob" (ngModelChange)="udetails.selectedValueServices.postjob" checked data-toggle="toggle" data-onstyle="primary">
+                  <label for="resumesearch">Post Job Service</label> <input type="checkbox" ngModel name="resumesearch" #resumesearch="ngModel" id="resumesearch" [ngModel]="udetails.selectedValueServices?.resumesearch" (ngModelChange)="udetails.selectedValueServices.resumesearch" checked data-toggle="toggle" data-onstyle="primary"-->
+                  
+                  
+                  <label for="company">Company:</label> <input type="text" ngModel name="company" #company="ngModel" id="company" [ngModel]="udetails.selectedValueServices?.company" (ngModelChange)="udetails.selectedValueServices.company" class="form-control input-sm" required/>
+
+                  <div style="color: red;" *ngIf="Fieldlength(company.value) < 2 && company.touched">
+                    Company must be at least 2 characters long.
+                  </div>
+
+                  <label for="companyAddress">Company Address:</label> <input type="text" ngModel name="companyAddress" #companyAddress="ngModel" id="companyAddress" [ngModel]="udetails.selectedValueServices?.companyAddress" (ngModelChange)="udetails.selectedValueServices.companyAddress" class="form-control input-sm"/>
+                  <label for="phone">Company Phone:</label> <input type="text" ngModel name="phone" #phone="ngModel" id="phone" [ngModel]="udetails.selectedValueServices?.phone" (ngModelChange)="udetails.selectedValueServices.phone"  ng-pattern="/^[7-9][0-9]{9}$/" class="form-control input-sm"/>
+
+                  <label *ngFor="let ur of UserRole">
+                      
+                    <p *ngIf="ur.RoleName===userActualRole" style="color: green;"><input type="radio" ngModel name="userRole" #userRole="ngModel" [ngModel]="udetails.selectedValueServices?.userRole" (ngModelChange)="udetails.selectedValueServices.userRole" value="{{ur.RoleName}}">&nbsp;&nbsp;{{ur.RoleDetails}}</p>
+                    <p *ngIf="ur.RoleName!==userActualRole"><input type="radio" ngModel name="userRole" #userRole="ngModel" [ngModel]="udetails.selectedValueServices?.userRole" (ngModelChange)="udetails.selectedValueServices.userRole" value="{{ur.RoleName}}" (change)="changeRoleValue(userRole)" required>&nbsp;&nbsp;{{ur.RoleDetails}}</p>
+
+                </label>
+
+                  <div class="form-group">
+                    <table>
+                      <tr>
+                        <td>
+
+                          <button class="btn btn-default" type="submit" value=" Submit" id="submit" name="submit" [disabled]="!valueservicesForm.valid">
+                            <i class="fa fa-floppy-o"></i>&nbsp;Submit
+                          </button>
+                          &nbsp;&nbsp;
+                          <button class="btn btn-default" type="button" value=" reset" id="reset" name="reset" *ngIf="!_auth.isAuthenticated()" (click)="resetForm(valueservicesForm)">
+                              <i class="fa fa-repeat"></i>&nbsp;Reset
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  
+                </form>
+              </div>
+             </div>
+
+
+
+
+
+
+
+
+
+
+             <div class="col_3">
+                <advertisement></advertisement>
+
+
+             </div>
+
+         </div>
+
+
+         <!--div class="col-md-4">
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a2.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+          </div>
+        </div-->
+
+        <div class="col-md-8">
+            <div class="col_3">
+              <technews></technews>
+              <!--h3>Todays Jobs</h3>
+              <ul class="list_1">
+                  <li><a href="#">Department of Health - Western Australia</a></li>
+                  <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">The Government of Western Saudi Arbia</a></li>
+                  <li><a href="#">Department of Health - Western Australia</a></li>
+                  <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">The Scientific Publishing Services in Saudi Arbia</a></li>
+                  <li><a href="#">BPO Private Limited in Canada</a></li>
+                  <li><a href="#">Executive Tracks Associates in Pakistan</a></li>
+                  <li><a href="#">Pyramid IT Consulting Pvt. Ltd. in Pakistan</a></li>
+                </ul-->
+            </div>
+            <!--div class="col_3">
+                <h3>Jobs by Category</h3>
+              <li><a href="#">Railway Recruitment</a></li>
+              <li><a href="#">Air Force Jobs</a></li>
+              <li><a href="#">Police Jobs</a></li>
+              <li><a href="#">Intelligence Bureau Jobs</a></li>
+              <li><a href="#">Army Jobs</a></li>
+              <li><a href="#">Navy Jobs</a></li>
+              <li><a href="#">BSNL Jobs</a></li>
+              <li><a href="#">Software Jobs</a></li>
+              <li><a href="#">Research Jobs</a></li>
+            </div>
+            <div class="widget">
+             <h3>Take The Seeking Poll!</h3>
+          </div-->
+        </div>
+
+
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+
+
+
+
+
+</div>

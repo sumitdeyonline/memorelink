@@ -1,0 +1,127 @@
+
+<searchheader></searchheader>
+
+
+<div class="container">
+
+    <div class="single">
+        <div class="row">
+         <div class="col-md-4">
+             <div class="col_3">
+
+                <h3>Login</h3>
+                <div id="login-content">
+                    <form #f="ngForm" (ngSubmit)="Login(f.value)">
+                        <div class="textbox-wrap">
+                            <div class="input-group">
+                                <span class="input-group-addon "><i class="fa fa-user"></i></span>
+                                <!--input type="text" required="required" class="form-control" placeholder="Username"-->
+                                <input type="text" required="required" [value]="login.username"  ngModel name="username" #username="ngModel" id="username" class="form-control" placeholder="Username" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"/>
+                            </div>
+                        </div>
+
+                        <div class="textbox-wrap">
+                                <div class="input-group">
+                                    <span class="input-group-addon "><i class="fa fa-key"></i></span>
+                                    <!--input type="password" required="required" class="form-control " placeholder="Password"-->
+                                    <input type="password" required="required" [value]="login.password" ngModel name="password" #password="ngModel" id="password" class="form-control " placeholder="Password"/>
+                                </div>
+                            </div>
+                        <!--div class="login-check">
+                            <label class="checkbox1"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+                        </div-->
+                        <button class="btn btn-default" type="submit" value=" Submit" id="submit" name="submit" >
+                            <i class="fa fa-user"></i>&nbsp;Login
+                          </button>                        
+                        <div class="login-para">
+                                <p><a routerLink="/resetpassword">Forgot Password?</a></p>
+                        </div>
+                        <div class="clearfix"> </div>
+
+
+                   <!--h5>Login</h5-->
+                   <!--p style="color: red;">{{ loginError }}</p>
+                   <form #f="ngForm" (ngSubmit)="Login(f.value)">
+                     <label for="username">User Name:</label> <input type="text" [value]="login.username"  ngModel name="username" #username="ngModel" id="username" class="text" placeholder=" " value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"/><br>
+                     <label for="password">Password:</label> <input type="password" [value]="login.password" ngModel name="password" #password="ngModel" id="password" class="required input_field"/>
+                     <div class="cleaner_h10"></div-->
+                     <!--input type="submit" value=" Login" id="submit" name="submit" class="submit_btn float_l" /-->
+                     <!--label class="btn2 btn-2 btn2-1b"><input type="submit" value="   Login"></label-->
+                     
+                     <!--button class="btn btn-default" type="submit" value=" Submit" id="submit" name="submit" >
+                       <i class="fa fa-user"></i>&nbsp;Login
+                     </button-->
+                   </form>
+
+
+                 </div>
+              </div>
+
+              <advertisement></advertisement>
+             <!--div class="col_3">
+               <h3>Jobs by Category</h3>
+
+             </div>
+             <div class="widget">
+              <h3>Take The Seeking Poll!</h3>
+           </div-->
+         </div>
+
+
+         <!--div class="col-md-4">
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a2.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+          </div>
+        </div-->
+
+
+
+        <div class="col-md-8">
+            <div class="col_3">
+                <technews></technews>
+               <!--h3>Today Job</h3>
+
+               <ul class="list_1">
+                  <li><a href="#">Department of Health - Western Australia</a></li>
+                  <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">The Government of Western Saudi Arbia</a></li>
+                  <li><a href="#">Department of Health - Western Australia</a></li>
+                  <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                  <li><a href="#">The Scientific Publishing Services in Saudi Arbia</a></li>
+                  <li><a href="#">BPO Private Limited in Canada</a></li>
+                  <li><a href="#">Executive Tracks Associates in Pakistan</a></li>
+                  <li><a href="#">Pyramid IT Consulting Pvt. Ltd. in Pakistan</a></li>
+                </ul-->
+            </div>
+            <!--div class="col_3">
+                <h3>Jobs by Category</h3>
+              <li><a href="#">Railway Recruitment</a></li>
+              <li><a href="#">Air Force Jobs</a></li>
+              <li><a href="#">Police Jobs</a></li>
+              <li><a href="#">Intelligence Bureau Jobs</a></li>
+              <li><a href="#">Army Jobs</a></li>
+              <li><a href="#">Navy Jobs</a></li>
+              <li><a href="#">BSNL Jobs</a></li>
+              <li><a href="#">Software Jobs</a></li>
+              <li><a href="#">Research Jobs</a></li>
+            </div>
+            <div class="widget">
+             <h3>Take The Seeking Poll!</h3>
+          </div-->
+        </div>
+
+
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

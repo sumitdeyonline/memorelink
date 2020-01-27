@@ -1,0 +1,49 @@
+<searchheader></searchheader>
+
+<div class="container">
+
+    <div class="single">
+        <div class="row">
+
+        <div class="col-md-8">
+            <div class="col_3">
+
+
+
+              <div id="myTabContent" class="tab-content">
+
+                      
+                      <div *ngFor="let rservice of resumeService">
+                        <h2>{{rservice.fields.mainHeader}}</h2>
+                        <br>
+                        <div [innerHTML]="rservice.fields.pageText | mdToHtml"></div>
+                      </div>                      
+                      <!--div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab"-->
+              </div>
+
+  
+
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="col_3">
+                <advertisement></advertisement>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="clearfix"> </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

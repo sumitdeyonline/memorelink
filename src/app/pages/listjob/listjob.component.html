@@ -1,0 +1,302 @@
+<searchheader [keyword]="keyword" [location]= "location"></searchheader>
+
+<div class="container">
+
+    <div class="single">
+        <div class="row">
+
+
+
+         <!--div class="col-md-4">
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a2.jpg" class="img-responsive" alt=""/></a>
+
+            </div>
+            <div class="col_3">
+                <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+          </div>
+        </div-->
+
+
+
+        <div class="col-md-8">
+            <div class="col_3">
+
+
+
+              <div id="myTabContent" class="tab-content">
+
+                      <h2>Search Result</h2>
+
+                      <!--div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab"-->
+                      <div class="tab_grid" *ngFor="let pj of pagedItems">
+                          <div class="jobs-item with-thumb">
+                            <div class="thumb"><a [routerLink]="['/jobdetails',pj.objectID]" (click) = "jobDetails(pj.objectID)"><img src="assets/images/a2.jpg" class="img-responsive" alt=""/></a></div>
+                            <div class="jobs_right">
+
+                            <!--div class="date">{{ pj.LastModifiedDate.toDate() | date:'dd' }} <span>{{ dformat.monthNumToSigName(pj.LastModifiedDate.toDate() | date:'MM') }}</span></div-->
+                            <div class="date">{{ pj.LastModifiedDate |  date:'dd'}} <span>{{ dformat.monthNumToSigName(pj.LastModifiedDate |  date:'MM') }}</span></div>
+
+
+
+                            <div class="date_desc"><h6 class="title"><a [routerLink]="['/jobdetails',pj.objectID]" (click) = "jobDetails(pj.objectID)">{{ pj.JobTitle }}</a></h6>
+                              <i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;<span class="companyName">{{ pj.Company.substring(0,19) }}</span><span class="companyName" *ngIf="pj.Company.length>19">...</span>
+                              &nbsp;&nbsp;<i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;<span class="meta"><b>{{ pj.JobCity }}, {{ pj.JobState }}</b></span>
+                              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;<span class="meta">{{ getDateDiff(pj.LastModifiedDate) }}&nbsp;days ago</span>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                              <ul class="top-btns">
+                              <!--li><a href="#" class="fa fa-plus toggle"></a></li>
+                              <li><a href="#" class="fa fa-star"></a></li>
+                              <li><a href="#" class="fa fa-link"></a></li-->
+                            </ul>
+                            <br>
+                            <div [innerHTML]="pj.JobDesc.substring(0,length)"></div>
+                            <a [routerLink]="['/jobdetails',pj.objectID]" (click) = "jobDetails(pj.objectID)">Read More ..</a>
+
+                            <!--button (click)="jobDetails(pj.objectID)">Read More</button-->
+
+                          </div>
+                          <div class="clearfix"> </div>
+                        </div>
+
+
+
+
+                      </div>
+
+                        <!-- pager -->
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">&laquo;</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                            </li>
+                        </ul>
+                      <!--/div-->
+
+
+
+
+                <!--h3>Today Job</h3>
+                <ul class="list_1">
+                    <li><a href="#">Department of Health - Western Australia</a></li>
+                    <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                    <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                    <li><a href="#">The Government of Western Saudi Arbia</a></li>
+                    <li><a href="#">Department of Health - Western Australia</a></li>
+                    <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
+                    <li><a href="#">Russia Nursing Agency currently require experiences</a></li>
+                    <li><a href="#">The Scientific Publishing Services in Saudi Arbia</a></li>
+                    <li><a href="#">BPO Private Limited in Canada</a></li>
+                    <li><a href="#">Executive Tracks Associates in Pakistan</a></li>
+                    <li><a href="#">Pyramid IT Consulting Pvt. Ltd. in Pakistan</a></li>
+                  </ul-->
+              </div>
+
+
+
+            </div>
+            <div class="col_3">
+                <technews></technews>
+                <!--h3>Jobs by Category</h3>
+                <li><a href="#">Railway Recruitment</a></li>
+                <li><a href="#">Air Force Jobs</a></li>
+                <li><a href="#">Police Jobs</a></li>
+                <li><a href="#">Intelligence Bureau Jobs</a></li>
+                <li><a href="#">Army Jobs</a></li>
+                <li><a href="#">Navy Jobs</a></li>
+                <li><a href="#">BSNL Jobs</a></li>
+                <li><a href="#">Software Jobs</a></li>
+                <li><a href="#">Research Jobs</a></li-->
+            </div>
+            <!--div class="widget">
+              <h3>Take The Seeking Poll!</h3>
+            </div-->
+
+        </div>
+
+        <div class="col-md-4">
+            <advertisement></advertisement>
+            <!--div class="col_3">
+
+                <h5 class="widget-title">Search</h5>
+                <div class="widget-content">
+
+                    <span>I'm looking for a ...</span>
+                            <select class="form-control jb_1">
+                      <option value="0">Job</option>
+                      <option value="">Category</option>
+                      <option value="">Category</option>
+                      <option value="">Category</option>
+                      <option value="">Category</option>
+                    </select>
+                            <span>in</span>
+                            <input type="text" class="form-control jb_2" placeholder="Location">
+                            <input type="text" class="form-control jb_2" placeholder="Industry / Role">
+                            <input type="submit" class="btn btn-default" value="Search">
+                </div>
+
+
+             </div-->
+
+             <!--div class="col_3">
+                <h3>Work Experiance</h3>
+                  <table class="table">
+                         <tbody>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Senior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Middle
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Junior
+                                 </td>
+                                 <td>
+                                     (56)
+                                 </td>
+                             </tr>
+                     </tbody>
+                  </table>
+             </div-->
+
+
+             <!--div class="col_3">
+                <h3>Work Permit</h3>
+                <table class="table">
+                         <tbody>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Full time
+                                 </td>
+                             </tr>
+                             <tr class="unread checked">
+                                 <td class="hidden-xs">
+                                     <input type="checkbox" class="checkbox">
+                                 </td>
+                                 <td class="hidden-xs">
+                                     Parttime
+                                 </td>
+                             </tr>
+                         </tbody>
+                  </table>
+              </div-->
+
+
+        </div>
+
+
+        <div class="clearfix"> </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

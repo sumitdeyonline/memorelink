@@ -1,0 +1,14 @@
+<div class="col-md-4" *ngFor="let jimg of jobImage">
+  <!--div class="col_3">
+      <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+
+  </div>
+  <div class="col_3">
+      <a href="single.html"><img src="assets/images/a2.jpg" class="img-responsive" alt=""/></a>
+
+  </div>
+  <div class="col_3">
+      <a href="single.html"><img src="assets/images/a1.jpg" class="img-responsive" alt=""/></a>
+  </div-->
+  <div [innerHTML]="jimg.fields.pageText | mdToHtml"></div>
+</div>

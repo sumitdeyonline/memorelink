@@ -1,0 +1,336 @@
+
+<searchheader></searchheader>
+
+
+
+
+<div class="container">
+    <div class="single">
+        <div class="form-container">
+            <h2>Post Job</h2>
+
+
+	      <signup-confirm [signupSucessMessage] = "signupSucessMessage"></signup-confirm>
+	      <div [hidden]="signupSucessMessage != null && signupSucessMessage !=''">
+		<p style="color: red;" *ngIf="signupMessage != null && signupMessage !=''">
+		    {{ signupMessage }}
+		</p>
+	      </div>
+
+            <form #f="ngForm" (ngSubmit)="JobPostSubmit(f)">
+
+		           <h3 class="title" style="color: red;">Job Details</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobTitle">Job Title</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="JobTitle" #JobTitle="ngModel" id="JobTitle" [ngModel]="postjobService.selectedPostJobc?.JobTitle" (ngModelChange)="postjobService.selectedPostJobc.JobTitle" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="JobTitle.invalid && (JobTitle.dirty || JobTitle.touched)">
+                            Please Enter Job Title
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2">
+                      <label style="font-weight: bold;" for="Company">Company</label>
+                  </div>
+                  <div class="col">
+                      <input type="text" [readonly]="true" ngModel name="Company" #Company="ngModel" id="Company" [ngModel]="postjobService.selectedPostJobc?.Company" (ngModelChange)="postjobService.selectedPostJobc.Company" class="form-control input-sm"/>
+
+                      <!--div style="color: red;" *ngIf="Company.invalid && (Company.dirty || Company.touched)">
+                          Please Enter Company Name
+                      </div-->
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">&nbsp;
+                  </div>
+              </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobDesc">Job Description</label>
+                    </div>
+                    <div class="col">
+                        <!--app-ngx-editor height="100px" minHeight="50px" [placeholder]="'Enter text here...'" [spellcheck]="true" [ngModel]="postjobService.selectedPostJobc?.JobDesc"></app-ngx-editor-->
+                        <app-ngx-editor [placeholder]="'Enter description here...'" height="300px" minHeight="50px" [spellcheck]="true" ngModel name="JobDesc" #JobDesc="ngModel" id="JobDesc" [ngModel]="postjobService.selectedPostJobc?.JobDesc" (ngModelChange)="postjobService.selectedPostJobc.JobDesc" required></app-ngx-editor>
+                        <!--textarea cols="77" rows="4" ngModel name="JobDesc" #JobDesc="ngModel" id="JobDesc" [ngModel]="postjobService.selectedPostJobc?.JobDesc" (ngModelChange)="postjobService.selectedPostJobc.JobDesc" class="form-control input-sm" required></textarea-->
+                        <div style="color: red;" *ngIf="JobDesc.invalid && (JobDesc.dirty || JobDesc.touched)">
+                            Please Enter Job Description
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Skills">Skills</label>
+                    </div>
+                    <div class="col">
+                        <app-ngx-editor [placeholder]="'Enter Skill here...'" height="300px" minHeight="50px" [spellcheck]="true" ngModel name="Skills" #Skills="ngModel" id="Skills" [ngModel]="postjobService.selectedPostJobc?.Skills" (ngModelChange)="postjobService.selectedPostJobc.Skills" required></app-ngx-editor>
+                        <!--textarea cols="77" rows="4" ngModel name="Skills" #Skills="ngModel" id="Skills" [ngModel]="postjobService.selectedPostJobc?.Skills" (ngModelChange)="postjobService.selectedPostJobc.Skills" class="form-control input-sm" required></textarea-->
+                        <div style="color: red;" *ngIf="Skills.invalid && (Skills.dirty || Skills.touched)">
+                            Please Enter Job Skills
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Application Method</h3>&nbsp;
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="ApplyToEmail">Apply To Email</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="ApplyToEmail" #ApplyToEmail="ngModel" id="ApplyToEmail" [ngModel]="postjobService.selectedPostJobc?.ApplyToEmail" (ngModelChange)="postjobService.selectedPostJobc.ApplyToEmail" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="ApplyToEmail.invalid && (ApplyToEmail.dirty || ApplyToEmail.touched)">
+                            Please Enter currect Email
+                        </div>                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="CCToEmail">CC To Email</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="CCToEmail" #CCToEmail="ngModel" id="CCToEmail" [ngModel]="postjobService.selectedPostJobc?.CCToEmail" (ngModelChange)="postjobService.selectedPostJobc.CCToEmail" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="ApplyToURL">Apply To URL</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="ApplyToURL" #ApplyToURL="ngModel" id="ApplyToURL" [ngModel]="postjobService.selectedPostJobc?.ApplyToURL" (ngModelChange)="postjobService.selectedPostJobc.ApplyToURL" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <hr/>
+                <h3 class="title" style="color: red;">Location</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobCity">City</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="JobCity" #JobCity="ngModel" id="JobCity" [ngModel]="postjobService.selectedPostJobc?.JobCity" (ngModelChange)="postjobService.selectedPostJobc.JobCity" class="form-control input-sm" required/>
+                        <div style="color: red;" *ngIf="JobCity.invalid && (JobCity.dirty || JobCity.touched)">
+                            Please Enter City
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobCountry">Country </label>
+                    </div>
+                    <div class="col">
+                        <select ngModel name="JobCountry" #JobCountry="ngModel" id="JobCountry" [ngModel]="postjobService.selectedPostJobc?.JobCountry" class="form-control input-sm" (ngModelChange)="postjobService.selectedPostJobc.JobCountry" (change)="getState($event.target.value)" required>
+                          <option>Select Country</option>
+                          <option [value]="country.countryID" *ngFor="let country of countries">{{country.CountryName}}</option>
+
+                        </select>
+                        <div style="color: red;" *ngIf="JobCountry.invalid && (JobCountry.dirty || JobCountry.touched)">
+                            Please Enter Country
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobState">State</label>
+                    </div>
+                    <div class="col">
+                           <!--input type="text" ngModel name="JobState" #JobState="ngModel" id="JobState" [(ngModel)]="postjobService.selectedPostJobc.JobState" class="form-control input-sm"/-->
+                            <!--select ngModel name="JobState" #JobState="ngModel" id="JobState" [(ngModel)]="postjobService.selectedPostJobc.JobState" class="form-control input-sm"-->
+                            <select ngModel name="JobState" #JobState="ngModel" id="JobState" [ngModel]="postjobService.selectedPostJobc?.JobState" (ngModelChange)="postjobService.selectedPostJobc.JobState" class="form-control input-sm" required>
+                              <option>Select State</option>
+                              <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}</option>
+                          </select>
+                        <div style="color: red;" *ngIf="JobState.invalid && (JobState.dirty || JobState.touched)">
+                          Please Enter Job State
+                        </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"  for="JobZip">Zip</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="JobZip" #JobZip="ngModel" id="JobZip" [ngModel]="postjobService.selectedPostJobc?.JobZip" (ngModelChange)="postjobService.selectedPostJobc.JobZip" class="form-control input-sm"/>
+                        <!--div style="color: red;" *ngIf="JobZip.invalid && (JobZip.dirty || JobZip.touched)">
+                            Please Enter Zip
+                        </div-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+                <hr/>
+                <h3 class="title" style="color: red;">Categorization</h3>&nbsp;
+
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="EmploymentTypes">Employment Type</label>
+                    </div>
+                    <div class="col">
+                      <select ngModel name="EmploymentTypes" #EmploymentTypes="ngModel" id="EmploymentTypes" [ngModel]="postjobService.selectedPostJobc?.EmploymentTypes" (ngModelChange)="postjobService.selectedPostJobc.EmploymentTypes" class="form-control input-sm" required>
+                        <option>Select Employment Type</option>
+                        <option>Part Time</option>
+                        <option>Full Time</option>
+                        <option>Contracts</option>
+                        <option>Third Party</option>
+                      </select>
+                      <div style="color: red;" *ngIf="EmploymentTypes.invalid && (EmploymentTypes.dirty || EmploymentTypes.touched)">
+                          Please Enter Employee Type
+                        </div>                      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobPayRate">Job Pay Rate</label>
+                    </div>
+                    <div class="col">
+                      <select ngModel name="JobPayRate" #JobPayRate="ngModel" id="JobPayRate" [ngModel]="postjobService.selectedPostJobc?.JobPayRate" (ngModelChange)="postjobService.selectedPostJobc.JobPayRate" class="form-control input-sm" (change)="isPayrate($event.target.value)" required>
+                        <option>Select Job Pay Rate</option>
+                        <option>Salary</option>
+                        <option>Hourly</option>
+                      </select>
+                      <div style="color: red;" *ngIf="JobPayRate.invalid && (JobPayRate.dirty || JobPayRate.touched)">
+                          Please Enter Pay Type
+                        </div>                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;"for="Compensation">Compensation</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" ngModel name="Compensation" #Compensation="ngModel" id="Compensation" [ngModel]="postjobService.selectedPostJobc?.Compensation" (ngModelChange)="postjobService.selectedPostJobc.Compensation" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+                <div class="row" [hidden]="!isJobLength">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="JobLength">Job Length</label>
+                    </div>
+                    <div class="col">
+                        <input type="text"  ngModel name="JobLength" #JobLength="ngModel" id="JobLength" [ngModel]="postjobService.selectedPostJobc?.JobLength" (ngModelChange)="postjobService.selectedPostJobc.JobLength" class="form-control input-sm"/>
+                    </div>
+                </div>
+                <div class="row" [hidden]="!isJobLength">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <hr/>
+                <h3 class="title" style="color: red;">Travel</h3>&nbsp;
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="TravelRequirements">Travel Requirements</label>
+                    </div>
+                    <div class="col">
+                      <select ngModel name="TravelRequirements" #TravelRequirements="ngModel" id="TravelRequirements" [ngModel]="postjobService.selectedPostJobc?.TravelRequirements" (ngModelChange)="postjobService.selectedPostJobc.TravelRequirements" class="form-control input-sm">
+                        <option>Select Travel Requirements</option>
+                        <option>No Travel</option>
+                        <option>30% Travel</option>
+                        <option>50% Travel</option>
+                        <option>75% Travel</option>
+                        <option>100% Travel</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="isTeleComute">TeleComute</label>
+                    </div>
+                    <div class="col">
+              <!--input type="text" ngModel name="isTeleComute" #isTeleComute="ngModel" id="isTeleComute" [(ngModel)]="postjobService.selectedPostJobc.isTeleComute" class="form-control input-sm"/-->
+                      <select ngModel name="isTeleComute" #isTeleComute="ngModel" id="isTeleComute" [ngModel]="postjobService.selectedPostJobc?.isTeleComute" (ngModelChange)="postjobService.selectedPostJobc.isTeleComute" class="form-control input-sm">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">&nbsp;
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                  <div class="form-actions floatRight">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" [disabled]="!f.valid" class="btn btn-primary btn-sm">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+        </div>
+    </div>
+

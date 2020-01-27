@@ -1,0 +1,135 @@
+
+<h2 mat-dialog-title>Apply Job</h2>
+
+<!--mat-dialog-content>
+
+<p> Place content here </p>
+</mat-dialog-content-->
+
+<div style="color: red;" *ngIf="checkApplied">
+  {{ applySucessMessage }}&nbsp;&nbsp;<button class="mat-raised-button" (click)="close()">Close</button>
+</div>
+
+<div *ngIf="!checkApplied">
+
+
+    <form [formGroup]="applyJobForm">
+      <div class="applyjob-container">
+
+        <mat-form-field>
+          <input matInput
+                    placeholder="First Name"
+                  formControlName="FirstName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput
+                  placeholder="Last Name"
+                formControlName="LastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput
+                placeholder="Enter your Email"
+              formControlName="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput
+                placeholder="Phone Number"
+              formControlName="PhoneNumber">
+        </mat-form-field>
+        <!--button mat-raised-button color="accent">Submit</button-->
+        <mat-form-field>
+          <textarea matInput
+                placeholder="Cover Letter"
+                rows="4"
+              formControlName="CoverLetter">
+          </textarea>
+        </mat-form-field>
+
+
+        <mat-form-field *ngIf="numberOfResume > 0">
+          <select matNativeControl placeholder="Select Resume"
+          formControlName="fileUploadExist" (change)="onChange($event.target.value)">
+            <option value=''>Select Resume</option>
+            <option [value]="rname.ResumeURL" *ngFor="let rname of uResume">{{rname.ResumeFileName}}</option>
+          </select>
+        </mat-form-field>
+
+
+
+
+      </div>
+    </form>
+
+
+    <div [hidden]="!showUpload">
+      Upload Resume :&nbsp;<label class="btn btn-default">  <input type="file" name="fileUpload" (change)="selectFile($event)">
+
+      </label>&nbsp;&nbsp;
+      <!--i class="fa fa-upload fa-2x" aria-hidden="true" (click)="upload()"></i-->
+
+      <button class="btn btn-success" (click)="upload()" [disabled]="!selectedFiles || !filleUploadEnabled">Upload</button>
+
+
+      <div class="row">
+          <div class="col">
+            <div *ngIf="currentFileUpload" class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped"
+                            role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                            aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%</div>
+              </div>
+              <div style="color: green;" *ngIf="!filleUploadEnabled">
+                  Please Upload Resume(.doc, .docx, .pdf, .ppt, .pptx)
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="row">
+      <div class="form-actions floatRight" [hidden]="!showUpload">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Apply Job" class="btn btn-primary btn-sm" [disabled]="!applyJobForm.valid || !currentFileUpload || progress.percentage != 100" (click)="applyNow()">
+      </div>
+      <div class="form-actions floatRight" [hidden]="showUpload">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Apply Job" class="btn btn-primary btn-sm" [disabled]="!applyJobForm.valid" (click)="applyNow()">
+    </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="form-actions floatRight">
+        &nbsp;&nbsp;&nbsp;<input type="button" value="Cancel" (click)="close()" class="btn btn-primary btn-sm">
+      </div>
+    </div>
+
+
+</div>
+
+
+
+<!--mat-dialog-actions>
+    <button class="mat-raised-button mat-primary" (click)="applyNow(applyJobForm.value)">Apply Job</button>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions-->
+<!--button  mat-raised-button color="accent" (click)="close()">Close</button-->
+
+
+
+
+
+
+
+<!--mat-dialog-actions >
+    <button class="mat-raised-button" [disabled]="!userProfile.valid || !isUpdateProfile">Yes</button>
+    <button class="mat-raised-button">No</button>
+</mat-dialog-actions-->
+
+<!--mat-dialog-actions *ngIf="!isDeleted">
+    <button class="mat-raised-button" (click)="deleteRecord()">Yes</button>
+    <button class="mat-raised-button" (click)="close()">No</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="isDeleted">
+    <button class="mat-raised-button" (click)="close()">Ok</button>
+</mat-dialog-actions-->

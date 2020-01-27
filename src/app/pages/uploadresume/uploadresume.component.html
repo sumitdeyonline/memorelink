@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-2">
+      <label style="font-weight: bold;">Resume Upload</label>
+  </div>
+  <div class="col">
+      <div *ngIf="currentFileUpload" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+                      role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                      aria-valuemin="0" aria-valuemax="100"
+                      [ngStyle]="{width:progress.percentage+'%'}">
+                      {{progress.percentage}}%</div>
+      </div>
+      <label class="btn btn-default"> <input type="file" name="fileUpload" (change)="selectFile($event)">
+      </label>&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-success" [disabled]="!selectedFiles || !resumeUploadEnabled" (click)="upload()">Upload</button>
+      <!--a href="{{rUploadService.downloadURL}}" [hidden]="!resumeUploadEnabled" target="_blank">{{rUploadService.fileName}}</a-->
+      &nbsp; <!--a href="{{rUploadService.downloadURL}}" [hidden]="!resumeUploadEnabled" target="_blank">Resume1</a-->
+      &nbsp; <a href="{{rUploadService.selectedUploadResume?.ResumeURL}}" [hidden]="!isNewUpload" target="_blank">Resume</a>
+      <div style="color: green;" *ngIf="!resumeUploadEnabled">
+          Please Upload Resume(.doc, .docx, .pdf, .ppt, .pptx)
+      </div>
+  </div>
+</div>
