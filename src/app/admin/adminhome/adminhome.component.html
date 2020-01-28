@@ -1,0 +1,44 @@
+
+
+<div class="container">
+
+    <div class="single">
+        <div class="row">
+
+        <div class="col-md-8">
+            <div class="col_3">
+
+
+
+              <div id="myTabContent" class="tab-content">
+
+                <h2>Site Administration</h2>
+                <h4>User</h4>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/userroles" *ngIf="auth.isAdminRole()">User Roles</a></li>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/userroleassignment" *ngIf="auth.isAdminRole()">User Role Assignment</a></li>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/userprofiles" *ngIf="auth.isAdminRole()">User Profiles</a></li>
+                <!--li>User Resume</li-->
+                &nbsp;&nbsp;
+                <h4>Post Job</h4>
+                
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/postjobvendor" *ngIf="auth.isAdminRole()">Post Job</a></li>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/country" *ngIf="auth.isAdminRole()">Country</a></li>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/state" *ngIf="auth.isAdminRole()">State</a></li>
+                <li *ngIf="auth.isAdminRole()"><a routerLink="/applyjobadmin" *ngIf="auth.isAdminRole()">Apply Job</a></li>
+
+              </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>

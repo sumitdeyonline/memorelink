@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>Apply Job Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+          <div class="row">
+            <form #aform="ngForm" (ngSubmit)="applyRole(aform.value)">
+              <table>
+                <tr>
+
+                  <td>Company :</td>
+                  <td>
+                    <select ngModel name="company" #company="ngModel" id="company">
+                      <option value="">Select Company</option>
+                      <option [value]="company.company" *ngFor="let company of userDetails">{{company.company}}</option>
+                      <!--option>USA</option-->
+                    </select>
+                  </td>
+                  <td><button type="submit"><i class="fa fa-search"></i></button></td>
+                </tr>
+                </table>
+              </form>
+          </div>
+
+          <div class="row">
+
+            <table>
+                <tr>
+                  <th windh="10%">User Name</th>
+                  <th windh="10%">First Name</th>
+                  <th windh="10%">Last Name</th>
+                  <th windh="10%">Apply To Email</th>
+                  <th windh="10%">From Email</th>
+                  <th windh="10%">JobID</th>
+                  <th windh="10%">Job title</th>
+                  <th windh="10%">Job Location</th>
+                  <th windh="10%">Company</th>
+                  <th windh="5%">Phone Number</th>
+                  <th windh="5%">File</th>
+
+                </tr>
+                <tr *ngFor="let aJob of pagedItems">
+                  <td>{{aJob.username}}</td>
+                  <td>{{aJob.FirstName}}</td>
+                  <td>{{aJob.LastName}}</td>
+                  <td>{{aJob.ApplyToEmail}}</td>
+                  <td>{{aJob.FromEmail}}</td>
+                  <td>{{aJob.JobID}}</td>
+                  <td>{{aJob.JobTitle}}</td>
+                  <td>{{aJob.joblocation}}</td>
+                  <td>{{aJob.company}}</td>
+                  <td>{{aJob.PhoneNumber}}</td>
+                  <td><a href="{{aJob.fileUploadURL}}">Resume</a></td>
+                </tr>
+            </table>
+          
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">&laquo;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                </li>
+            </ul>
+
+        </div>          
+
+        </div>
+      </div>
+  </div>

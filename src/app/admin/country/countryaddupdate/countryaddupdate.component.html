@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Country</h2>
+
+<div style="color: red;" *ngIf="checkCountry">
+  {{ countrySucessMessage }}&nbsp;&nbsp;<button class="mat-raised-button" (click)="close()">Close</button>
+</div>
+
+<div *ngIf="!checkCountry">
+  <form [formGroup]="countryForm">
+    <div class="applyjob-container">
+
+      <div *ngIf="isUpdate">
+          <mat-form-field>
+            <input matInput
+                    readonly
+                    placeholder="Country ID"
+                    formControlName="countryID">
+          </mat-form-field> 
+      </div>
+      <div *ngIf="!isUpdate">
+        <mat-form-field>
+          <input matInput
+                    placeholder="Country ID"
+                  formControlName="countryID">
+        </mat-form-field> 
+      </div>  
+
+  
+      <mat-form-field>
+      <input matInput
+                placeholder="Country Name"
+              formControlName="CountryName">
+      </mat-form-field>
+  
+    </div>
+    </form>
+
+
+    <div class="row">
+      <div class="form-actions floatRight">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Submit" [disabled]="!countryForm.valid" class="btn btn-primary btn-sm" (click)="addUpdateCountry()">
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="form-actions floatRight">
+        &nbsp;&nbsp;&nbsp;<input type="button" value="Cancel" (click)="close()" class="btn btn-primary btn-sm">
+      </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+

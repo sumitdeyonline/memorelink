@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>Role Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+          <table>
+            <tr>
+              <th windh="20%">Role Name</th>
+              <th windh="20%">Role Details</th>
+              <th windh="10%">Role Type</th>
+              <th windh="10%">Post Job</th>
+              <th windh="10%">Resume Search</th>
+              <th windh="10%">Admin Role</th>
+              <th windh="5%">Order By</th>
+              <th windh="5%">&nbsp;</th>
+            </tr>
+            <tr *ngFor="let urole of UserRole">
+              <td>{{urole.RoleName}}</td>
+              <td>{{urole.RoleDetails}}</td>
+              <td>{{urole.RoleType}}</td>
+              <td>{{urole.isEmployerPostJobRole}}</td>
+              <td>{{urole.isEmployerResumeSearchRole}}</td>
+              <td>{{urole.isAdminUserRole}}</td>
+              <td>{{urole.OrderBy}}</td>
+              <td><a [routerLink]="['/postjob']" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(id)" class="fa fa-trash"></a></td>
+            </tr>
+        </table>
+
+        </div>
+      </div>
+  </div>

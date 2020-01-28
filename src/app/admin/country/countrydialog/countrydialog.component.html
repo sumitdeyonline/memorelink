@@ -1,0 +1,16 @@
+<h2 mat-dialog-title *ngIf="!isDeleted">Are you sure to delete this record?</h2>
+<h2 mat-dialog-title *ngIf="isDeleted">Record Deleted Sucessfully</h2>
+
+<!--mat-dialog-content>
+
+<p> Place content here </p>
+</mat-dialog-content-->
+
+<mat-dialog-actions *ngIf="!isDeleted">
+    <button class="mat-raised-button" (click)="deleteRecord()">Yes</button>
+    <button class="mat-raised-button" (click)="close()">No</button>
+</mat-dialog-actions>
+
+<mat-dialog-actions *ngIf="isDeleted">
+    <button class="mat-raised-button" (click)="close()">Ok</button>
+</mat-dialog-actions>

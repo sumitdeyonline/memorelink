@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>User Role Assignment Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+
+          
+          
+          <div class="row">
+            <form #rform="ngForm" (ngSubmit)="roleSearch(rform.value)">
+              <table>
+                <tr>
+                  <td>User Name :</td>
+                  <td>
+                      <input type="text" class="text" ngModel name="username" #username="ngModel" id="username" placeholder="" value={{username}}>
+                  </td>
+                  <td>&nbsp;<b>OR</b>&nbsp;</td>
+                  <td>User Role :</td>
+                  <td>
+                    <select ngModel name="role" #role="ngModel" id="role">
+                      <option value="">Select Role</option>
+                      <option [value]="uRole.RoleName" *ngFor="let uRole of UserRole">{{uRole.RoleName}}</option>
+                      <!--option>USA</option-->
+                    </select>
+                  </td>
+                  <td><button type="submit"><i class="fa fa-search"></i></button></td>
+                </tr>
+                </table>
+              </form>
+          </div>
+
+          <div class="row">
+
+              <table>
+                  <tr>
+                    <th windh="10%">ID</th>
+                    <th windh="10%">User Name</th>
+                    <th windh="20%">Company Name</th>
+                    <th windh="10%">Company Address</th>
+                    <th windh="10%">Date</th>
+                    <th windh="10%">Phone</th>
+                    <th windh="10%">User Role</th>
+                    <th windh="10%">PostJob Cnt</th>
+                    <th windh="5%">Email Sent</th>
+
+                    <th windh="5%">&nbsp;</th>
+                  </tr>
+                  <tr *ngFor="let uDet of pagedItems">
+                    <td>{{uDet.id}}</td>
+                    <td>{{uDet.userName}}</td>
+                    <td>{{uDet.company}}</td>
+                    <td>{{uDet.companyAddress}}</td>
+                    <td>{{uDet.createdDate}}</td>
+                    <td>{{uDet.phone}}</td>
+                    <td>{{uDet.userRole}}</td>
+                    <td>{{uDet.postjobCount}}</td>
+                    <td>{{uDet.resumeEmailCount}}</td>
+                    <td><a [routerLink]="['/postjob']" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(id)" class="fa fa-trash"></a></td>
+                  </tr>
+              </table>
+            
+              <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a (click)="setPage(1)">&laquo;</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                  </li>
+                  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                      <a (click)="setPage(page)">{{page}}</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                  </li>
+              </ul>
+
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+  </div>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>Post Job Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+          &nbsp;&nbsp;<a (click)="onAdd()" *ngIf="auth.isAdminRole()"><i class="fa fa-plus" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+          <!--button type="button" value="Apply Now" (click)="onApply()" class="btn btn-primary btn-sm">Apply Now</button-->
+
+
+
+          <div class="row">
+
+            <table>
+                <tr>
+                  <th windh="20%">Country ID</th>
+                  <th windh="60%">Country Name</th>
+
+                  <th windh="20%">&nbsp;</th>
+                </tr>
+                <tr *ngFor="let country of pagedItems">
+                  <td>{{country.countryID}}</td>
+                  <td>{{country.CountryName}}</td>
+                  <td><a (click)="onUpdate(country)" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(country)" class="fa fa-trash"></a></td>
+                </tr>
+            </table>
+          
+            <ul *ngIf="pager.pages && pager.pages.length && country !=null" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">&laquo;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                </li>
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+  </div>           

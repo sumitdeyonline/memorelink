@@ -38,12 +38,12 @@ import { AuthGuardService } from './services/authentication/auth-guard.service';
 import { ScopeGuardService } from './services/authentication/scope-guard.service';
 import { PostjobService } from './services/firebase/postjob/postjob.service';
 import { ListjobComponent } from './pages/listjob/listjob.component';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { JobpoststatusComponent } from './pages/postjob/jobpoststatus/jobpoststatus.component';
 import { DatePipe } from '@angular/common';
-// import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
-// import { DateformatService } from './services/dateformat/dateformat.service';
+import { DateformatService } from './services/dateformat/dateformat.service';
 
 import { UserProfileComponent } from './pages/userprofile/userprofile.component';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -53,18 +53,18 @@ import { UserprofileService } from './services/firebase/userprofile/userprofile.
 import { UploadresumeComponent } from './pages/uploadresume/uploadresume.component';
 import { ResumesearchComponent } from './pages/resumesearch/resumesearch.component';
 import { ResumedetailsComponent } from './pages/resumesearch/resumedetails/resumedetails.component';
-// import { ContentfulService } from './services/contentful/contentful.service';
+import { ContentfulService } from './services/contentful/contentful.service';
 import { MiddleimageComponent } from './pages/home/middleimage/middleimage.component';
-// import { MdToHtmlPipe } from './services/contentful/md-to-html.pipe';
+import { MdToHtmlPipe } from './services/contentful/md-to-html.pipe';
 import { TechNewsComponent } from './pages/tech-news/tech-news.component';
 import { TechNewsDetailsComponent } from './pages/tech-news/tech-news-details/tech-news-details.component';
 import { AdvertisementComponent } from './pages/advertisement/advertisement.component';
 import { ResetpasswordComponent } from './pages/login/resetpassword/resetpassword.component';
 import { PagerService } from './services/common/pager.service';
 
-// import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { DialogComponent } from './pages/jobdetails/dialog/dialog.component';
-// import { NgxEditorModule } from 'ngx-editor';
+import { NgxEditorModule } from 'ngx-editor';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AboutComponent } from './pages/about/about.component';
@@ -77,8 +77,9 @@ import { ValueServicesComponent } from './pages/value-services/value-services.co
 import { MidsearchComponent } from './pages/home/midsearch/midsearch.component';
 import { CommondialogComponent } from './common/commondialog/commondialog.component';
 import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
-// import { AdminModule } from './admin/admin.module';
-// import { adminRouting } from './admin/admin.routing';
+import { AdminModule } from './admin/admin.module';
+import { adminRouting } from './admin/admin.routing';
+
 
 
 
@@ -94,7 +95,7 @@ import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
     NotfoundComponent,
     LoginComponent,
     LogComponent,
-    // MdToHtmlPipe,
+    MdToHtmlPipe,
     CallbackComponent,
     SignupComponent,
     SignupConfirmComponent,
@@ -124,8 +125,8 @@ import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
   ],
   entryComponents: [DialogComponent, ApplyjobComponent, CommondialogComponent],
   imports: [
-    // AdminModule,
-    // adminRouting,
+    AdminModule,
+    adminRouting,
     BrowserModule,
     routing,
     FormsModule,
@@ -133,15 +134,15 @@ import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    // MatDialogModule,
-    // MatInputModule,
-    // MatTableModule,
-    // MatPaginatorModule,
-    // MatSortModule,
-    // NgxEditorModule,
+    MatDialogModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxEditorModule,
     AngularFontAwesomeModule,
     HttpClientModule,
-    // ToastrModule.forRoot(),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [
@@ -154,11 +155,11 @@ import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
     UserdetailsService,
     UserprofileService,
     ApplyjobService,
-    // ToastrService,
+     ToastrService,
     DatePipe,
-    // DateformatService,
+    DateformatService,
     AngularFireDatabase,
-    // ContentfulService,
+    ContentfulService,
     PagerService,
     HttpClient
   ],

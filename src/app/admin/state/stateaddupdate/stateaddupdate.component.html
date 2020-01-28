@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>State</h2>
+
+<div style="color: red;" *ngIf="checkState">
+  {{ stateSucessMessage }}&nbsp;&nbsp;<button class="mat-raised-button" (click)="close()">Close</button>
+</div> 
+
+<div *ngIf="!checkState">
+  <form [formGroup]="stateForm">
+    <div class="applyjob-container">
+  
+      <div *ngIf="isUpdate">
+        <mat-form-field >
+          <input matInput 
+                  readonly
+                  placeholder="State ID"
+                  formControlName="stateID">
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isUpdate">
+        <mat-form-field>
+          <input matInput 
+                    placeholder="State ID"
+                  formControlName="stateID">
+        </mat-form-field>
+      </div>        
+
+
+  
+      <mat-form-field>
+      <input matInput
+                placeholder="State Name"
+              formControlName="stateName">
+      </mat-form-field>
+  
+      </div>
+    </form>
+
+
+    <div class="row">
+      <div class="form-actions floatRight">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Submit" [disabled]="!stateForm.valid" class="btn btn-primary btn-sm" (click)="addUpdateState()">
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="form-actions floatRight">
+        &nbsp;&nbsp;&nbsp;<input type="button" value="Cancel" (click)="close()" class="btn btn-primary btn-sm">
+      </div>
+    </div>
+
+</div>

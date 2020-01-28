@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>Post Job Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+
+          <div class="row">
+            <form #pjform="ngForm" (ngSubmit)="postjobSearch(pjform.value)">
+              <table>
+                <tr>
+                  <td>User Name :</td>
+                  <td>
+                      <input type="text" class="text" ngModel name="username" #username="ngModel" id="username" placeholder="" value={{username}}>
+                  </td>
+                  <td>&nbsp;<b>OR</b>&nbsp;</td>
+                  <td>Company :</td>
+                  <td>
+                    <select ngModel name="company" #company="ngModel" id="company">
+                      <option value="">Select Company</option>
+                      <option [value]="uDet.company" *ngFor="let uDet of userDetails">{{uDet.company}}</option>
+                      <!--option>USA</option-->
+                    </select>
+                  </td>
+                  <td><button type="submit"><i class="fa fa-search"></i></button></td>
+                </tr>
+                </table>
+              </form>
+          </div>
+
+          <div class="row">
+
+            <table>
+                <tr>
+                  <th windh="10%">ID</th>
+                  <th windh="10%">User Name</th>
+                  <th windh="20%">Company Name</th>
+                  <th windh="10%">Job Title</th>
+                  <th windh="10%">Apply Email</th>
+                  <th windh="10%">City</th>
+                  <th windh="10%">State</th>
+                  <th windh="10%">Last Modified</th>
+                  <th windh="5%">Employment Type</th>
+
+                  <th windh="5%">&nbsp;</th>
+                </tr>
+                <tr *ngFor="let pjob of pagedItems">
+                  <td>{{pjob.id}}</td>
+                  <td>{{pjob.CreatedBy}}</td>
+                  <td>{{pjob.Company}}</td>
+                  <td>{{pjob.JobTitle}}</td>
+                  <td>{{pjob.ApplyToEmail}}</td>
+                  <td>{{pjob.JobCity}}</td>
+                  <td>{{pjob.JobState}}</td>
+                  <td>{{pjob.LastModifiedDate.toDate()}}</td>
+                  <td>{{pjob.EmploymentTypes}}</td>
+                  <td><a [routerLink]="['/']" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(id)" class="fa fa-trash"></a></td>
+                </tr>
+            </table>
+          
+            <ul *ngIf="pager.pages && pager.pages.length && postJobc !=null" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">&laquo;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                </li>
+            </ul>
+
+          </div>
+
+
+        </div>
+      </div>
+  </div>          

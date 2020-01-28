@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>State</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+
+          <div class="row">
+            <form #cform="ngForm" (ngSubmit)="countrySearch(cform.value)">
+              <table>
+                <tr>
+                  <td>Country Name :</td>
+                  <td>
+                    <select ngModel name="country" #role="ngModel" id="country" (change)="getState($event.target.value)">
+                      <option value="">Select Country</option>
+                      <option [value]="cnt.countryID" *ngFor="let cnt of country">{{cnt.CountryName}}</option>
+                      <!--option>USA</option-->
+                    </select>
+                  </td>
+                  <!--td><button type="submit"><i class="fa fa-search"></i></button></td-->
+                </tr>
+                </table>
+              </form>
+          </div>
+
+          <div *ngIf="isAdd">
+            <a (click)="onAdd()" *ngIf="auth.isAdminRole()"><i class="fa fa-plus" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+          </div>
+
+          <div class="row" *ngIf="isDisplay">
+
+            <table>
+                <tr>
+                  <th windh="10%">State ID</th>
+                  <th windh="10%">State Name</th>
+
+                  <th windh="5%">&nbsp;</th>
+                </tr>
+                <tr *ngFor="let state of pagedItems">
+                  <td>{{state.StateName}}</td>
+                  <td>{{state.StateDisplayName}}</td>
+                  <td><a (click)="onUpdate(state)" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(state)" class="fa fa-trash"></a></td>
+                </tr>
+            </table>
+          
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">&laquo;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">&#8249;</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">&#8250;</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">&raquo;</a>
+                </li>
+            </ul>
+
+          </div>          
+
+        </div>
+      </div>
+  </div>

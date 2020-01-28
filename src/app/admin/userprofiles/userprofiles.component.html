@@ -1,0 +1,454 @@
+<div class="container">
+  <div class="single">
+      <div class="form-container">
+          <h2>User Role Assignment Administration</h2>
+          <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+
+
+
+          <div class="row">
+            <form #pform="ngForm" (ngSubmit)="profileSearch(pform.value)">
+              <table>
+                <tr>
+                  <td>User Name :</td>
+                  <td>
+                      <input type="text" class="text" ngModel name="username" #username="ngModel" id="username" placeholder="" value={{username}}>
+                  </td>
+                  <td>&nbsp;<b>OR</b>&nbsp;</td>
+                  <td>Home Phone :</td>
+                  <td>
+                    <input type="text" class="text" ngModel name="homephone" #homephone="ngModel" id="homephone" placeholder="" value={{homephone}}>
+                  </td>
+                  <td>&nbsp;<b>OR</b>&nbsp;</td>
+                  <td>Cell Phone :</td>
+                  <td>
+                    <input type="text" class="text" ngModel name="cellphone" #cellphone="ngModel" id="cellphone" placeholder="" value={{cellphone}}>
+                  </td>
+                  <td><button type="submit"><i class="fa fa-search"></i></button></td>
+                </tr>
+                </table>
+              </form>
+          </div>
+          &nbsp;&nbsp;
+          <div *ngFor="let uPro of userProfile">
+
+
+            <h3 class="title" style="color: red;">Profile(ID : {{uPro.id}}&nbsp;[User Name : &nbsp;{{uPro.Username}}])</h3>&nbsp;
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="FirstName">First Name : </label>
+                </div>
+                <div class="col">
+                  {{uPro.FirstName}}
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="LastName">Last Name</label>
+                </div>
+                <div class="col">
+                    {{uPro.LastName}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Sex">Sex</label>
+                </div>
+                <div class="col">
+                    {{uPro.Sex}}
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Email">Email</label>
+                </div>
+                <div class="col">
+                    {{uPro.Email}}
+                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;"  for="HomePhone">Home Phone</label>
+                </div>
+                <div class="col">
+                    {{uPro.HomePhone}}
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="CellPhone">Cell Phone</label>
+                </div>
+                <div class="col">
+                    {{uPro.CellPhone}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Address1">Address</label>
+                </div>
+                <div class="col">
+                    {{uPro.Address1}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="Address2"></label>
+                </div>
+                <div class="col">
+                    {{uPro.Address2}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+
+            <div class="row">
+
+
+                <div class="col-sm-2">
+                        <label style="font-weight: bold;" for="Country">Country</label>
+                </div>
+
+                <div class="col">
+                    {{uPro.Country}}
+                </div>
+
+
+
+
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="State">State</label>
+                </div>
+                <div class="col">
+                    {{uPro.State}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+
+            <div class="row">
+
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="City">City</label>
+                </div>
+                <div class="col">
+                    {{uPro.City}}
+                </div>
+
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="ZipCode">Zip</label>
+                </div>
+                <div class="col">
+                    {{uPro.ZipCode}}
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;"  for="FaceBookURL">Facebook URL</label>
+                </div>
+                <div class="col">
+                    {{uPro.FaceBookURL}}
+               </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="LinkedinURL">Linkedin URL</label>
+                </div>
+                <div class="col">
+                    {{uPro.LinkedinURL}}
+                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="PersonalWebsite">Personal Website</label>
+                </div>
+                <div class="col">
+                    {{uPro.PersonalWebsite}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <hr/>
+            <h3 class="title" style="color: red;">Job Looking</h3>&nbsp;
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="EmploymentType">Employment Type</label>
+                </div>
+                <div class="col">
+                    {{uPro.EmploymentType}}
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="DesiredPosition">Desired Position</label>
+                </div>
+                <div class="col">
+                    {{uPro.DesiredPosition}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="DesiredSalary">Desired Salary</label>
+                </div>
+                <div class="col">
+                    {{uPro.DesiredSalary}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="IsRelocate">Relocate ?</label>
+                </div>
+                <div class="col">
+                    {{uPro.IsRelocate}}
+
+                </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="IsTravel">Travell ?</label>
+                </div>
+                <div class="col">
+                    {{uPro.IsTravel}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+            <hr/>
+            <h3 class="title" style="color: red;">Professional Experience</h3>&nbsp;
+
+
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="YearsofExperince">Years of Experience</label>
+                </div>
+                <div class="col">
+                    {{uPro.YearsofExperince}}
+               </div>
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="WorkAuthorization">Work Authorization</label>
+                </div>
+                <div class="col">
+                    {{uPro.WorkAuthorization}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">&nbsp;
+                </div>
+            </div>
+
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="SecurityClearance">Security Clearance</label>
+            </div>
+            <div class="col">
+                {{uPro.SecurityClearance}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="CoverLetter">Cover Letter</label>
+            </div>
+            <div class="col">
+                {{uPro.CoverLetter}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        <div *ngFor="let uRes of uResume">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="CoverLetter">Resume</label>
+                </div>
+                <div class="col">
+                    <a href="{{uRes.ResumeURL}}"  target="_blank">Resume</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label style="font-weight: bold;" for="CoverLetter">Resume File Name</label>
+                </div>
+                <div class="col">
+                    {{uRes.ResumeFileName}}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        <!--div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;">Resume Upload</label>
+            </div>
+            <div class="col">
+                <div *ngIf="currentFileUpload" class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                                role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                                aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{width:progress.percentage+'%'}">
+                                {{progress.percentage}}%</div>
+                </div>
+                <label class="btn btn-default"> <input type="file" name="fileUpload" (change)="selectFile($event)">
+                </label>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload(userProfile)">Upload</button>
+                &nbsp; <a href="{{rUploadService.downloadURL}}" [hidden]="!fileUploadEnabled && isUpdate" target="_blank">Resume1</a>
+                &nbsp; <a href="{{uProfile.selectedUserProfile?.ResumeURL}}" [hidden]="!fileUploadEnabled && !isUpdate" target="_blank">Resume</a>
+                <div style="color: green;" *ngIf="!fileUploadEnabled">
+                    Please Upload Resume(.doc, .docx, .pdf, .ppt, .pptx)
+                </div>
+            </div>
+        </div-->
+
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+                <!--a href="{{fileUpload.url}}">{{fileUpload.name}}</a>
+                <button-- (click)='deleteFileUpload(fileUpload)' class="btn btn-danger btn-xs" style="float: right">Delete</button-->
+
+            </div>
+        </div>
+
+
+
+        <hr/>
+        <h3 class="title" style="color: red;">Education</h3>&nbsp;
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="Education">Education</label>
+            </div>
+            <div class="col">
+              {{uPro.Education}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="institute">Institute</label>
+            </div>
+            <div class="col">
+                {{uPro.institute}}
+             </div>
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="instituteCity">Institute City</label>
+            </div>
+            <div class="col">
+                {{uPro.instituteCity}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="instituteCountry">Institute Country</label>
+            </div>
+            <div class="col">
+                {{uPro.instituteCountry}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        <hr/>
+        <h3 class="title" style="color: red;">Skillset</h3>&nbsp;
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label style="font-weight: bold;" for="SkillSet">SkillSet</label>
+            </div>
+            <div class="col">
+                {{uPro.SkillSet}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">&nbsp;
+            </div>
+        </div>
+
+
+        </div>
+      </div>
+  </div>
