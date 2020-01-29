@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DateformatService } from '../../services/dateformat/dateformat.service';
 
-import * as algoliasearch from 'algoliasearch';
+//import * as algoliasearch from 'algoliasearch';
 import {isNumeric} from 'rxjs/util/isNumeric';
 import { SEARCH_CONFIG } from '../../global-config';
 import { UserProfile } from 'src/app/services/firebase/userprofile/userprofile.model';
@@ -37,30 +37,33 @@ export class ResumesearchComponent implements OnInit {
 
   getResumeSearchAlgolia(searchResume: NgForm) {
 
-    console.log("Search Parameter ::::: "+searchResume.value.ResumeSearch);
-    const filter = 'isSearchable:true';
-    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-      { protocol: SEARCH_CONFIG.PROTOCOLS });
+     /****** Need to open Later ********/
+
+    // console.log("Search Parameter ::::: "+searchResume.value.ResumeSearch);
+    // const filter = 'isSearchable:true';
+    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
 
 
-      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
+    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
 
 
-      this.index.search({
-        query: searchResume.value.ResumeSearch,
-        filters: filter
+    //   this.index.search({
+    //     query: searchResume.value.ResumeSearch,
+    //     filters: filter
 
 
-      }).then((data) => {
-        console.log(data);
-        //let j=0;
-        //this.UserProfileFinal = [];
-        this.UserProfile = data.hits;
-        this.setPage(1);
+    //   }).then((data) => {
+    //     console.log(data);
+    //     //let j=0;
+    //     //this.UserProfileFinal = [];
+    //     this.UserProfile = data.hits;
+    //     this.setPage(1);
 
 
-      })
+    //   })
 
+    /****** End  ********/
 
     //   this.companyIndex.search({
     //     query: this.whatSearchQuery,

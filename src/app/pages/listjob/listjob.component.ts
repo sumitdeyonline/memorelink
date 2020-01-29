@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 //import { PostjobService } from '../../services/firebase/postjob.service';
 //import { PostJobc } from '../../services/firebase/postjob.model';
 import { DateformatService } from '../../services/dateformat/dateformat.service';
-import * as algoliasearch from 'algoliasearch';
+//import * as algoliasearch from 'algoliasearch';
 import {isNumeric} from 'rxjs/util/isNumeric';
 import { SEARCH_CONFIG } from '../../global-config';
 import { PostJobc } from 'src/app/services/firebase/postjob/postjob.model';
@@ -133,80 +133,81 @@ export class ListjobComponent implements OnInit {
 
   getPostJobsAlgolia(keyword, location) {
 
+ /****** Need to open Later ********/
 
-    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-      { protocol: SEARCH_CONFIG.PROTOCOLS });
+    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
 
-      let filter = '', state='', city='';
-      this.PostJobc = [];
-      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
+    //   let filter = '', state='', city='';
+    //   this.PostJobc = [];
+    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
-      console.log(" keyword :::: "+keyword+"location :::: "+location);
+    //   console.log(" keyword :::: "+keyword+"location :::: "+location);
 
-      if ((keyword.trim() != "") || (location.trim() != "")) {
-        if (location.trim() != "") {
+    //   if ((keyword.trim() != "") || (location.trim() != "")) {
+    //     if (location.trim() != "") {
 
-          if (isNumeric(location)) {
-            console.log("This is number");
-            filter = 'JobZip:'+location;
+    //       if (isNumeric(location)) {
+    //         console.log("This is number");
+    //         filter = 'JobZip:'+location;
 
-          } else {
+    //       } else {
 
-            if (location.indexOf(",") > -1) {
-              state = this.isNull(location.split(",")[1].trim());
-              city = this.isNull(location.split(",")[0].trim());
-            } else {
-              city = this.isNull(location.trim());
-            }
-
-
-            if ((state !="") && (city !="")) {
-              filter = 'JobCity:'+city+' AND JobState:'+state;
-            } else if ((state == "") && (city !="")) {
-              filter = 'JobCity:'+city;
-            } else if ((state != "") && (city =="")){
-              filter = 'JobState:'+state;
-            } else {
-              filter ='';
-            }
-
-          }
-        } else {
-          filter ='';
-        }
+    //         if (location.indexOf(",") > -1) {
+    //           state = this.isNull(location.split(",")[1].trim());
+    //           city = this.isNull(location.split(",")[0].trim());
+    //         } else {
+    //           city = this.isNull(location.trim());
+    //         }
 
 
+    //         if ((state !="") && (city !="")) {
+    //           filter = 'JobCity:'+city+' AND JobState:'+state;
+    //         } else if ((state == "") && (city !="")) {
+    //           filter = 'JobCity:'+city;
+    //         } else if ((state != "") && (city =="")){
+    //           filter = 'JobState:'+state;
+    //         } else {
+    //           filter ='';
+    //         }
+
+    //       }
+    //     } else {
+    //       filter ='';
+    //     }
 
 
-      console.log("Filter :::::: => "+filter);
-
-      if (filter == '') {
-        this.index.search({
-          query: keyword
-
-        }).then((data) => {
-          //let j=0;
-          //this.PostJobcFinal = [];
-          this.PostJobc = data.hits;
-          this.setPage(1);
-        });
-      } else  {
-
-        this.index.search({
-          query: keyword,
-          filters: filter
-        }).then((data) => {
-          //let j=0;
-          //this.PostJobcFinal = [];
-          this.PostJobc = data.hits;
-          this.setPage(1);
-
-        });
-
-      }
-      }
 
 
+    //   console.log("Filter :::::: => "+filter);
+
+    //   if (filter == '') {
+    //     this.index.search({
+    //       query: keyword
+
+    //     }).then((data) => {
+    //       //let j=0;
+    //       //this.PostJobcFinal = [];
+    //       this.PostJobc = data.hits;
+    //       this.setPage(1);
+    //     });
+    //   } else  {
+
+    //     this.index.search({
+    //       query: keyword,
+    //       filters: filter
+    //     }).then((data) => {
+    //       //let j=0;
+    //       //this.PostJobcFinal = [];
+    //       this.PostJobc = data.hits;
+    //       this.setPage(1);
+
+    //     });
+
+    //   }
+    //   }
+
+/****** End *******/
 
 
 
