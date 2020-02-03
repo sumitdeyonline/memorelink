@@ -36,9 +36,17 @@ export class ContentfulService {
   private cdaClient = contentful.createClient({
     // space: this.space,
     // accessToken: this.accessToken
-    space: 'c9x3vp5xw3hj',
-    environment:'master',
-    accessToken: 'cac67210ab3dcd35af8516e76d25f4288f057b4c12de71d1e40dc3d63704ed7e'
+    //space: 'c9x3vp5xw3hj',
+
+    //accessToken: 'cac67210ab3dcd35af8516e76d25f4288f057b4c12de71d1e40dc3d63704ed7e'
+
+    space: CONTENT_CONFIG.space,
+ 
+    //space: '850nhrejbail',
+    //environment:'master',
+    environment:CONTENT_CONFIG.environment,
+    //accessToken: '70xwbJ5eY-CabRyWvntxVigCyLyTjF6W6Gg2w_MLFy4' 
+    accessToken: CONTENT_CONFIG.accessToken
 
 
 

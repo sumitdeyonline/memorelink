@@ -15,10 +15,14 @@ export const CONTENT_CONFIG = {
     url: 'https://cdn.contentful.com/spaces/',
     //Authorization: 'Bearer 05300429693296150805e8fe5f4f93d6214159d7ee5c448a57e0e0b8029479a1',
     CntentType: 'application/json',
-    space: 'c9x3vp5xw3hj',
-    accessToken: 'cac67210ab3dcd35af8516e76d25f4288f057b4c12de71d1e40dc3d63704ed7e',
+    // space: 'c9x3vp5xw3hj',
+    // accessToken: 'cac67210ab3dcd35af8516e76d25f4288f057b4c12de71d1e40dc3d63704ed7e',
 
-    PageBlockSectionFields: 'fields.mainHeader,fields.subHeader,fields.pageText,fields.pageImageUrl,fields.imageUrlCaption,fields.detailPageUrl',
+    space: '850nhrejbail',
+    accessToken: '70xwbJ5eY-CabRyWvntxVigCyLyTjF6W6Gg2w_MLFy4', 
+    environment:'master',
+
+    PageBlockSectionFields: 'fields.mainHeader,fields.subHeader,fields.pageText,fields.pageImageUrl,fields.pageImageUrlCaption,fields.detailPageUrl',
     //PageBlockSectionFields: 'fields.mainHeader,fields.bodyTextHomePage,fields.homePageImageUrl,fields.homePageImageUrlCaption,fields.moreUrl',
     PageBlockSectionFieldsDetailsFields: 'fields.mainHeader,fields.subHeader,fields.detailText,fields.detailPageImageUrl,fields.detailPageImageCaption',
 

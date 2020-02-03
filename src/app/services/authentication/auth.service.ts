@@ -43,7 +43,7 @@ export class AuthService {
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
     responseType: AUTH_CONFIG.responseType,
-    audience: AUTH_CONFIG.audience,
+    //audience: AUTH_CONFIG.audience,
     redirectUri: AUTH_CONFIG.redirectUri,
     callbackURL: AUTH_CONFIG.callbackURL,
     scope: AUTH_CONFIG.scope,
@@ -55,7 +55,7 @@ export class AuthService {
     this.userProfile = JSON.parse(localStorage.getItem(SESSION_CONFIG.profile));
     this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails);
     this.userRoleCollection = this.afs.collection(FIREBASE_CONFIG.UserRoles);
-
+    //console.log("Auth Service ***** ");
     if (this.isAuthenticated()) {
       this.userRoleAssignment();
     }
@@ -73,6 +73,7 @@ export class AuthService {
       responseType: AUTH_CONFIG.responseType, // 'token'
       username: username,
       password: password,
+      //audience: '{MeMoreLink}',
       scope: AUTH_CONFIG.scope, //'openid profile',
     }, function(err, authResult) {
       //alert("Error: " + err.description);
@@ -84,7 +85,7 @@ export class AuthService {
       }
       else
         console.log("err.description :::::"+ err.description);
-      if (err) alert("something went wrong: " + err);
+      if (err) alert("something went wrong11111: " + err);
     });
   }
 
@@ -117,9 +118,9 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
-      //console.log("HanleAuth :::::: => Home Page");
+      console.log("HanleAuth :::::: => Home Page");
       if (authResult && authResult.accessToken && authResult.idToken) {
-        //console.log("HanleAuth :::::: => Home Page1");
+        console.log("HanleAuth :::::: => Home Page1");
         window.location.hash = '';
         this.setSession(authResult);
 
@@ -130,7 +131,7 @@ export class AuthService {
         });
         this.router.navigate(['']);
       } else if (err) {
-        alert("Login Error " +err);
+        alert("Login Error 22222" +err);
         //console.log("HanleAuth :::::: => Home Page2");
         this.router.navigate(['']);
         console.log(err);
@@ -321,7 +322,7 @@ export class AuthService {
   }
 
   UserRole() {
-    //console.log("USER ROLE ::::: -> UserName ::::: "+this.userProfile.name);
+    console.log("USER ROLE ::::: -> UserName ::::: "+this.userProfile.name);
     if (this.userProfile !=null) {
       this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails, ref =>
         ref.where('userName','==',this.userProfile.name)); //.orderBy('CreatedDate','desc'));
@@ -342,6 +343,7 @@ export class AuthService {
 
 
   getUserRoleByRoles(rolename) {
+    console.log("*******getUserRoleByRole ********");
     this.userRoleCollection = this.afs.collection(FIREBASE_CONFIG.UserRoles, ref =>
           ref.where('RoleName','==',rolename));
           // console.log("List Service ..... 4");
