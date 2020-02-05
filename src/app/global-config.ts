@@ -76,11 +76,14 @@ export const SEARCH_CONFIG = {
     Keyword: 'keyword',
     Location: 'location',
     ALGOLIA_APP_ID: '4KKVOYPW3F',
-    ALGOLIA_API_KEY: '1d24f4e002cb6048feefe790ac54d731',
+    //ALGOLIA_API_KEY: '1d24f4e002cb6048feefe790ac54d731',
+    ALGOLIA_API_KEY: '3f85d3567c8395f34b39a77ec472c0ed',
+
+    
     INDEX_NAME: 'PostJob',
     INDEX_NAME_PROFILE: 'UserProfile',
     PROTOCOLS:'https:',
-    ALGOLIA_FUNCTION_URL: 'https://us-central1-jobsite-c8333.cloudfunctions.net/addFirestorePostJobDataToAlgolia',
+    //ALGOLIA_FUNCTION_URL: 'https://us-central1-jobsite-c8333.cloudfunctions.net/addFirestorePostJobDataToAlgolia',
     LIST_JOB_DESC_WIDTH: 120,
     LIST_JOB_DESC_STATUS: 400,
     PAGE_SIZE: 5,

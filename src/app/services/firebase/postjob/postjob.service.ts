@@ -12,7 +12,7 @@ import { PostJobc } from './postjob.model';
 import { formatDate } from '@angular/common';
 
 
- //import * as algoliasearch from 'algoliasearch';
+ import * as algoliasearch from 'algoliasearch';
 // import * as functions from 'firebase-functions';
  import * as admin from 'firebase-admin';
 
@@ -108,35 +108,35 @@ export class PostjobService {
     /****** Need to open Later ********/
 
 
-    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
+    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+      { protocol: SEARCH_CONFIG.PROTOCOLS });
 
 
-    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
-    //   //console.log("Test 1 ....2..2" );
+      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
+      //console.log("Test 1 ....2..2" );
 
-    //   this.index.search({
+      this.index.search({
 
-    //     query: keyword,
-    //     //query: '{ JobState:CA }',
-    //     //attributesToRetrieve: ['JobTitle', 'JobDesc']
+        query: keyword,
+        //query: '{ JobState:CA }',
+        //attributesToRetrieve: ['JobTitle', 'JobDesc']
 
-    //     // restrictSearchableAttributes: [
-    //     //   'JobTitle',
-    //     //   'JobDesc'
-    //     // ]
-    //     //filters: 'JobState=CA'
+        // restrictSearchableAttributes: [
+        //   'JobTitle',
+        //   'JobDesc'
+        // ]
+        //filters: 'JobState=CA'
 
-    //   })
-    //   .then((data) => {
-    //     this.jobs = data.hits;
-    //     for(let i=0;i<this.jobs.length;i++) {
-    //       console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobState);
-    //       console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobTitle);
-    //     }
-    //     return this.jobs;
-    //   })
-    //   return this.jobs;
+      })
+      .then((data) => {
+        this.jobs = data.hits;
+        for(let i=0;i<this.jobs.length;i++) {
+          console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobState);
+          console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobTitle);
+        }
+        return this.jobs;
+      })
+      return this.jobs;
 
     /**********End*********/
   }
@@ -310,17 +310,17 @@ export class PostjobService {
 
  /****** Need to open Later ********/
 
-    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
+    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+      { protocol: SEARCH_CONFIG.PROTOCOLS });
 
-    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
-    //   // pjobc.objectID = id;
-    //   // console.log("Content ::::::: "+objects);
+      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
+      // pjobc.objectID = id;
+      // console.log("Content ::::::: "+objects);
 
-    //   this.index.saveObjects(objects, function (err, content) {
-    //     if (err) throw err;
-    //     //console.log("Add Content :::::: "+content);
-    //   });
+      this.index.saveObjects(objects, function (err, content) {
+        if (err) throw err;
+        //console.log("Add Content :::::: "+content);
+      });
   /******* End *********/
   }
 
@@ -416,18 +416,18 @@ export class PostjobService {
 
  /****** Need to open Later ********/
 
-    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
+    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+      { protocol: SEARCH_CONFIG.PROTOCOLS });
 
 
-    //   console.log("Delete Index :::: "+id);
-    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
+      console.log("Delete Index :::: "+id);
+      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
 
-    //   this.index.deleteObject(id, function(err, content) {
-    //     if (err) throw err;
-    //     console.log("Delete Content :::::: "+content);
-    //   });
+      this.index.deleteObject(id, function(err, content) {
+        if (err) throw err;
+        console.log("Delete Content :::::: "+content);
+      });
   /***** End *****/
   
       //this.index.deleteObject(id);
