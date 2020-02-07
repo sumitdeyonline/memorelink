@@ -9,7 +9,7 @@ import { Country } from './country.model';
 import { State } from './state.model';
 //import { Http } from '@angular/http';
 import { formatDate } from '@angular/common';
-//import * as algoliasearch from 'algoliasearch';
+import * as algoliasearch from 'algoliasearch';
 import { UserRole } from './userrole.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -345,17 +345,17 @@ export class UserprofileService {
 
  /****** Need to open Later ********/
 
-    // this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
-    //   { protocol: SEARCH_CONFIG.PROTOCOLS });
+    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+      { protocol: SEARCH_CONFIG.PROTOCOLS });
 
-    //   this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
-    //   // pjobc.objectID = id;
-    //   // console.log("Content ::::::: "+objects);
+      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
+      // pjobc.objectID = id;
+      // console.log("Content ::::::: "+objects);
 
-    //   this.index.saveObjects(objects, function (err, content) {
-    //     if (err) throw err;
-    //     //console.log("Add Content :::::: "+content);
-    //   });
+      this.index.saveObjects(objects, function (err, content) {
+        if (err) throw err;
+        //console.log("Add Content :::::: "+content);
+      });
 /***** End *******/
   }
 
