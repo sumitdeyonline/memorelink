@@ -33,9 +33,8 @@ export class LoginComponent implements OnInit {
 
     console.log("Login Componenet *******");
     this.loginError ='';
-      this._auth.login(loginComponent.username, loginComponent.password);
-
-
+    this._auth.login(loginComponent.username, loginComponent.password);
+ 
     
     setTimeout(() =>{
       if (this._auth.isAuthenticated()) {
@@ -46,7 +45,8 @@ export class LoginComponent implements OnInit {
           this.login.password = '';
           this.loginError ='Wrong Username or password';
 
-        //console.log("ERROR ::::::::: --->>>>>"+this._auth.returnError);
+        //console.log("ERROR ::::::::: --->>>>>"+this._auth.getLoginErrorMsg());
+        console.log("ERROR ::::::::: --->>>>>"+this.loginError);
       }
     }, 6000);    
     //this._authService.login();

@@ -38,6 +38,7 @@ export class AuthService {
   isEmployerResumeSearchRole: boolean = false;
   isAdminUserRole: boolean = false;
   UserRoled: UserRole[];
+  loginErrorMsg: string;
 
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
@@ -59,7 +60,7 @@ export class AuthService {
     if (this.isAuthenticated()) {
       this.userRoleAssignment();
     }
-
+    this.loginErrorMsg = '';
 
   }
 
@@ -67,6 +68,7 @@ export class AuthService {
 
     //this.auth0.authorize();
     console.log("Login Componenet ******* 1 Username : "+username);
+    let loginErrorMsg1 ='';
     //this.auth0.client.login({
     this.auth0.redirect.loginWithCredentials({
       connection: AUTH_CONFIG.connection,
@@ -78,15 +80,23 @@ export class AuthService {
     }, function(err, authResult) {
       //alert("Error: " + err.description);
       //this.setLoginError(err.description);
-      console.log("authResult :::::::: -> "+authResult);
-      if (authResult !== null) {
+      console.log("authResult :::::::: -> "+authResult+"   Error::: "+err.description);
+      //if ((authResult != null) || (authResult != undefined)) {
+      if (authResult != undefined) {
         this.authResult = authResult;
         //this.handleAuthentication();
       }
       else
-        console.log("err.description :::::"+ err.description);
-      if (err) alert("something went wrong11111: " + err);
+        loginErrorMsg1 = err.description.toString();
+        //this.setLoginErrorMsg(loginErrorMsg1);
+        console.log("err.description :::::"+ loginErrorMsg1);        
+      //if (err) alert(loginErrorMsg1);
     });
+
+  }
+
+  private setLoginErrorMsg(err) {
+    this.loginErrorMsg = err;
   }
 
   public resetPassword(username) {
@@ -102,13 +112,18 @@ export class AuthService {
       //this.authResult = ""+authResult+"";
       //console.log("authResult :::::::: -> "+""+authResult+"");
       //this.setvalue();
-      alert(authResult);
+      //alert(authResult);
       //this.handleAuthentication();
     }
     else
       console.log("err.description :::::"+ err.description);
-    if (err) alert("something went wrong: " + err);
+      //this.loginErrorMsg = err.description;
+    if (err) alert(err.description);
   });
+  }
+
+  public getLoginErrorMsg(): string{
+      return this.loginErrorMsg;
   }
 
   private setValue() {
