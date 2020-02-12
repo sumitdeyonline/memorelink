@@ -15,7 +15,7 @@
     </ul-->
 
     <div *ngFor="let adver of advertisement">
-      <b>{{adver.fields.mainHeader}}</b>
+      <!-- <b>{{adver.fields.mainHeader}}</b> -->
       <br>
       <div [innerHTML]="adver.fields.pageText | mdToHtml"></div>
     </div>

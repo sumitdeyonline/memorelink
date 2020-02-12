@@ -45,6 +45,7 @@ body a{
 .navbar {
    min-height:100%;
    margin-bottom:0;
+   padding: .2rem 1rem !important;
 }
 .navbar-nav {
    margin: 18px 0 0 0;
@@ -107,7 +108,7 @@ body a{
     min-height:630px;	
 }
 .banner_1{
-	background:url(../images/banner_1.jpg)no-repeat center top;
+	background:url(../images/banner_1.png)no-repeat center top;
 	background-size:cover;
     -webkit-background-size:cover;
     -moz-background-size:cover;
@@ -540,11 +541,11 @@ a.seeking-vote-button:hover{
 }
 /*-- footer --*/
 .footer{
-	padding:2em 0;
+	padding:1em 0;
 	background:#444;
 }
 .footer_bottom{
-	padding:2em 0;
+	padding:0em 0;
 	background:#333;
 }
 .footer_text p{
