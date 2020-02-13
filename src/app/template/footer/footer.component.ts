@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }

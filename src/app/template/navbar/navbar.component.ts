@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   accessToken: any[];
   //uDetail: UserDetails[];
   //isEmployeeRole: boolean;
-  constructor(private auth: AuthService) { 
+  constructor(public auth: AuthService) { 
 
     //console.log("NavBar Compoment ***");
   }

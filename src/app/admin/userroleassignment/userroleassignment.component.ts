@@ -29,7 +29,7 @@ export class UserroleassignmentComponent implements OnInit {
   // paged items
   pagedItems: any[];
 
-  constructor(private uProfile: UserprofileService, private udetails: UserdetailsService, private auth: AuthService, fb: FormBuilder, private pagerService: PagerService) {
+  constructor(private uProfile: UserprofileService, private udetails: UserdetailsService, public auth: AuthService, fb: FormBuilder, private pagerService: PagerService) {
     this.uaform = fb.group({
       username: ['', Validators.required],
       role: ['', Validators.required]

@@ -44,7 +44,7 @@ export class ListjobComponent implements OnInit {
     pagedItems: any[];
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private postjob: PostjobService, private dformat: DateformatService, private pagerService: PagerService) {
+  constructor(private router: Router, private route: ActivatedRoute, private postjob: PostjobService, public dformat: DateformatService, private pagerService: PagerService) {
 
     window.scroll(0,0);
     //this.PostJobc = null;

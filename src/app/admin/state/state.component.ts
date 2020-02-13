@@ -32,7 +32,7 @@ export class StateComponent implements OnInit {
   // paged items
   pagedItems: any[];
 
-  constructor(private uProfile: UserprofileService, private auth: AuthService, fb: FormBuilder, private pagerService: PagerService, private dialog: MatDialog) {
+  constructor(private uProfile: UserprofileService, public auth: AuthService, fb: FormBuilder, private pagerService: PagerService, private dialog: MatDialog) {
     this.stform = fb.group({
       country: ['', Validators.required]
     })
@@ -72,6 +72,10 @@ export class StateComponent implements OnInit {
         this.isAdd = true;
       })
     }
+
+  }
+
+  countrySearch(val){
 
   }
 

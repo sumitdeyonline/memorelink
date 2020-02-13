@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 export class SignupConfirmComponent implements OnInit {
 
   @Input() signupSucessMessage: string;
-  constructor(private router: Router, private _auth: AuthService) { 
+  constructor(private router: Router, public _auth: AuthService) { 
     console.log("SIGNUP CONFIRM ::::: "+this.signupSucessMessage);
 
   }

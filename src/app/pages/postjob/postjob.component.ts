@@ -46,8 +46,9 @@ export class PostjobComponent implements OnInit {
   userDetails: UserDetails[];
   isJobLength: boolean = false;
   postJobCount: number = 0;
+  signUpMessage: string;
 
-  constructor(private _activeRoute: ActivatedRoute, private _auth: AuthService, fb: FormBuilder, private postjobService: PostjobService,
+  constructor(private _activeRoute: ActivatedRoute, public _auth: AuthService, fb: FormBuilder, public postjobService: PostjobService,
               private toastrservice: ToastrService,
               private uProfile: UserprofileService,
               private router: Router,
@@ -63,7 +64,7 @@ export class PostjobComponent implements OnInit {
     // })
 
     console.log("Date :::::::: "+formatDate(new Date(), 'MM/dd/yyyy', 'en'));
-
+    this.signUpMessage='';
     this._activeRoute.paramMap.subscribe(params => {
       this.id = params.get("id");
       console.log("Key Value :::::::: "+this.id);

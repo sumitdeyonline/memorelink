@@ -24,7 +24,7 @@ export class ApplyjobAdminComponent implements OnInit {
 
     // paged items
     pagedItems: any[];
-  constructor(private auth: AuthService, private appjob: ApplyjobService,private udetails: UserdetailsService, fb: FormBuilder, private pagerService: PagerService) { 
+  constructor(public auth: AuthService, private appjob: ApplyjobService,private udetails: UserdetailsService, fb: FormBuilder, private pagerService: PagerService) { 
 
     this.applyform = fb.group({
       company: ['', Validators.required]

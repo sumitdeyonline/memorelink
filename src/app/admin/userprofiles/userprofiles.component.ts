@@ -19,7 +19,7 @@ export class UserprofilesComponent implements OnInit {
   uResume: UploadResume[];
   userPRofiles = new UserProfilesModel();
   upform;
-  constructor(fb: FormBuilder, private uProfile: UserprofileService, private auth: AuthService, private uRes: UploadResumeService) {
+  constructor(fb: FormBuilder, private uProfile: UserprofileService, public auth: AuthService, private uRes: UploadResumeService) {
     this.upform = fb.group({
       username: ['', Validators.required],
       homephone: ['', Validators.required],

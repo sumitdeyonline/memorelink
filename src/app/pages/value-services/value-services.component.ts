@@ -32,7 +32,7 @@ export class ValueServicesComponent implements OnInit {
   companyName: string;
   companyAddress: string;
 
-  constructor(private _auth: AuthService, fb: FormBuilder, private udetails: UserdetailsService, private uProfile: UserprofileService) {
+  constructor(public _auth: AuthService, fb: FormBuilder, public udetails: UserdetailsService, private uProfile: UserprofileService) {
 
     // this.valueservicesForm = fb.group({
     //   email: ['', Validators.required,Validators.email],

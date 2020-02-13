@@ -54,7 +54,9 @@
                   <td>{{pjob.JobState}}</td>
                   <td>{{pjob.LastModifiedDate.toDate()}}</td>
                   <td>{{pjob.EmploymentTypes}}</td>
-                  <td><a [routerLink]="['/']" class="fa fa-edit"></a>&nbsp;<a (click)="onDelete(id)" class="fa fa-trash"></a></td>
+                  <td><a [routerLink]="['/']" class="fa fa-edit"></a>&nbsp;
+                    <!-- <a (click)="onDelete(id)" class="fa fa-trash"></a> -->
+                  </td>
                 </tr>
             </table>
           

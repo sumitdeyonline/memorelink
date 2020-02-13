@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   state: State[];
 
 
-  constructor(private rUploadService: UploadResumeService, private uProfile: UserprofileService, private auth: AuthService) {
+  constructor(private rUploadService: UploadResumeService, public uProfile: UserprofileService, public auth: AuthService) {
 
 
     this.uProfile.getUserDetails(this.auth.userProfile.name,'U').subscribe(uprop=> {

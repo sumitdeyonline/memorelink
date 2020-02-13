@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   error: any[]; // {"name":"BadRequestError","code":"user_exists","description":"The user already exists.","statusCode":400}
 
-  constructor(private _auth: AuthService, fb: FormBuilder, private udetails: UserdetailsService) {
+  constructor(public _auth: AuthService, fb: FormBuilder, private udetails: UserdetailsService) {
 
     this.signupForm = fb.group({
       email: ['', Validators.required,Validators.email],

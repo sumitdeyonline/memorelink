@@ -29,7 +29,7 @@ export class PostjobvendorComponent implements OnInit {
 
   length: any = SEARCH_CONFIG.LIST_JOB_DESC_WIDTH;
 
-  constructor(private udetails: UserdetailsService, private auth: AuthService, fb: FormBuilder, private pagerService: PagerService, private pJob: PostjobService) { 
+  constructor(private udetails: UserdetailsService, public auth: AuthService, fb: FormBuilder, private pagerService: PagerService, private pJob: PostjobService) { 
     this.pjobForm = fb.group({
       username: ['', Validators.required],
       company: ['', Validators.required]
