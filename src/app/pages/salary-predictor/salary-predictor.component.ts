@@ -9,7 +9,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
   styleUrls: ['./salary-predictor.component.css']
 })
 export class SalaryPredictorComponent implements OnInit {
-  private salaryPredictor: Entry<any>[] = [];
+  public salaryPredictor: Entry<any>[] = [];
   constructor(private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {

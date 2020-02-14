@@ -12,7 +12,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
 export class TechNewsDetailsComponent implements OnInit {
 
   id: any;
-  private techNewsDetails: Entry<any>[] = [];
+  public techNewsDetails: Entry<any>[] = [];
   constructor(private _activeRoute: ActivatedRoute, private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {

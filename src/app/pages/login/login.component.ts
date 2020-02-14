@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginError = '';
   //userIdPasswordWrong ='';
   constructor(fb: FormBuilder, 
-              private _auth: AuthService) {
+              public _auth: AuthService) {
     this.form = fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

@@ -10,7 +10,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
   styleUrls: ['./middleimage.component.css']
 })
 export class MiddleimageComponent implements OnInit {
-  private jobImage: Entry<any>[] = [];
+  public jobImage: Entry<any>[] = [];
 
   constructor(private contentfulService: ContentfulrapperService) { }
 

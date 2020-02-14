@@ -281,7 +281,7 @@
                     <label style="font-weight: bold;" for="SecurityClearance">Security Clearance</label>
                 </div>
                 <div class="col">
-                    {{uprofile =='undefined' || uprofile == null?'':uprofile.SecurityClearance== true?'Yes':'No'}}
+                    {{uprofile =='undefined' || uprofile == null}?'':{uprofile.SecurityClearance== true}?'Yes'}:'No'}
                 </div>
             </div>
             <div class="row">
@@ -308,7 +308,7 @@
                     <label style="font-weight: bold;" for="ResumeURL">Resume</label>
                 </div>
                 <div class="col">
-                    <a href="{{uResumes =='undefined' || uResumes == null?'':uResumes[0].ResumeURL}}" target="_blank">{{uResumes =='undefined' || uResumes == null?'':uResumes[0].ResumeFileName}}</a>
+                    <a href="{{uResumes =='undefined' || uResumes == null}?'':uResumes[0].ResumeURL}" target="_blank">{{uResumes =='undefined' || uResumes == null}?'':uResumes[0].ResumeFileName}</a>
                 </div>
             </div>
             <div class="row">

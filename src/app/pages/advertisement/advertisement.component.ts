@@ -9,7 +9,7 @@ import { Entry } from 'contentful';
   styleUrls: ['./advertisement.component.css']
 })
 export class AdvertisementComponent implements OnInit {
-  private advertisement: Entry<any>[] = [];
+  public advertisement: Entry<any>[] = [];
   
   constructor(private contentfulService: ContentfulrapperService) { }
 

@@ -24,7 +24,7 @@ export class UploadresumeComponent implements OnInit {
 
 
 
-  constructor(private rUploadService: UploadResumeService, private uProfile: UserprofileService, private auth: AuthService) {
+  constructor(public rUploadService: UploadResumeService, private uProfile: UserprofileService, private auth: AuthService) {
 
     this.rUploadService.getResumeDetails(this.auth.userProfile.name).subscribe(uprop=> {
       this.uResume = uprop;

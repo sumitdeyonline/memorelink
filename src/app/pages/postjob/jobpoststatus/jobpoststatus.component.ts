@@ -46,7 +46,7 @@ export class JobpoststatusComponent implements OnInit {
   constructor(private auth: AuthService,
       private postservice: PostjobService,
       private router: Router,
-      private dformat: DateformatService,
+      public dformat: DateformatService,
       private dialog: MatDialog,
       private pagerService: PagerService) {
         window.scroll(0,0);

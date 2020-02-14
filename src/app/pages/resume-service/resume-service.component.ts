@@ -9,7 +9,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
   styleUrls: ['./resume-service.component.css']
 })
 export class ResumeServiceComponent implements OnInit {
-  private resumeService: Entry<any>[] = [];
+  public resumeService: Entry<any>[] = [];
   constructor(private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {

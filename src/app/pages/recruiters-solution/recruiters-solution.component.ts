@@ -9,7 +9,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
   styleUrls: ['./recruiters-solution.component.css']
 })
 export class RecruitersSolutionComponent implements OnInit {
-  private recruiters: Entry<any>[] = [];
+  public recruiters: Entry<any>[] = [];
   constructor(private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {

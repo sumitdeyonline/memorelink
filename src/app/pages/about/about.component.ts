@@ -10,7 +10,7 @@ import { ContentfulrapperService } from 'src/app/services/contentful/contentfulr
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  private aboutUS: Entry<any>[] = [];
+  public aboutUS: Entry<any>[] = [];
 
   constructor(private auth: AuthService, private contentfulService: ContentfulrapperService) { }
 

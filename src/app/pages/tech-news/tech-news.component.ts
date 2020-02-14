@@ -11,7 +11,7 @@ import { ContentfulrapperService } from 'src/app/services/contentful/contentfulr
   styleUrls: ['./tech-news.component.css']
 })
 export class TechNewsComponent implements OnInit {
-  private techNews: Entry<any>[] = [];
+  public techNews: Entry<any>[] = [];
 
   constructor(private router: Router, private contentfulService: ContentfulrapperService) { 
     console.log("ContentFul Constructor !!!!!");

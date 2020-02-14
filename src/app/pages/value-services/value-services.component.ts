@@ -23,7 +23,7 @@ export class ValueServicesComponent implements OnInit {
   valueservicesMessage: string='';
   valueservicesSucessMessage: string='';
   error: any[];
-  email: any = '';
+  email: any = '';n
   postjob: boolean = false;
   resumesearch: boolean = false;
   UserRole: UserRole[];

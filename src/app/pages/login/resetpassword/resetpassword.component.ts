@@ -17,7 +17,7 @@ export class ResetpasswordComponent implements OnInit {
   loginError = '';
 
   constructor(fb: FormBuilder,
-    private _auth: AuthService,private router: Router) {
+    public _auth: AuthService,private router: Router) {
 
       this.form = fb.group({
         username: ['', Validators.required]

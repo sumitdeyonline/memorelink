@@ -9,7 +9,7 @@ import { CONTENT_CONFIG } from 'src/app/global-config';
   styleUrls: ['./recruiters-following.component.css']
 })
 export class RecruitersFollowingComponent implements OnInit {
-  private recruiterfollowing: Entry<any>[] = [];
+  public recruiterfollowing: Entry<any>[] = [];
   constructor(private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {
