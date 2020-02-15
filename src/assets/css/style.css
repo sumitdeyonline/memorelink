@@ -191,6 +191,29 @@ body a{
 	position: relative;
 	z-index: 1;
 }
+
+.btn_common {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ 
+    background: #2185C5;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .btn2{
 	cursor: pointer;
     padding: 8px 10px;
@@ -1035,7 +1058,7 @@ i.tw2{
     float: right;
 }
 .follow_jobs span {
-    display: inline-block;
+    display: inline-block; 
     padding:20px 0 0;
     font-size: 0.85em;
     color: #999;
@@ -1221,7 +1244,7 @@ a.btn_1.fa.fa-star-o.icon_2:hover{
     margin: 0;
 }
 .btn-default, .widget-content input[type="button"] {
-    padding-bottom: 3px;
+    /*padding-bottom: 3px;*/
     border-bottom: 2px solid #2185C5;
     background: #2185C5;
     color: #ffffff;

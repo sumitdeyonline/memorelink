@@ -100,16 +100,16 @@ export const AUTH_CONFIG: AuthConfiguration = {
     // You may need to change this!
     //callbackURL: 'http://macgain.com/dist/callback',  // production
     //callbackURL: 'https://career.macgain.com/callback',  // production
-    callbackURL: 'https://www.macgain.com/memorelink/callback',  // production
-    //callbackURL: 'http://localhost:4200/callback',
+    callbackURL: 'https://www.macgain.com/memore/callback',  // production
+    // callbackURL: 'http://localhost:4200/callback',
 
     audience: 'https:/memorelink.auth0.com/userinfo',
 
 
     //redirectUri: 'http://macgain.com/dist/',       // production
     //redirectUri: 'https://career.macgain.com/',       // production
-    redirectUri: 'https://www.macgain.com/memorelink/',       // production
-    //redirectUri: 'http://localhost:4200/',
+    redirectUri: 'https://www.macgain.com/memore/',       // production
+    // redirectUri: 'http://localhost:4200/',
 
 
     responseType: 'token id_token',

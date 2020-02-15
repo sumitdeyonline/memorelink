@@ -134,4 +134,4 @@ export const routing = RouterModule.forRoot([
       }
 
 
-]);
+], { initialNavigation: 'enabled' });

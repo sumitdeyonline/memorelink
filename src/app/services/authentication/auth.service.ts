@@ -84,7 +84,7 @@ export class AuthService {
       //if ((authResult != null) || (authResult != undefined)) {
       if (authResult != undefined) {
         this.authResult = authResult;
-        //this.handleAuthentication();
+        this.handleAuthentication();
       }
       else
         loginErrorMsg1 = err.description.toString();
@@ -133,8 +133,9 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
-      console.log("HanleAuth :::::: => Home Page");
-      if (authResult && authResult.accessToken && authResult.idToken) {
+      console.log("HanleAuth :::::: => Home Page"+authResult);
+      //if (authResult && authResult.accessToken && authResult.idToken) {
+      if (authResult) {
         console.log("HanleAuth :::::: => Home Page1");
         window.location.hash = '';
         this.setSession(authResult);
@@ -146,7 +147,7 @@ export class AuthService {
         });
         this.router.navigate(['']);
       } else if (err) {
-        alert("Login Error 22222" +err);
+        //alert("Login Error 22222" +err);
         //console.log("HanleAuth :::::: => Home Page2");
         this.router.navigate(['']);
         console.log(err);

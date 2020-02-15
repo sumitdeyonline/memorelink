@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { FIREBASE_CONFIG } from 'src/app/global-config';
 import { UserProfile } from 'src/app/services/firebase/userprofile/userprofile.model';
-
+import { Observable } from 'rxjs';
 
 
 @Component({

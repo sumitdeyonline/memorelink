@@ -46,7 +46,7 @@ import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
 import { DateformatService } from './services/dateformat/dateformat.service';
 
 import { UserProfileComponent } from './pages/userprofile/userprofile.component';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { UploadResumeService } from './services/firebase/uploadresume/upload-resume.service';
 import { UserdetailsService } from './services/firebase/userdetails/userdetails.service';
 import { UserprofileService } from './services/firebase/userprofile/userprofile.service';
@@ -132,6 +132,7 @@ import { adminRouting } from './admin/admin.routing';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     MatDialogModule,

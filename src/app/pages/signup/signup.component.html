@@ -76,11 +76,11 @@
                       <tr>
                         <td>
         
-                          <button class="btn btn-default" type="submit" value=" Submit" id="submit" name="submit" [disabled]="!signupForm.valid || password.value!=repassword.value || Fieldlength(password.value) < 5 || Fieldlength(repassword.value) < 5">
+                          <button class="btn_common btn-default" type="submit" value=" Submit" id="submit" name="submit" [disabled]="!signupForm.valid || password.value!=repassword.value || Fieldlength(password.value) < 5 || Fieldlength(repassword.value) < 5">
                             <i class="fa fa-floppy-o"></i>&nbsp;Submit
                           </button>
                           &nbsp;&nbsp;
-                          <button class="btn btn-default" type="button" value=" reset" id="reset" name="reset" (click)="resetForm(signupForm)">
+                          <button class="btn_common btn-default" type="button" value=" reset" id="reset" name="reset" (click)="resetForm(signupForm)">
                               <i class="fa fa-repeat"></i>&nbsp;Reset
                           </button>  
                         </td>                  

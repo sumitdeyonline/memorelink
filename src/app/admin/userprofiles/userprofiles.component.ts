@@ -6,7 +6,7 @@ import { UserprofileService } from 'src/app/services/firebase/userprofile/userpr
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { UploadResume } from 'src/app/services/firebase/uploadresume/uploadresume.model';
 import { UploadResumeService } from 'src/app/services/firebase/uploadresume/upload-resume.service';
-
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'userprofiles',

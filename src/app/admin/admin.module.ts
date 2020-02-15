@@ -20,6 +20,7 @@ import { StateaddupdateComponent } from './state/stateaddupdate/stateaddupdate.c
 import { StatedialogComponent } from './state/statedialog/statedialog.component';
 import { ApplyjobAdminComponent } from './applyjob-admin/applyjob-admin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
         MatInputModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule,        
+        MatSortModule, 
+        AngularFireDatabaseModule,       
     ],
       declarations: [
       AdminhomeComponent,

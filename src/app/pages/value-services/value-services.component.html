@@ -109,11 +109,11 @@
                       <tr>
                         <td>
 
-                          <button class="btn btn-default" type="submit" value=" Submit" id="submit" name="submit" [disabled]="!valueservicesForm.valid">
+                          <button class="btn_common btn-default" type="submit" value=" Submit" id="submit" name="submit" [disabled]="!valueservicesForm.valid">
                             <i class="fa fa-floppy-o"></i>&nbsp;Submit
                           </button>
                           &nbsp;&nbsp;
-                          <button class="btn btn-default" type="button" value=" reset" id="reset" name="reset" *ngIf="!_auth.isAuthenticated()" (click)="resetForm(valueservicesForm)">
+                          <button class="btn_common btn-default" type="button" value=" reset" id="reset" name="reset" *ngIf="!_auth.isAuthenticated()" (click)="resetForm(valueservicesForm)">
                               <i class="fa fa-repeat"></i>&nbsp;Reset
                           </button>
                         </td>
