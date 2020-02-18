@@ -9,7 +9,8 @@ import { ApplyJob } from 'src/app/services/firebase/applyjob/applyjob.model';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { ApplyjobService } from 'src/app/services/firebase/applyjob/applyjob.service';
 import { UploadResume } from 'src/app/services/firebase/uploadresume/uploadresume.model';
-
+import './../../../../assets/js/smtp.js'; 
+declare let Email: any;
 
 
 @Component({
@@ -124,8 +125,25 @@ export class ApplyjobComponent implements OnInit {
       this.ajob.addUpdateApplyJobs(this.applyJob);
       this.checkApplied = true;
 
-    //var email 	= require("./path/to/emailjs/email");
-  //   var server 	= this.email.server.connect({
+  /* Email Start */
+
+  Email.send({
+    Host : 'smtp.elasticemail.com',
+    Username : 'memorelink@macgain.com',
+    Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
+    To : 'sumitdeyonline@gmail.com',
+    From : 'memorelink@macgain.com',
+    Subject : 'This is a test email subject',
+    Body : `
+    <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b> <br /> <b>Email: </b><br /> <b>Subject: </b><br /> <b>Message:</b> <br />  <br><br> <b>~End of Message.~</b> `
+    }).then( message => {alert(message); } );
+
+  /* Email End */
+
+
+    //var email 	= require("../../../../../node_modules/emailjs/email");
+  //   var email   = require('emailjs/email');
+  //   var server 	= email.server.connect({
   //     user:	"hr@macgain.com",
   //     password:"Amitava1",
   //     host:	"smtp.ionos.com",
@@ -140,7 +158,20 @@ export class ApplyjobComponent implements OnInit {
   //   subject: "testing emailjs"
   // }, function(err, message) { console.log(err || message); });
 
-    //this.close();
+  //   this.close();
+
+
+  // const nodeMailer = require("nodemailer");
+  // let transporter = nodeMailer.createTransport({
+  //   host: 'smtp.gmail.com',
+  //   port: 465,
+  //   secure: true,
+  //   auth: {
+  //       user: 'xxx@xx.com', //replace it with your gmail username
+  //       pass: 'xxxx'        //replace it with your gmail password
+  //   }
+  // });
+
   }
 
   upload() {
