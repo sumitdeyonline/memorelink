@@ -131,6 +131,7 @@ export class ApplyjobComponent implements OnInit {
 
   Email.send({
     Host : 'smtp.elasticemail.com',
+    Port: '2525',
     Username : 'memorelink@macgain.com',
     Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
     To : 'sumitdeyonline@gmail.com',
