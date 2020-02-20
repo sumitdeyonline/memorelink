@@ -118,4 +118,8 @@ export const AUTH_CONFIG: AuthConfiguration = {
     connection: 'Username-Password-Authentication' ,
     sighupURL: 'https://memorelink.auth0.com/dbconnections/signup',
     forgetPasswordURL: 'https://memorelink.auth0.com/dbconnections/change_password'
+}
+export const EMAIL_CONFIG = {
+    SecureToken : "f28066c5-23af-4d78-bea7-79ef61fe32a5",
+    EmailFrom : 'memorelink@macgain.com',
 };

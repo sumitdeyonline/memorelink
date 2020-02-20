@@ -79,6 +79,7 @@ import { CommondialogComponent } from './common/commondialog/commondialog.compon
 import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
 import { AdminModule } from './admin/admin.module';
 import { adminRouting } from './admin/admin.routing';
+import { EmailService } from './services/email/email.service';
 
 
 
@@ -156,12 +157,13 @@ import { adminRouting } from './admin/admin.routing';
     UserdetailsService,
     UserprofileService,
     ApplyjobService,
-     ToastrService,
+    ToastrService,
     DatePipe,
     DateformatService,
     AngularFireDatabase,
     ContentfulService,
     PagerService,
+    EmailService,
     HttpClient
   ],
   bootstrap: [AppComponent]

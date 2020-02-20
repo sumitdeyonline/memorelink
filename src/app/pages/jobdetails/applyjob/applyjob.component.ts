@@ -11,8 +11,9 @@ import { ApplyjobService } from 'src/app/services/firebase/applyjob/applyjob.ser
 import { UploadResume } from 'src/app/services/firebase/uploadresume/uploadresume.model';
 //import { SnotifyService } from 'ng-snotify';
 import './../../../../assets/js/smtp.js'; 
+import { EmailService } from 'src/app/services/email/email.service.js';
 //import './smtp.js'; 
-declare let Email: any;
+//declare let Email: any;
 //var Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof (XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
 
 @Component({
@@ -40,7 +41,8 @@ export class ApplyjobComponent implements OnInit {
 
 
   constructor(private dialogRef: MatDialogRef<ApplyjobComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, fb: FormBuilder, private rUploadService: UploadResumeService, private auth: AuthService, private ajob: ApplyjobService)
+    @Inject(MAT_DIALOG_DATA) public data: any, fb: FormBuilder, private rUploadService: UploadResumeService, 
+    private auth: AuthService, private ajob: ApplyjobService, private sEmail: EmailService )
     {
       //this.email   = require("emailjs");
       this.applyJobForm =  fb.group({
@@ -128,29 +130,36 @@ export class ApplyjobComponent implements OnInit {
       this.checkApplied = true;
 
   /* Email Start */
+  let subject = 'Your job has been applyed('+this.pjob.JobTitle+')';
+  let body = '<i>Your job has been applied</i> <br/> <b>Job Title: '+this.pjob.JobTitle+' </b> <br /> <b>joblocation: </b>'+this.pjob.JobCity+', '+this.pjob.JobState+', '+this.pjob.JobCountry+'<br /> <b>Job Description : </b>'+this.pjob.JobDesc+' <br />  <br><br> <b>MemoreLink Team</b>'
+  this.sEmail.sendEmail(this.applyJobForm.get('Email').value,'',subject,body);
+  
+  let vJobSublect =this.applyJobForm.get('FirstName').value+' '+this.applyJobForm.get('LastName').value+' has applied the job('+this.pjob.JobTitle+')';
+  let vBody ='<i>'+this.applyJobForm.get('FirstName').value+' '+this.applyJobForm.get('LastName').value+ ' has applied this job</i> <br/> <b>Candidate Email: '+this.applyJobForm.get('Email').value+' </b> <br /><br/> <b>Candidate Phone: '+this.applyJobForm.get('PhoneNumber').value+' </b> <br /> <b>Job Title: '+this.pjob.JobTitle+' </b> <br /> <b>joblocation: </b>'+this.pjob.JobCity+', '+this.pjob.JobState+', '+this.pjob.JobCountry+'<br /> <b>Job Description : </b>'+this.pjob.JobDesc+' <br />  <br><br> <b>MemoreLink Team</b>'
+  this.sEmail.sendEmail(this.pjob.ApplyToEmail,'',vJobSublect,vBody);
 
-  Email.send({
-    // Host : 'smtp.elasticemail.com',
-    // Port: '2525',
-    // Username : 'memorelink@macgain.com',
-    // Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
-    // To : 'sumitdeyonline@gmail.com',
-    // From : 'hr@macgain.com',
+  // Email.send({
+  //   // Host : 'smtp.elasticemail.com',
+  //   // Port: '2525',
+  //   // Username : 'memorelink@macgain.com',
+  //   // Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
+  //   // To : 'sumitdeyonline@gmail.com',
+  //   // From : 'hr@macgain.com',
 
-    SecureToken : "f28066c5-23af-4d78-bea7-79ef61fe32a5",
+  //   SecureToken : "f28066c5-23af-4d78-bea7-79ef61fe32a5",
     
-    //Host : 'smtp.ionos.com',
-    //Port: '2525',
-    //Username : 'memorelink@macgain.com',
-    //Password : 'XXXXXXXXXX',
-    To : 'sumitdeyonline@gmail.com',
-    From : 'memorelink@macgain.com',
+  //   //Host : 'smtp.ionos.com',
+  //   //Port: '2525',
+  //   //Username : 'memorelink@macgain.com',
+  //   //Password : 'XXXXXXXXXX',
+  //   To : 'sumitdeyonline@gmail.com',
+  //   From : 'memorelink@macgain.com',
 
 
-    Subject : 'This is a test email subject',
-    Body : `
-    <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b> <br /> <b>Email: </b><br /> <b>Subject: </b><br /> <b>Message:</b> <br />  <br><br> <b>~End of Message.~</b> `
-    }).then( message => {alert(message); } );
+  //   Subject : 'This is a test email subject',
+  //   Body : `
+  //   <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b> <br /> <b>Email: </b><br /> <b>Subject: </b><br /> <b>Message:</b> <br />  <br><br> <b>~End of Message.~</b> `
+  //   }).then( message => {alert(message); } );
 
   /* Email End */
 
