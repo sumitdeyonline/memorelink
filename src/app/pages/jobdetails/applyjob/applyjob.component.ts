@@ -130,12 +130,23 @@ export class ApplyjobComponent implements OnInit {
   /* Email Start */
 
   Email.send({
-    Host : 'smtp.elasticemail.com',
-    Port: '2525',
-    Username : 'memorelink@macgain.com',
-    Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
+    // Host : 'smtp.elasticemail.com',
+    // Port: '2525',
+    // Username : 'memorelink@macgain.com',
+    // Password : '2ACCB1CEA84561661BE07F7DE0C25521EC06',
+    // To : 'sumitdeyonline@gmail.com',
+    // From : 'hr@macgain.com',
+
+    SecureToken : "f28066c5-23af-4d78-bea7-79ef61fe32a5",
+    
+    //Host : 'smtp.ionos.com',
+    //Port: '2525',
+    //Username : 'memorelink@macgain.com',
+    //Password : 'XXXXXXXXXX',
     To : 'sumitdeyonline@gmail.com',
     From : 'memorelink@macgain.com',
+
+
     Subject : 'This is a test email subject',
     Body : `
     <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b> <br /> <b>Email: </b><br /> <b>Subject: </b><br /> <b>Message:</b> <br />  <br><br> <b>~End of Message.~</b> `
