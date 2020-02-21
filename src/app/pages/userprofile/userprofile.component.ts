@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 import { FIREBASE_CONFIG } from 'src/app/global-config';
 import { UserProfile } from 'src/app/services/firebase/userprofile/userprofile.model';
 import { Observable } from 'rxjs';
+import { EmailService } from 'src/app/services/email/email.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class UserProfileComponent implements OnInit {
   state: State[];
 
 
-  constructor(private rUploadService: UploadResumeService, public uProfile: UserprofileService, public auth: AuthService) {
+  constructor(private rUploadService: UploadResumeService, public uProfile: UserprofileService, public auth: AuthService, private sEmail: EmailService) {
 
 
     this.uProfile.getUserDetails(this.auth.userProfile.name,'U').subscribe(uprop=> {
@@ -125,6 +126,11 @@ export class UserProfileComponent implements OnInit {
        this.userProfileAddUpdate(uprofileForm, null);
        this.EnableEdit();
        window.scroll(0,0);
+
+      /* Email Start */
+      let subject = 'Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us';
+      let body = '<i>Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us.</i> wish you best of luck for your future  <br /><br /> <b>MemoreLink Team</b> '
+      this.sEmail.sendEmail(uprofileForm.value.Email,'',subject,body);
 
       // this.rUploadService.getFileUploads(Number(FIREBASE_CONFIG.TotalFile)).snapshotChanges().pipe(
       //   map(changes =>

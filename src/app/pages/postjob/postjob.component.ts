@@ -17,6 +17,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { CommondialogComponent } from 'src/app/common/commondialog/commondialog.component';
 import { UserdetailsService } from 'src/app/services/firebase/userdetails/userdetails.service';
 import { UserDetails } from 'src/app/services/firebase/userdetails/userdetails.model';
+import { EmailService } from 'src/app/services/email/email.service';
 
 
 
@@ -56,7 +57,8 @@ export class PostjobComponent implements OnInit {
               private router: Router,
               private dialog: MatDialog,
               private datePipe: DatePipe,
-              private udetails: UserdetailsService) {
+              private udetails: UserdetailsService,
+              private sEmail: EmailService) {
         window.scroll(0,0);
         this.getCountry();
     // this.PostJobForm = fb.group({
@@ -217,6 +219,10 @@ export class PostjobComponent implements OnInit {
     dialogConfig.data = type+"||jobpoststatus";
     this.dialog.open(CommondialogComponent, dialogConfig);
 
+      /* Email Start */
+  let subject = 'Your job has been posted('+postJobForm.value.JobTitle+')';
+  let body = '<i>Your job has been applied</i> <br/> <b>Job Title: '+postJobForm.value.JobTitle+' </b> <br /> <b>joblocation: </b>'+postJobForm.value.JobCity+', '+postJobForm.value.JobState+', '+postJobForm.value.JobCountry+'<br /> <b>Job Description : </b>'+postJobForm.value.JobDesc+' <br />  <br><br> <b>MemoreLink Team</b>'
+  this.sEmail.sendEmail(postJobForm.value.ApplyToEmail,'',subject,body);
 
     /*setTimeout(() => {
 

@@ -8,6 +8,7 @@ import { UserdetailsService } from 'src/app/services/firebase/userdetails/userde
 import { UserDetails } from 'src/app/services/firebase/userdetails/UserDetails.model';
 import { UserprofileService } from 'src/app/services/firebase/userprofile/userprofile.service';
 import { UserRole } from 'src/app/services/firebase/userprofile/userrole.model';
+import { EmailService } from 'src/app/services/email/email.service';
 
 @Component({
   selector: 'valueservices',
@@ -32,7 +33,7 @@ export class ValueServicesComponent implements OnInit {
   companyName: string;
   companyAddress: string;
 
-  constructor(public _auth: AuthService, fb: FormBuilder, public udetails: UserdetailsService, private uProfile: UserprofileService) {
+  constructor(public _auth: AuthService, fb: FormBuilder, public udetails: UserdetailsService, private uProfile: UserprofileService, private sEmail: EmailService) {
 
     // this.valueservicesForm = fb.group({
     //   email: ['', Validators.required,Validators.email],
@@ -113,6 +114,11 @@ export class ValueServicesComponent implements OnInit {
               //console.log("Value Radio Burron ::::===>>>>>>> "+this.userActualRole);
               this.udetails.addUpdateUserDetails(this.userDetailsID, model.email, this.userActualRole, model.company, model.companyAddress,  model.phone,0);
               //this.router.navigate(['/signupconfirm']);
+              /* Email Start */
+              let subject = 'Thank you '+model.email+' taking this '+ this.userActualRole;
+              let body = '<i>Thank you '+model.email+' taking this '+ this.userActualRole+'. Best of luck <br /><br /> <b>MemoreLink Team</b> '
+              this.sEmail.sendEmail(model.email,'',subject,body);
+
               return true;
           },
           error => {
