@@ -213,16 +213,18 @@ export class PostjobComponent implements OnInit {
     // dialogConfig.width ="3";
 
 
+      /* Email Start */
 
-    this.resetForm(postJobForm);
+    let subject = 'Your job has been posted('+postJobForm.value.JobTitle+')';
+    let body = '<i>Your job has been posted</i> <br/><br/> <b>Job Title: </b>'+postJobForm.value.JobTitle+'  <br/> <b>Job Location: </b>'+postJobForm.value.JobCity+', '+postJobForm.value.JobState+', '+postJobForm.value.JobCountry+'<br /> <b>Job Description : </b>'+postJobForm.value.JobDesc+' <br />  <br><br> <b>Thank you <br>MemoreLink Team</b>'
+    this.sEmail.sendEmail(postJobForm.value.ApplyToEmail,'',subject,body);
+
+ 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = type+"||jobpoststatus";
     this.dialog.open(CommondialogComponent, dialogConfig);
+    this.resetForm(postJobForm);
 
-      /* Email Start */
-  let subject = 'Your job has been posted('+postJobForm.value.JobTitle+')';
-  let body = '<i>Your job has been applied</i> <br/> <b>Job Title: '+postJobForm.value.JobTitle+' </b> <br /> <b>joblocation: </b>'+postJobForm.value.JobCity+', '+postJobForm.value.JobState+', '+postJobForm.value.JobCountry+'<br /> <b>Job Description : </b>'+postJobForm.value.JobDesc+' <br />  <br><br> <b>MemoreLink Team</b>'
-  this.sEmail.sendEmail(postJobForm.value.ApplyToEmail,'',subject,body);
 
     /*setTimeout(() => {
 

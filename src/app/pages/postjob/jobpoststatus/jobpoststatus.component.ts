@@ -36,7 +36,7 @@ export class JobpoststatusComponent implements OnInit {
 
   pjob: PostJobc[];
 
-  length: any = SEARCH_CONFIG.LIST_JOB_DESC_STATUS;
+  length: any = SEARCH_CONFIG.LIST_JOB_DESC_WIDTH;
   // pager object
   pager: any = {};
 

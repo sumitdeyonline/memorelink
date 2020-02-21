@@ -103,6 +103,9 @@ export class ValueServicesComponent implements OnInit {
         // console.log("Resume Search ::::: "+model.resumesearch);
         this.udetails.addUpdateUserDetails(this.userDetailsID, model.email, model.userRole, model.company, model.companyAddress, model.phone,0);
         this.valueservicesSucessMessage = model.email+" has been Sucessfully Updated."
+        let subject = 'Thank you '+model.email+' for the service('+ this.userActualRole+')';
+        let body = 'Thank you <b>'+model.email+'</b> for the service('+ this.userActualRole+'). Best of luck <br /><br /> <b>Thank you <br>MemoreLink Team</b> '
+        this.sEmail.sendEmail(model.email,'',subject,body);
         return true;
       } else {
         this._auth.signUp(model).subscribe(
@@ -115,8 +118,8 @@ export class ValueServicesComponent implements OnInit {
               this.udetails.addUpdateUserDetails(this.userDetailsID, model.email, this.userActualRole, model.company, model.companyAddress,  model.phone,0);
               //this.router.navigate(['/signupconfirm']);
               /* Email Start */
-              let subject = 'Thank you '+model.email+' taking this '+ this.userActualRole;
-              let body = '<i>Thank you '+model.email+' taking this '+ this.userActualRole+'. Best of luck <br /><br /> <b>MemoreLink Team</b> '
+              let subject = 'Thank you '+model.email+' for the service('+ this.userActualRole+')';
+              let body = 'Thank you <b>'+model.email+'</b> for the service('+ this.userActualRole+'). Best of luck <br /><br /> <b>Thank you <br>MemoreLink Team</b> '
               this.sEmail.sendEmail(model.email,'',subject,body);
 
               return true;

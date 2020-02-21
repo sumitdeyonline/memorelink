@@ -127,10 +127,7 @@ export class UserProfileComponent implements OnInit {
        this.EnableEdit();
        window.scroll(0,0);
 
-      /* Email Start */
-      let subject = 'Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us';
-      let body = '<i>Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us.</i> wish you best of luck for your future  <br /><br /> <b>MemoreLink Team</b> '
-      this.sEmail.sendEmail(uprofileForm.value.Email,'',subject,body);
+
 
       // this.rUploadService.getFileUploads(Number(FIREBASE_CONFIG.TotalFile)).snapshotChanges().pipe(
       //   map(changes =>
@@ -157,6 +154,10 @@ export class UserProfileComponent implements OnInit {
 
     }
 
+    /* Email Start */
+    let subject = 'Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us';
+    let body = '<b>Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us. Wish you best of luck for your future</b>  <br /><br /> <b>Thank you <br>MemoreLink Team</b> '
+    this.sEmail.sendEmail(uprofileForm.value.Email,'',subject,body);
 
     //this.getFilesWithDownloadURL(this.rUploadService.downloadURL);
 
