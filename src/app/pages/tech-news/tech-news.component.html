@@ -1,5 +1,5 @@
 <div class="col_3">
-  <h3>Tech News</h3>
+  <!-- <h3>Tech News</h3> -->
   <!--ul class="list_1">
       <li><a href="#">Department of Health - Western Australia</a></li>
       <li><a href="#">Australian Nursing Agency currently require experiences</a></li>
@@ -14,8 +14,7 @@
       <li><a href="#">Pyramid IT Consulting Pvt. Ltd. in Pakistan</a></li>
     </ul-->
     <div *ngFor="let tnews of techNews">
-      <b>{{tnews.fields.subHeader}}</b>
-      <br><br>
+      <h2><b>{{tnews.fields.subHeader}}</b></h2>
       <img src="{{ tnews.fields.pageImageUrl}}"/>
       <br>
       <div [innerHTML]="tnews.fields.pageText | mdToHtml"></div>

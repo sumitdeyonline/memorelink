@@ -49,7 +49,8 @@ export class ApplyjobComponent implements OnInit {
         FirstName: [null, Validators.required],
         LastName: [null, Validators.required],
         Email: [null, [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
-        PhoneNumber: [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
+        //PhoneNumber: [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
+        PhoneNumber: [null, [Validators.required, Validators.pattern('[0-9]{3}?[-. ]?[0-9]{3}?[-. ]?[0-9]{4}')]],
         CoverLetter:[null],
         fileUpload: [Validators.required],
         fileUploadExist: [null]
