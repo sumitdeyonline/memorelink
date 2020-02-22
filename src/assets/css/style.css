@@ -1001,13 +1001,13 @@ i.tw2{
 .single h2, .content_bottom h3, .about_bottom h3{
 	color:#000;
 	font-size:2em;
-	margin-bottom:1.5em;
+	/* margin-bottom:1.5em; */
     font-weight: 400;
-	text-align:center;
+	/* text-align:center; */
 }
 /* -- following --*/
 .single h2::after, .content_bottom h3:after, .grid_1 h3:after, .about_bottom h3:after{
-    background:#f15f43;
+    /* background:#f15f43; */
     content: "";
     display: block;
     height: 5px;

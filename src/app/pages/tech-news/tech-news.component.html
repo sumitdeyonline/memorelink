@@ -14,7 +14,7 @@
       <li><a href="#">Pyramid IT Consulting Pvt. Ltd. in Pakistan</a></li>
     </ul-->
     <div *ngFor="let tnews of techNews">
-      <h2><b>{{tnews.fields.subHeader}}</b></h2>
+      <h2>{{tnews.fields.subHeader}}</h2>
       <img src="{{ tnews.fields.pageImageUrl}}"/>
       <br>
       <div [innerHTML]="tnews.fields.pageText | mdToHtml"></div>
