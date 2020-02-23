@@ -181,7 +181,7 @@
                             <!--select ngModel name="JobState" #JobState="ngModel" id="JobState" [(ngModel)]="postjobService.selectedPostJobc.JobState" class="form-control input-sm"-->
                             <select ngModel name="JobState" #JobState="ngModel" id="JobState" [ngModel]="postjobService.selectedPostJobc?.JobState" (ngModelChange)="postjobService.selectedPostJobc.JobState" class="form-control input-sm" required>
                               <option>Select State</option>
-                              <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}</option>
+                              <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}({{st.StateName}})</option>
                           </select>
                         <div style="color: red;" *ngIf="JobState.invalid && (JobState.dirty || JobState.touched)">
                           Please Enter Job State
@@ -224,7 +224,7 @@
                         <option>Part Time</option>
                         <option>Full Time</option>
                         <option>Contracts</option>
-                        <option>Third Party</option>
+                        <option>C2C</option>
                       </select>
                       <div style="color: red;" *ngIf="EmploymentTypes.invalid && (EmploymentTypes.dirty || EmploymentTypes.touched)">
                           Please Enter Employee Type

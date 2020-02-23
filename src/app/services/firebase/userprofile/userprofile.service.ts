@@ -187,7 +187,7 @@ export class UserprofileService {
   getStateDetails(country) {
     console.log("Country Name "+country);
     this.stateCollection = this.afs.collection(FIREBASE_CONFIG.State, ref =>
-          ref.where('CountryName','==',country));
+          ref.where('CountryName','==',country).orderBy('StateDisplayName', 'asc'));
            //console.log("List Service ..... 4");
     this.stateProfilec = this.stateCollection.snapshotChanges().pipe(map(changes => {
        //console.log("List Service ..... 5");
