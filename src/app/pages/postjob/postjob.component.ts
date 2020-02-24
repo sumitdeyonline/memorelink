@@ -47,6 +47,7 @@ export class PostjobComponent implements OnInit {
   userDetails: UserDetails[];
   isJobLength: boolean = false;
   postJobCount: number = 0;
+  //selectedEmpTypes: String;
   public signupMessage: string;
   public signupSucessMessage:string;
   
@@ -93,11 +94,13 @@ export class PostjobComponent implements OnInit {
         console.log("UPDATE FORM ....");
 
         this.postjobService.getPostJobsById(this.id).subscribe(postJob=> {
-          console.log("UPDATE FORM ....111111111122222");
+          
           this.postJob = postJob;
           this.getFieldForUpdate();
           this.getState(this.postJob.JobCountry);
           this.isPayrate(this.postJob.JobPayRate);
+          //console.log("UPDATE FORM ....111111111122222 "+this.postJob.EmploymentTypes);
+          //this.selectedEmpTypes = this.postJob.EmploymentTypes;
         })
       }
       // if (this.userDetails.length > 0) {
@@ -118,13 +121,17 @@ export class PostjobComponent implements OnInit {
 
   ngOnInit() {
     // let dateFormat = require('mm/dd/yyyy');
+    window.scroll(0,0);
 
+  }
 
+  myjobList() {
+    this.router.navigate(['/jobpoststatus']);  //, { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });    
   }
 
   JobPostSubmit(postJobForm : NgForm) {
     let type;
-    console.log ("Datatat ::: "+postJobForm.value.JobTitle);
+    console.log ("postJobForm.value.EmploymentTypes ::: "+postJobForm.value.EmploymentTypes);
     // postJobForm.value.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
     // console.log ("Datatat ::: "+postJobForm.value.CreatedDate);
     if (postJobForm.value.JobLength === undefined) {

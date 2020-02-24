@@ -158,7 +158,7 @@
                     <div class="col">
                         <select ngModel name="State" [disabled]="!isUpdateProfile" #State="ngModel" id="State" [ngModel]="uProfile.selectedUserProfile?.State" (ngModelChange)="uProfile.selectedUserProfile.State" class="form-control input-sm" required>
                             <option>Select State</option>
-                            <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}</option>
+                            <option [value]="st.StateName" *ngFor="let st of state">{{st.StateDisplayName}}({{st.StateName}})</option>
                             <!--option label="AL" value="AL">AL</option>
                             <option label="AK" value="AK">AK</option>
                             <option label="AZ" value="AZ">AZ</option>

@@ -7,9 +7,21 @@
 <div class="container">
     <div class="single">
         <div class="form-container">
-            <h2>Post Job</h2>
+            <table>
+                <tr>
+                  <td>
+                    <h2 class="title" style="color: red;">Post Job</h2>
+                  </td>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button (click)="myjobList()" class="btn btn-primary btn-sm">Back to My Post Job</button>&nbsp;&nbsp;
+                   </td>
+                </tr>
+              </table>
+              
+              <hr/>
 
-
+            
 	      <signup-confirm [signupSucessMessage] = "signupSucessMessage"></signup-confirm>
 	      <div [hidden]="signupSucessMessage != null && signupSucessMessage !=''">
 		<p style="color: red;" *ngIf="signupMessage != null && signupMessage !=''">
@@ -219,14 +231,16 @@
                         <label style="font-weight: bold;" for="EmploymentTypes">Employment Type</label>
                     </div>
                     <div class="col">
-                      <select ngModel name="EmploymentTypes" #EmploymentTypes="ngModel" id="EmploymentTypes" [ngModel]="postjobService.selectedPostJobc?.EmploymentTypes" (ngModelChange)="postjobService.selectedPostJobc.EmploymentTypes" class="form-control input-sm" required>
-                        <option>Select Employment Type</option>
-                        <option>Part Time</option>
-                        <option>Full Time</option>
-                        <option>Contracts</option>
-                        <option>C2C</option>
+                      <select ngModel name="EmploymentTypes" multiple="multiple" #EmploymentTypes="ngModel" id="EmploymentTypes" [ngModel]="postjobService.selectedPostJobc?.EmploymentTypes"  (ngModelChange)="postjobService.selectedPostJobc.EmploymentTypes" class="form-control input-sm" required>
+                        <!-- <option *ngFor="let empType of selectedEmpTypes" ng-if="empType!=','" value = "empType" selected>{{empType}}</option> -->
+                        <option>Select Single/Multiple Employment Type</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Contract W2">Contract W2</option>
+                        <option value="Contract Corp-to-Corp">Contract Corp-to-Corp</option>
+                        <option value="Contract Independent">Contract Independent</option>
                       </select>
-                      <div style="color: red;" *ngIf="EmploymentTypes.invalid && (EmploymentTypes.dirty || EmploymentTypes.touched)">
+                        <div style="color: red;" *ngIf="EmploymentTypes.invalid && (EmploymentTypes.dirty || EmploymentTypes.touched)">
                           Please Enter Employee Type
                         </div>                      
                     </div>
@@ -241,14 +255,14 @@
                         <label style="font-weight: bold;" for="JobPayRate">Job Pay Rate</label>
                     </div>
                     <div class="col">
-                      <select ngModel name="JobPayRate" #JobPayRate="ngModel" id="JobPayRate" [ngModel]="postjobService.selectedPostJobc?.JobPayRate" (ngModelChange)="postjobService.selectedPostJobc.JobPayRate" class="form-control input-sm" (change)="isPayrate($event.target.value)" required>
+                      <select ngModel name="JobPayRate" #JobPayRate="ngModel" id="JobPayRate" [ngModel]="postjobService.selectedPostJobc?.JobPayRate" (ngModelChange)="postjobService.selectedPostJobc.JobPayRate" class="form-control input-sm" (change)="isPayrate($event.target.value)">
                         <option>Select Job Pay Rate</option>
                         <option>Salary</option>
                         <option>Hourly</option>
                       </select>
-                      <div style="color: red;" *ngIf="JobPayRate.invalid && (JobPayRate.dirty || JobPayRate.touched)">
+                      <!-- <div style="color: red;" *ngIf="JobPayRate.invalid && (JobPayRate.dirty || JobPayRate.touched)">
                           Please Enter Pay Type
-                        </div>                       
+                      </div>                        -->
                     </div>
                 </div>
                 <div class="row">
@@ -291,11 +305,17 @@
                     <div class="col">
                       <select ngModel name="TravelRequirements" #TravelRequirements="ngModel" id="TravelRequirements" [ngModel]="postjobService.selectedPostJobc?.TravelRequirements" (ngModelChange)="postjobService.selectedPostJobc.TravelRequirements" class="form-control input-sm">
                         <option>Select Travel Requirements</option>
-                        <option>No Travel</option>
-                        <option>30% Travel</option>
-                        <option>50% Travel</option>
-                        <option>75% Travel</option>
-                        <option>100% Travel</option>
+                        <option value="No Travel">No Travel</option>
+                        <option value="10% Travel">10% Travel</option>
+                        <option value="20% Travel">20% Travel</option>
+                        <option value="30% Travel">30% Travel</option>
+                        <option value="40% Travel">40% Travel</option>
+                        <option value="50% Travel">50% Travel</option>
+                        <option value="60% Travel">60% Travel</option>
+                        <option value="70% Travel">70% Travel</option>
+                        <option value="80% Travel">80% Travel</option>
+                        <option value="90% Travel">90% Travel</option>
+                        <option value="100% Travel">100% Travel</option>
                       </select>
                     </div>
                 </div>
