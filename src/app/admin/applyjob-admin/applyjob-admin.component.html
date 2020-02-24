@@ -3,7 +3,7 @@
       <div class="form-container">
           <h2>Apply Job Administration</h2>
           <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
-
+<!-- 
           <div class="row">
             <form #aform="ngForm" (ngSubmit)="applyRole(aform.value)">
               <table>
@@ -14,6 +14,28 @@
                     <select ngModel name="company" #company="ngModel" id="company">
                       <option value="">Select Company</option>
                       <option [value]="company.company" *ngFor="let company of userDetails">{{company.company}}</option>
+                    </select>
+                  </td>
+                  <td><button type="submit"><i class="fa fa-search"></i></button></td>
+                </tr>
+                </table>
+              </form>
+          </div> -->
+
+          <div class="row">
+            <form #aform="ngForm" (ngSubmit)="applyRole(aform.value)">
+              <table>
+                <tr>
+                  <td>User Name :</td>
+                  <td>
+                      <input type="text" class="text" ngModel name="username" #username="ngModel" id="username" placeholder="" value={{username}}>
+                  </td>
+                  <td>&nbsp;<b>OR</b>&nbsp;</td>
+                  <td>Company :</td>
+                  <td>
+                    <select ngModel name="company" #company="ngModel" id="company">
+                      <option value="">Select Company</option>
+                      <option [value]="uDet.company" *ngFor="let uDet of userDetails">{{uDet.company}}</option>
                       <!--option>USA</option-->
                     </select>
                   </td>
@@ -21,7 +43,7 @@
                 </tr>
                 </table>
               </form>
-          </div>
+          </div>          
 
           <div class="row">
 

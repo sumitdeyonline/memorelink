@@ -47,6 +47,27 @@ export class ApplyjobService {
   }    
 
 
+  getApplyJobByUser(user) {
+
+    this.ajCollection = this.afs.collection(FIREBASE_CONFIG.ApplyJob, ref =>  
+      ref.where('userName','==',user));
+
+         // console.log("Country Name  ..... 1");
+    this.ApplyJobc = this.ajCollection.snapshotChanges().pipe(map(changes => {
+      // console.log("Country Name  ..... 2");
+      return changes.map(a => {
+        // console.log("Country Name  ..... 3");;
+        const data = a.payload.doc.data() as ApplyJob;
+        data.id = a.payload.doc.id;
+        // console.log("Country Name  ..... 4" +data.id);
+        return data;
+      });
+    }));
+
+    return this.ApplyJobc;
+  } 
+
+
   getApplyJob() {
 
     // console.log("Country Name  ..... 0");

@@ -146,6 +146,14 @@ export class ApplyjobComponent implements OnInit {
     let vBody ='<i>'+this.applyJobForm.get('FirstName').value+' '+this.applyJobForm.get('LastName').value+ ' has applied this job</i> <br/> <br/> <b>Candidate Email: </b>'+this.applyJobForm.get('Email').value+'  <br/> <b>Candidate Phone: </b>'+this.applyJobForm.get('PhoneNumber').value+'  <br /> <b>Job Title: </b>'+this.pjob.JobTitle+'  <br /> <b>joblocation: </b>'+this.pjob.JobCity+', '+this.pjob.JobState+', '+this.pjob.JobCountry+'<br /> <b>Cover Letter : </b>'+this.applyJobForm.get('CoverLetter').value+' <br /> <b>Resume  : </b><a href="'+this.applyJob.fileUploadURL+'">Resume Link</a> <br /><b>Job Description : </b>'+this.pjob.JobDesc+' <br />  <br><br> <b>Thank you <br>MemoreLink Team</b>'
     this.sEmail.sendEmail(this.pjob.ApplyToEmail,'',vJobSublect,vBody);
 
+    if ((this.pjob.CCToEmail != null) && (this.pjob.CCToEmail != undefined)) {
+      if (this.pjob.CCToEmail.trim() !='') {
+        this.sEmail.sendEmail(this.pjob.CCToEmail,'',vJobSublect,vBody);
+      } else {
+        console.log("No CC email");
+      }
+    }
+
   // Email.send({
   //   // Host : 'smtp.elasticemail.com',
   //   // Port: '2525',

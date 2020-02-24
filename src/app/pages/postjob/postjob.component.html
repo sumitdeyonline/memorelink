@@ -111,7 +111,7 @@
                         <label style="font-weight: bold;" for="ApplyToEmail">Apply To Email</label>
                     </div>
                     <div class="col">
-                        <input type="text" ngModel name="ApplyToEmail" #ApplyToEmail="ngModel" id="ApplyToEmail" [ngModel]="postjobService.selectedPostJobc?.ApplyToEmail" (ngModelChange)="postjobService.selectedPostJobc.ApplyToEmail" class="form-control input-sm" required/>
+                        <input type="text" [readonly]="true" ngModel name="ApplyToEmail" #ApplyToEmail="ngModel" id="ApplyToEmail" [ngModel]="postjobService.selectedPostJobc?.ApplyToEmail" (ngModelChange)="postjobService.selectedPostJobc.ApplyToEmail" class="form-control input-sm" required/>
                         <div style="color: red;" *ngIf="ApplyToEmail.invalid && (ApplyToEmail.dirty || ApplyToEmail.touched)">
                             Please Enter currect Email
                         </div>                        

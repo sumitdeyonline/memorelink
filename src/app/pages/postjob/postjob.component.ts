@@ -84,6 +84,7 @@ export class PostjobComponent implements OnInit {
         this.userDetails = udtl;
         if (this.userDetails.length > 0) {
           this.postjobService.selectedPostJobc.Company = this.userDetails[0].company;
+          this.postjobService.selectedPostJobc.ApplyToEmail = this.userDetails[0].userName;
           if (this.userDetails[0].postjobCount !== undefined) {
             this.postJobCount = this.userDetails[0].postjobCount;
           }
@@ -226,6 +227,13 @@ export class PostjobComponent implements OnInit {
     let body = '<i>Your job has been posted</i> <br/><br/> <b>Job Title: </b>'+postJobForm.value.JobTitle+'  <br/> <b>Job Location: </b>'+postJobForm.value.JobCity+', '+postJobForm.value.JobState+', '+postJobForm.value.JobCountry+'<br /> <b>Job Description : </b>'+postJobForm.value.JobDesc+' <br />  <br><br> <b>Thank you <br>MemoreLink Team</b>'
     this.sEmail.sendEmail(postJobForm.value.ApplyToEmail,'',subject,body);
 
+    if ((postJobForm.value.CCToEmail != null) && (postJobForm.value.CCToEmail != undefined)) {
+      if (postJobForm.value.CCToEmail.trim() !='') {
+        this.sEmail.sendEmail(postJobForm.value.CCToEmail,'',subject,body);
+      } else {
+        console.log("No CC email");
+      }
+    }    
  
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = type+"||jobpoststatus";

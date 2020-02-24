@@ -88,7 +88,7 @@
                   <label for="resumesearch">Post Job Service</label> <input type="checkbox" ngModel name="resumesearch" #resumesearch="ngModel" id="resumesearch" [ngModel]="udetails.selectedValueServices?.resumesearch" (ngModelChange)="udetails.selectedValueServices.resumesearch" checked data-toggle="toggle" data-onstyle="primary"-->
                   
                   
-                  <label for="company">Company:</label> <input type="text" ngModel name="company" #company="ngModel" id="company" [ngModel]="udetails.selectedValueServices?.company" (ngModelChange)="udetails.selectedValueServices.company" class="form-control input-sm" required/>
+                  <label for="company">Company:</label> <input type="text"  [readonly]="_auth.isAuthenticated()" ngModel name="company" #company="ngModel" id="company" [ngModel]="udetails.selectedValueServices?.company" (ngModelChange)="udetails.selectedValueServices.company" class="form-control input-sm" required/>
 
                   <div style="color: red;" *ngIf="Fieldlength(company.value) < 2 && company.touched">
                     Company must be at least 2 characters long.

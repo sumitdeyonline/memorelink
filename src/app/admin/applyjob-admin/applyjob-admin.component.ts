@@ -51,17 +51,69 @@ export class ApplyjobAdminComponent implements OnInit {
   }
 
   applyRole(apjob) {
+    console.log("Username :: "+apjob.username);
     console.log("Company :::::: "+apjob.company);
-    if ((apjob.company == null) || (apjob.company == undefined) || (apjob.company.trim() == ''))  {
-      console.log("Blank...");
-      this.aJob = null;
+    // if ((apjob.company == null) || (apjob.company == undefined) || (apjob.company.trim() == ''))  {
+    //   console.log("Blank...");
+    //   this.aJob = null;
+    // } else {
+    //   this.appjob.getApplyJobByCompany(apjob.company).subscribe(udtl=> {
+    //     this.aJob = udtl;
+    //     console.log(" Length :::: "+this.aJob.length);
+    //     this.setPage(1);
+    //   });
+    // }
+
+    if ((apjob.username == null) || (apjob.username == undefined) || (apjob.username.trim() == '')) {
+
+      if (apjob.company == "") {
+        console.log("No Value");
+      } else {
+        this.appjob.getApplyJobByCompany(apjob.company).subscribe(udtl=> {
+
+          this.aJob = udtl;
+          console.log(" Length :::: "+this.aJob.length);
+
+          if (this.aJob.length > 0) {
+            console.log("Company ::: "+this.aJob[0].company);
+            //this.setPage(1);
+    
+    
+          } else {
+            console.log("Company not found");
+            this.aJob = null;
+            this.pagedItems = null;
+            //this.setPage(1);
+          }
+
+
+          this.setPage(1);
+        });        
+      }
+
     } else {
-      this.appjob.getApplyJobByCompany(apjob.company).subscribe(udtl=> {
+
+      this.appjob.getApplyJobByUser(apjob.username).subscribe(udtl=> {
         this.aJob = udtl;
         console.log(" Length :::: "+this.aJob.length);
-        this.setPage(1);
-      });
+  
+  
+        if (this.aJob.length > 0) {
+          console.log("User Role ::: "+this.aJob[0].username);
+          this.setPage(1);
+        } else {
+          console.log("User not found");
+          this.aJob = null;
+          this.pagedItems = null;
+          this.setPage(1); 
+        }
+  
+      }) 
+
     }
+
+
+
 }
 
   setPage(page: number) {
