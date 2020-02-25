@@ -18,6 +18,7 @@ export class JobdetailsComponent implements OnInit {
   public pjob: PostJobc;
   keyword: string;
   location: string;
+  travelReq: string;
   //fileNameDialogRef: MatDialogRef<ApplyjobComponent>;
 
   constructor(private router: Router,private _activeRoute:ActivatedRoute, private postservice: PostjobService, private dialog: MatDialog) {
@@ -43,6 +44,13 @@ export class JobdetailsComponent implements OnInit {
     });
     this.postservice.getPostJobsById(this.id).subscribe(pjob=> {
       this.pjob = pjob;
+      //alert(this.pjob.isTeleComute);
+      if (this.pjob.isTeleComute == true) {
+        this.travelReq = "Work from home available";
+      } else {
+        this.travelReq = "Work from home not available";
+      }
+      //alert("Last Modifed Date :::::: "+this.pjob.LastModifiedDate);
       console.log("List Service ..... 33333 ::::: "+this.pjob.Compensation);
     })
 
@@ -73,6 +81,8 @@ export class JobdetailsComponent implements OnInit {
 
   getDateDiff(dateIput) {
     let lastModifyDate = new Date(dateIput);
+    console.log("Get Time ::::::: "+dateIput);
+    //alert("Last Modifed Date :::::: "+this.pjob.LastModifiedDate);
     return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
     //return Math.round(Math.abs(new Date().getTime() - this.pjob[3].LastModifiedDate.toDate().getTime())/(24*60*60*1000);
   }
