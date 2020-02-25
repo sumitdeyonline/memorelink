@@ -99,7 +99,7 @@ export class ApplyjobAdminComponent implements OnInit {
   
   
         if (this.aJob.length > 0) {
-          console.log("User Role ::: "+this.aJob[0].username);
+          console.log("User Role ::: "+this.aJob[0].ApplyToEmail);
           this.setPage(1);
         } else {
           console.log("User not found");
@@ -119,12 +119,14 @@ export class ApplyjobAdminComponent implements OnInit {
   setPage(page: number) {
     console.log("Page Count");
     window.scroll(0,0);
+    if ((this.aJob !=null) && (this.aJob !=undefined)) {
     // get pager object from service
     this.pager = this.pagerService.getPager(this.aJob.length, page);
     //console.log("Page Count...1  ::: "+this.pager.length);
     // get current page of items
     this.pagedItems = this.aJob.slice(this.pager.startIndex, this.pager.endIndex + 1);
     //console.log("Page Count...1  ::: "+this.pagedItems.length);
+    }
   } 
 
 }

@@ -8,12 +8,26 @@
       <table>
         <tr>
           <td>
-            <h3 class="title" style="color: red;">Job Description</h3>
+            <h3 class="title" style="color: red;">{{ pjob.JobTitle }}</h3>
           </td>
-          <td>
+          <td align="right">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button (click)="jobList()" class="btn btn-primary btn-sm">Back to search</button>&nbsp;&nbsp;
             <button type="button" value="Apply Now" (click)="onApply()" class="btn btn-primary btn-sm">Apply Now</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+
+            <div class="date_desc">
+              <i class="fa fa-building-o" aria-hidden="true"></i>&nbsp;<span class="companyName">{{ pjob.Company.substring(0,19) }}</span><span class="companyName" *ngIf="pjob.Company.length>19">...</span>
+              &nbsp;&nbsp;<i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;<span class="meta"><b>{{ pjob.JobCity }}, {{ pjob.JobState }}</b></span>
+              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;<span class="meta">{{ getDateDiff(pjob.LastModifiedDate) }}&nbsp;days ago</span>&nbsp;<span class="meta"><i class="fa fa-building"></i>&nbsp;{{ pjob.EmploymentTypes }}</span>
+              &nbsp;&nbsp;<span class="meta"><i class="fa fa-money-bill-alt"></i>&nbsp;&nbsp;{{ pjob.Compensation }}</span>
+            </div>            
+          </td>
+          <td>
+            &nbsp;
           </td>
         </tr>
       </table>
@@ -59,7 +73,8 @@
 
 
 
-              <h3 *ngIf="pjob !=null"> {{ pjob.JobTitle }}&nbsp;({{ pjob.JobCity }},{{ pjob.JobState }})</h3>
+              <!-- <h3 *ngIf="pjob !=null"> {{ pjob.JobTitle }}&nbsp;({{ pjob.JobCity }},{{ pjob.JobState }})</h3> -->
+              <h3>Job Description</h3>
 
               <div *ngIf="pjob !=null" [innerHTML]="pjob.JobDesc"></div>
 

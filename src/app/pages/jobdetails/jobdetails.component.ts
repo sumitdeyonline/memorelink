@@ -43,7 +43,7 @@ export class JobdetailsComponent implements OnInit {
     });
     this.postservice.getPostJobsById(this.id).subscribe(pjob=> {
       this.pjob = pjob;
-      console.log("List Service ..... 33333 ::::: "+this.pjob.JobTitle);
+      console.log("List Service ..... 33333 ::::: "+this.pjob.Compensation);
     })
 
   }
@@ -69,6 +69,12 @@ export class JobdetailsComponent implements OnInit {
     //this.fileNameDialogRef = this.dialog.open(DialogComponent);
     //this.fileNameDialogRef = this.dialog.open(DialogComponent, dialogConfig);
     //this.postservice.deletePostJob(pjob);
+  }
+
+  getDateDiff(dateIput) {
+    let lastModifyDate = new Date(dateIput);
+    return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
+    //return Math.round(Math.abs(new Date().getTime() - this.pjob[3].LastModifiedDate.toDate().getTime())/(24*60*60*1000);
   }
 
 }

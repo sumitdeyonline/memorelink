@@ -50,7 +50,7 @@ export class ApplyjobService {
   getApplyJobByUser(user) {
 
     this.ajCollection = this.afs.collection(FIREBASE_CONFIG.ApplyJob, ref =>  
-      ref.where('userName','==',user));
+      ref.where('ApplyToEmail','==',user));
 
          // console.log("Country Name  ..... 1");
     this.ApplyJobc = this.ajCollection.snapshotChanges().pipe(map(changes => {
