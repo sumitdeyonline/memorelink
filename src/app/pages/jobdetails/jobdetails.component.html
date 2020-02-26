@@ -8,9 +8,9 @@
       <table>
         <tr>
           <td>
-            <h3 class="title" style="color: red;">{{ pjob.JobTitle }}</h3>
+            <h3 *ngIf="pjob !=null" class="title" style="color: red;">{{ pjob.JobTitle }}</h3>
           </td>
-          <td align="right">
+          <td align="left">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <!-- <button (click)="jobList()" class="btn btn-primary btn-sm">Back to search</button>&nbsp;&nbsp; -->
             <button type="button" value="Apply Now" (click)="onApply()" class="btn btn-primary btn-sm">Apply Now</button>
@@ -20,14 +20,13 @@
           <td>
 
             <div class="date_desc">
-              <span class="companyName">{{ pjob.Company.substring(0,19).toUpperCase() }}</span><span class="companyName" *ngIf="pjob.Company.length>19">...</span>
-              &nbsp;&nbsp;<span class="meta"><b>{{ pjob.JobCity }}, {{ pjob.JobState }}</b></span>
-              &nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp;<span class="meta"><b>{{ getDateDiff(pjob.LastModifiedDate) }}&nbsp;days ago</b></span>  <hr/>
+              <span *ngIf="pjob !=null" class="companyName">{{ pjob.Company.substring(0,19).toUpperCase() }}</span><span class="companyName" *ngIf="pjob !=null && pjob.Company.length>19">...</span>
+              &nbsp;&nbsp;<span *ngIf="pjob !=null" class="meta"><b>{{ pjob.JobCity }}, {{ pjob.JobState }}</b></span>
+              &nbsp;&nbsp;<i class="fa fa-calendar"></i>&nbsp;<span class="meta" *ngIf="pjob !=null"><b>{{ getDateDiff(pjob.LastModifiedDate) }}&nbsp;days ago</b></span>  <hr/>
               
-              <span class="meta"><b><i class="fa fa-briefcase"></i>&nbsp;&nbsp;{{ pjob.EmploymentTypes }}</b></span><br>
-              <span class="meta"><b><i class="fa fa-money"></i>&nbsp;{{ pjob.Compensation }}</b></span><br>
-              <span class="meta"><b><i class="fa fa-home"></i>&nbsp; {{ travelReq }},&nbsp;{{ pjob.TravelRequirements }}&nbsp; Required</b> </span><br>
-            </div>            
+              <span *ngIf="pjob !=null" class="meta"><b><i class="fa fa-briefcase"></i>&nbsp;&nbsp;{{ pjob.EmploymentTypes }}</b></span><br>
+              <span *ngIf="pjob !=null" class="meta"><b><i class="fa fa-money"></i>&nbsp;{{ pjob.Compensation }}</b></span><br>
+              <span *ngIf="pjob !=null" class="meta"><b><i class="fa fa-home"></i>&nbsp; {{ travelReq }},&nbsp;{{ pjob.TravelRequirements }}&nbsp; Required</b> </span><br>            </div>            
           </td>
           <td>
             &nbsp;
@@ -39,17 +38,7 @@
       </table>
       
 
-
-
       <div class="row">
-
-
-
-
-
-   
-        
-
 
             <div class="col-md-8">
 

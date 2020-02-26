@@ -18,7 +18,7 @@
       <img src="{{ tnews.fields.pageImageUrl}}"/>
       <br>
       <div [innerHTML]="tnews.fields.pageText | mdToHtml"></div>
-      <a [routerLink]="['/technewsdetails',tnews.sys.id]" class="read-more">Read More...</a>
+      <a [routerLink]="['/technewsdetails',tnews.sys.id]" class="read-more">More...</a>
       <hr>
     </div>
 

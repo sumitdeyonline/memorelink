@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PostJobc } from 'src/app/services/firebase/postjob/postjob.model';
 import { PostjobService } from 'src/app/services/firebase/postjob/postjob.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
@@ -21,7 +21,7 @@ export class JobdetailsComponent implements OnInit {
   travelReq: string;
   //fileNameDialogRef: MatDialogRef<ApplyjobComponent>;
 
-  constructor(private router: Router,private _activeRoute:ActivatedRoute, private postservice: PostjobService, private dialog: MatDialog) {
+  constructor(private _activeRoute:ActivatedRoute, private postservice: PostjobService, private dialog: MatDialog) {
     window.scroll(0,0);
     this._activeRoute.queryParams.subscribe(params => {
       console.log(params);
@@ -81,9 +81,10 @@ export class JobdetailsComponent implements OnInit {
 
   getDateDiff(dateIput) {
     let lastModifyDate = new Date(dateIput);
-    console.log("Get Time ::::::: "+dateIput);
+    console.log("Get Time :::::::===> "+dateIput.toDate().getTime());
     //alert("Last Modifed Date :::::: "+this.pjob.LastModifiedDate);
-    return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
+    //return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
+    return Math.round(Math.abs(new Date().getTime() - dateIput.toDate().getTime())/(24*60*60*1000));
     //return Math.round(Math.abs(new Date().getTime() - this.pjob[3].LastModifiedDate.toDate().getTime())/(24*60*60*1000);
   }
 

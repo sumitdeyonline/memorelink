@@ -5,11 +5,12 @@
     <div class="single">
         <div class="form-container">
 
-            <h2>News Details</h2>
-              <a [routerLink]="['']" class="read-more"><<Back</a>
+            
+              <!-- <a [routerLink]="['']" class="read-more"><<Back</a> -->
+              <!-- <button (click)="HomePage()" class="btn btn-primary btn-sm">Back to Home</button>&nbsp;&nbsp; -->
               <div *ngFor="let tnews of techNewsDetails">
-                <b>{{tnews.fields.subHeader}}</b>
-                <br><br>
+                <h2>{{tnews.fields.subHeader}}</h2>
+                <!-- <b>{{tnews.fields.subHeader}}</b> -->
                 <img src="{{ tnews.fields.detailPageImageUrl}}"/>
                 <br>
                 <div [innerHTML]="tnews.fields.detailText | mdToHtml"></div>

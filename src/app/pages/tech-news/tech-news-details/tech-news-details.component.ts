@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentfulrapperService } from 'src/app/services/contentful/contentfulrapper.service';
 import { Entry } from 'contentful';
 import { CONTENT_CONFIG } from 'src/app/global-config';
@@ -13,7 +13,7 @@ export class TechNewsDetailsComponent implements OnInit {
 
   id: any;
   public techNewsDetails: Entry<any>[] = [];
-  constructor(private _activeRoute: ActivatedRoute, private contentfulService: ContentfulrapperService) { }
+  constructor(private router: Router,private _activeRoute: ActivatedRoute, private contentfulService: ContentfulrapperService) { }
 
   ngOnInit() {
     this._activeRoute.paramMap.subscribe(params => {
@@ -26,5 +26,11 @@ export class TechNewsDetailsComponent implements OnInit {
 
 
   }
+
+//   HomePage() {
+//     //console.log("Search Componenet ******* "+jobsearchComponent.keyword+" Location "+jobsearchComponent.location);
+//    // this.router.navigate(['/jobdetails',jobid], { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });
+//     this.router.navigate(['']);
+//  }
 
 }
