@@ -110,7 +110,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
 
     //redirectUri: 'http://macgain.com/dist/',       // production
     //redirectUri: 'https://career.macgain.com/',       // production
-    redirectUri: 'https://www.memorelink.com/memore/',       // production
+    redirectUri: 'https://www.memorelink.com/',       // production
     // redirectUri: 'http://localhost:4200/',
 
 
