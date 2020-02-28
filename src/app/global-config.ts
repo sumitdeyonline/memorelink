@@ -87,7 +87,8 @@ export const SEARCH_CONFIG = {
     LIST_JOB_DESC_WIDTH: 120,
     LIST_JOB_DESC_STATUS: 400,
     PAGE_SIZE: 5,
-    CURRENT_PAGE: 1
+    CURRENT_PAGE: 1,
+    ZIPCODE_API: 'bo8FOtqiw0dyFP2QUyypMxrDecW3QK0ZLLJEjTMw9tqgXYXC2OP8vjcBkvdZN78x'
 }
 
 export const AUTH_CONFIG: AuthConfiguration = {

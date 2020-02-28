@@ -80,6 +80,7 @@ import { ApplyjobService } from './services/firebase/applyjob/applyjob.service';
 import { AdminModule } from './admin/admin.module';
 import { adminRouting } from './admin/admin.routing';
 import { EmailService } from './services/email/email.service';
+import { LocationService } from './services/location/location.service';
 
 
 
@@ -164,7 +165,8 @@ import { EmailService } from './services/email/email.service';
     ContentfulService,
     PagerService,
     EmailService,
-    HttpClient
+    HttpClient,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })

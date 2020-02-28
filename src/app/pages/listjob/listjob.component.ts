@@ -11,6 +11,7 @@ import { PostjobService } from 'src/app/services/firebase/postjob/postjob.servic
 import { PagerService } from 'src/app/services/common/pager.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
+import { LocationService } from 'src/app/services/location/location.service';
 
 @Component({
   selector: 'listjob',
@@ -44,7 +45,7 @@ export class ListjobComponent implements OnInit {
     pagedItems: any[];
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private postjob: PostjobService, public dformat: DateformatService, private pagerService: PagerService) {
+  constructor(private router: Router, private route: ActivatedRoute, private postjob: PostjobService, public dformat: DateformatService, private pagerService: PagerService, private locserv: LocationService) {
 
     window.scroll(0,0);
     //this.PostJobc = null;
@@ -151,6 +152,17 @@ export class ListjobComponent implements OnInit {
             console.log("This is number");
             filter = 'JobZip:'+location;
 
+            /* Zipcode location service */
+            // this.locserv.getCityState(location).subscribe((data)=>{
+            //   console.log(data);
+            //   city = data['city'];
+            //   state = data['state'];
+            //   console.log("City ::::: "+city+"   State :::::: "+state);
+            // });
+
+
+
+
           } else {
 
             if (location.indexOf(",") > -1) {
@@ -170,7 +182,7 @@ export class ListjobComponent implements OnInit {
             } else {
               filter ='';
             }
-
+ 
           }
         } else {
           filter ='';
