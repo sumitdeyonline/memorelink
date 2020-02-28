@@ -88,7 +88,8 @@ export const SEARCH_CONFIG = {
     LIST_JOB_DESC_STATUS: 400,
     PAGE_SIZE: 5,
     CURRENT_PAGE: 1,
-    ZIPCODE_API: 'bo8FOtqiw0dyFP2QUyypMxrDecW3QK0ZLLJEjTMw9tqgXYXC2OP8vjcBkvdZN78x'
+    ZIPCODE_API_URL: 'https://www.zipcodeapi.com/rest/',
+    ZIPCODE_API: 'GNSZy5dfcTtnYL78PeldQR4eyam3IzVMply2lWLfDsuu3WmpED29mn7x6DC87Ccv'
 }
 
 export const AUTH_CONFIG: AuthConfiguration = {
@@ -101,7 +102,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
     // You may need to change this!
     //callbackURL: 'http://macgain.com/dist/callback',  // production
     //callbackURL: 'https://career.macgain.com/callback',  // production
-    callbackURL: 'https://www.macgain.com/memore/callback',  // production
+    callbackURL: 'https://www.memorelink.com/callback',  // production
     // callbackURL: 'http://localhost:4200/callback',
 
     audience: 'https:/memorelink.auth0.com/userinfo',
@@ -109,7 +110,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
 
     //redirectUri: 'http://macgain.com/dist/',       // production
     //redirectUri: 'https://career.macgain.com/',       // production
-    redirectUri: 'https://www.macgain.com/memore/',       // production
+    redirectUri: 'https://www.memorelink.com/memore/',       // production
     // redirectUri: 'http://localhost:4200/',
 
 

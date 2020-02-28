@@ -10,7 +10,7 @@ export class LocationService {
   constructor(private httpClient: HttpClient) { }
 
   getCityState(zipcode) {
-    let ApiURL = 'https://www.zipcodeapi.com/rest/'+SEARCH_CONFIG.ZIPCODE_API+'/info.json/'+zipcode;
+    let ApiURL = SEARCH_CONFIG.ZIPCODE_API_URL+SEARCH_CONFIG.ZIPCODE_API+'/info.json/'+zipcode;
     return this.httpClient.get(ApiURL);
   }
 }
