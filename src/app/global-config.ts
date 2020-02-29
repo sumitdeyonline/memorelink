@@ -103,7 +103,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
     //callbackURL: 'http://macgain.com/dist/callback',  // production
     //callbackURL: 'https://career.macgain.com/callback',  // production
     callbackURL: 'https://www.memorelink.com/callback',  // production
-    // callbackURL: 'http://localhost:4200/callback',
+    //callbackURL: 'http://localhost:4200/callback',
 
     audience: 'https:/memorelink.auth0.com/userinfo',
 
@@ -111,7 +111,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
     //redirectUri: 'http://macgain.com/dist/',       // production
     //redirectUri: 'https://career.macgain.com/',       // production
     redirectUri: 'https://www.memorelink.com/',       // production
-    // redirectUri: 'http://localhost:4200/',
+    //redirectUri: 'http://localhost:4200/',
 
 
     responseType: 'token id_token',
@@ -122,7 +122,7 @@ export const AUTH_CONFIG: AuthConfiguration = {
     forgetPasswordURL: 'https://memorelink.auth0.com/dbconnections/change_password'
 }
 export const EMAIL_CONFIG = {
-    SecureToken : "f28066c5-23af-4d78-bea7-79ef61fe32a5",
-    EmailFrom : 'memorelink@macgain.com',
+    SecureToken : "ec8ee562-1f2a-43ae-a674-7fab7e9903cc",
+    EmailFrom : 'support@memorelink.com',
     HelpEmail : 'help@memorelink.com',
 };

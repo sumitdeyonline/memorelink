@@ -139,6 +139,7 @@ body a{
     background: none;
     outline: none;
     font-weight: 300;
+    font-weight: bold;
 }
 .search_form1 input[type="text"]{
     padding: 8px;
