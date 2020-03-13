@@ -67,7 +67,7 @@ export class AuthService {
   public login(username, password) {
 
     //this.auth0.authorize();
-    console.log("Login Componenet ******* 1 Username : "+username);
+    //console.log("Login Componenet ******* 1 Username : "+username);
     let loginErrorMsg1 ='';
     //this.auth0.client.login({
     this.auth0.redirect.loginWithCredentials({
@@ -80,7 +80,7 @@ export class AuthService {
     }, function(err, authResult) {
       //alert("Error: " + err.description);
       //this.setLoginError(err.description);
-      console.log("authResult :::::::: -> "+authResult+"   Error::: "+err.description);
+      //console.log("authResult :::::::: -> "+authResult+"   Error::: "+err.description);
       //if ((authResult != null) || (authResult != undefined)) {
       if (authResult != undefined) {
         this.authResult = authResult;
@@ -89,7 +89,7 @@ export class AuthService {
       else
         loginErrorMsg1 = err.description.toString();
         //this.setLoginErrorMsg(loginErrorMsg1);
-        console.log("err.description :::::"+ loginErrorMsg1);        
+        //console.log("err.description :::::"+ loginErrorMsg1);        
       //if (err) alert(loginErrorMsg1);
     });
 
@@ -100,13 +100,13 @@ export class AuthService {
   }
 
   public resetPassword(username) {
-    console.log("Reset Password Section .... ");
+    //console.log("Reset Password Section .... ");
     this.auth0.changePassword({
       connection: AUTH_CONFIG.connection,
       responseType: 'token',
       email: username,
   }, function(err, authResult) {
-    console.log("authResult :::::::: -> "+authResult);
+    //console.log("authResult :::::::: -> "+authResult);
     if (authResult !== null) {
       //return authResult;
       //this.authResult = ""+authResult+"";
@@ -116,7 +116,7 @@ export class AuthService {
       //this.handleAuthentication();
     }
     else
-      console.log("err.description :::::"+ err.description);
+      //console.log("err.description :::::"+ err.description);
       //this.loginErrorMsg = err.description;
     if (err) alert(err.description);
   });
@@ -128,15 +128,15 @@ export class AuthService {
 
   private setValue() {
     //this.authResult = val;
-    console.log("Val -> ");
+    //console.log("Val -> ");
   }
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
-      console.log("HanleAuth :::::: => Home Page"+authResult);
+      //console.log("HanleAuth :::::: => Home Page"+authResult);
       //if (authResult && authResult.accessToken && authResult.idToken) {
       if (authResult) {
-        console.log("HanleAuth :::::: => Home Page1");
+        //console.log("HanleAuth :::::: => Home Page1");
         window.location.hash = '';
         this.setSession(authResult);
 
@@ -150,7 +150,7 @@ export class AuthService {
         //alert("Login Error 22222" +err);
         //console.log("HanleAuth :::::: => Home Page2");
         this.router.navigate(['']);
-        console.log(err);
+        //console.log(err);
       }
     });
   }
@@ -162,7 +162,7 @@ export class AuthService {
     const scopes = authResult.scope || AUTH_CONFIG.scope || '';
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem(SESSION_CONFIG.accessToken, authResult.accessToken);
-    console.log("Access token ::::: =>>>>>"+authResult.accessToken)
+    //console.log("Access token ::::: =>>>>>"+authResult.accessToken)
     localStorage.setItem(SESSION_CONFIG.idToken, authResult.idToken);
     localStorage.setItem(SESSION_CONFIG.expireAt, expiresAt);
     localStorage.setItem(SESSION_CONFIG.scope, JSON.stringify(scopes));
@@ -172,12 +172,12 @@ export class AuthService {
 
   public userHasScopes(scopes: Array<string>): boolean {
     const grantedScopes = JSON.parse(localStorage.getItem(SESSION_CONFIG.scope)).split(' ');
-    console.log("Scope :::: "+grantedScopes+scopes);
+    //console.log("Scope :::: "+grantedScopes+scopes);
     return scopes.every(scope => grantedScopes.includes(scope));
   }
 
   public logout(): void {
-    console.log("Logout....");
+    //console.log("Logout....");
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem(SESSION_CONFIG.accessToken);
     localStorage.removeItem(SESSION_CONFIG.idToken);
@@ -208,7 +208,7 @@ export class AuthService {
         self.userProfile = profile;
           //localStorage.setItem('profile', this.userProfile);
           localStorage.setItem(SESSION_CONFIG.profile, JSON.stringify(profile));
-          console.log("Profile Name "+profile.name);
+          //console.log("Profile Name "+profile.name);
           // Check for the employer Role
 
           if (this.userProfile !=null) {
@@ -257,7 +257,7 @@ export class AuthService {
 
         this.getUserRoleByRoles(this.uDetail[0].userRole).subscribe(urole => {
           this.UserRoled = urole;
-          console.log("User Role :::::::: => "+this.UserRoled[0].RoleName);
+          //console.log("User Role :::::::: => "+this.UserRoled[0].RoleName);
           this.isEmployerPostJobRole =  this.UserRoled[0].isEmployerPostJobRole;
           this.isEmployerResumeSearchRole =  this.UserRoled[0].isEmployerResumeSearchRole;
           this.isAdminUserRole =  this.UserRoled[0].isAdminUserRole;
@@ -338,7 +338,7 @@ export class AuthService {
   }
 
   UserRole() {
-    console.log("USER ROLE ::::: -> UserName ::::: "+this.userProfile.name);
+    //console.log("USER ROLE ::::: -> UserName ::::: "+this.userProfile.name);
     if (this.userProfile !=null) {
       this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails, ref =>
         ref.where('userName','==',this.userProfile.name)); //.orderBy('CreatedDate','desc'));
@@ -359,7 +359,7 @@ export class AuthService {
 
 
   getUserRoleByRoles(rolename) {
-    console.log("*******getUserRoleByRole ********");
+    //console.log("*******getUserRoleByRole ********");
     this.userRoleCollection = this.afs.collection(FIREBASE_CONFIG.UserRoles, ref =>
           ref.where('RoleName','==',rolename));
           // console.log("List Service ..... 4");
@@ -428,14 +428,14 @@ export class AuthService {
 
 
   errorHandle(error: HttpErrorResponse) {
-    console.log("ERROR : error.message "+error.ok+ "Text : "+error.error);
+    //console.log("ERROR : error.message "+error.ok+ "Text : "+error.error);
     return observableThrowError(error.message);
   }
 
   private handleError(error: Response) {
-    console.log("EROORRRRRRRRRRRRRR......");
+    //console.log("EROORRRRRRRRRRRRRR......");
     let errorVal = { logdetails: error, logdate: (new Date).toString(), errorType: 'General', category: 'Home', createdBy: 'Sumit'  }
-    console.log("errorVal  ::::: "+error);
+    //console.log("errorVal  ::::: "+error);
     /*this.logservice.createLogg(errorVal)
       .map(response => response.json())
       .catch(this.handleError);

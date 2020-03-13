@@ -81,7 +81,7 @@ export class JobpoststatusComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.pjob.length, page);
@@ -92,7 +92,7 @@ export class JobpoststatusComponent implements OnInit {
   }
 
   onDelete(pjob) {
-    console.log("Pst Job ID :::: "+pjob.id);
+    //console.log("Pst Job ID :::: "+pjob.id);
       const dialogConfig = new MatDialogConfig();
       dialogConfig.data = pjob.id;
       // dialogConfig.height = "4";

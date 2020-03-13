@@ -20,7 +20,7 @@ export class StateaddupdateComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<StateaddupdateComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: any, fb: FormBuilder, private auth: AuthService, private uPRofile: UserprofileService) { 
 
-      console.log("Country ID(Dialog) :"+data.id); 
+      //console.log("Country ID(Dialog) :"+data.id); 
       this.checkState = false;
       this.stateForm=  fb.group({
         stateID: [null, Validators.required],
@@ -30,13 +30,13 @@ export class StateaddupdateComponent implements OnInit {
       this.checkState = false;
        if (data.id == '') {
         this.isUpdate = false;
-        console.log("Country Name :::::-->>>>"+data.CountryName);
-        console.log("State ID :::::-->>>>"+data.stateID);
-        console.log("State Name :::::-->>>>"+data.CountryName);
+        // console.log("Country Name :::::-->>>>"+data.CountryName);
+        // console.log("State ID :::::-->>>>"+data.stateID);
+        // console.log("State Name :::::-->>>>"+data.CountryName);
 
        } else {
         this.state  = data;
-        console.log("Country Name :"+data.CountryName);
+        //console.log("Country Name :"+data.CountryName);
         this.isUpdate = true;
         this.stateForm.setValue({
           stateID: data.StateName,
@@ -52,9 +52,9 @@ export class StateaddupdateComponent implements OnInit {
   addUpdateState() {
  
     let stateID = this.stateForm.get('stateID').value;
-    console.log("State ID :"+stateID.toUpperCase());
-    console.log("State Name :"+this.stateForm.get('stateName').value);   
-    console.log("Country ID :"+this.data.CountryName); 
+    // console.log("State ID :"+stateID.toUpperCase());
+    // console.log("State Name :"+this.stateForm.get('stateName').value);   
+    // console.log("Country ID :"+this.data.CountryName); 
 
     this.state = { StateName: stateID,
                    StateDisplayName: this.stateForm.get('stateName').value,
@@ -65,7 +65,7 @@ export class StateaddupdateComponent implements OnInit {
                     };
 
     if (this.data.id == '') {
-      console.log("Add ......");
+      //console.log("Add ......");
       this.uPRofile.addUpdateState(this.state,this.data.id)
 
     } else {

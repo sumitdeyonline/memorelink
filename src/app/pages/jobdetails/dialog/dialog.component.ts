@@ -19,7 +19,7 @@ export class DialogComponent implements OnInit {
     }
 
   ngOnInit() {
-    console.log("This Data ::::::: -> > " +this.data);
+    //console.log("This Data ::::::: -> > " +this.data);
   }
 
   close() {

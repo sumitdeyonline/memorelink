@@ -41,7 +41,7 @@ export class SearchheaderComponent implements OnInit {
     
     if (jobsearchComponent.keyword === undefined) { jobsearchComponent.keyword =""; }
     if (jobsearchComponent.location === undefined) { jobsearchComponent.location =""; }
-    console.log("Search Componenet ******* "+jobsearchComponent.keyword+" Location "+jobsearchComponent.location);
+    //console.log("Search Componenet ******* "+jobsearchComponent.keyword+" Location "+jobsearchComponent.location);
     this.router.navigate(['/listjob'], { queryParams: {  keyword: jobsearchComponent.keyword, 'location': jobsearchComponent.location}, 'queryParamsHandling': 'merge' });
 
   }

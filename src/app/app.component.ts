@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   profile: any;
 
   constructor(private _auth: AuthService) {
-    console.log("App Component .... ");
+    //console.log("App Component .... ");
     _auth.handleAuthentication();
     //console.log("App Component .... !!!!!");
   }

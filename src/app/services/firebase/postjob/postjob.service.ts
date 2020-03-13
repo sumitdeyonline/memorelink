@@ -70,7 +70,7 @@ export class PostjobService {
 
 
   getPostJobs(keyword, location) {
-    console.log("Keyword : "+keyword+"  Location : "+location);
+    //console.log("Keyword : "+keyword+"  Location : "+location);
 
     const end = keyword + '\uf8ff';
 
@@ -84,12 +84,12 @@ export class PostjobService {
           //ref.where('JobTitle','>=',keyword).orderBy(FIREBASE_CONFIG.OrderByPostJob,'asc'));
           // console.log("List Service ..... 4");
     this.PostJobc = this.pjCollection.snapshotChanges().pipe(map(changes => {
-      console.log("List Service ..... 5");
+      //console.log("List Service ..... 5");
       return changes.map(a => {
-        console.log("List Service ..... 6");
+        //console.log("List Service ..... 6");
         const data = a.payload.doc.data() as PostJobc;
         data.id = a.payload.doc.id;
-        console.log("List Service 11111 ..... 2");
+        //console.log("List Service 11111 ..... 2");
         return data;
       });
     }));
@@ -131,8 +131,8 @@ export class PostjobService {
       .then((data) => {
         this.jobs = data.hits;
         for(let i=0;i<this.jobs.length;i++) {
-          console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobState);
-          console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobTitle);
+          //console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobState);
+          //console.log("Algolia Job ::::::::: =>  "+this.jobs[i].JobTitle);
         }
         return this.jobs;
       })
@@ -181,7 +181,7 @@ export class PostjobService {
 
       this.pjCollection.add(pjobc).then((entry) => {
 
-        console.log("Entry ISSSSS "+entry.id);
+        //console.log("Entry ISSSSS "+entry.id);
 
         this.AlgoliaObjectUpdate(id,pjobc,entry.id, createDate, createdBy);
 
@@ -191,7 +191,7 @@ export class PostjobService {
 
 
     } else {
-      console.log("UPDATE FORM ...." + id);
+      //console.log("UPDATE FORM ...." + id);
 
       //this.faqDoc = this.afs.doc(`faq/${faqc.id}`);
       this.pjDoc = this.afs.doc(`${FIREBASE_CONFIG.PostJob}/${id}`);
@@ -237,7 +237,7 @@ export class PostjobService {
   }
 
   AlgoliaObjectUpdate(tranType, pjobc, id, createDate, createdBy) {
-    console.log("Algolia Update Object..... :::::: "+createDate.seconds);
+    //console.log("Algolia Update Object..... :::::: "+createDate.seconds);
 
     // console.log("Job Desc Prev ::: "+pjobc.JobDesc);
     // console.log("Job Skill Prev ::: "+pjobc.Skills);
@@ -327,7 +327,7 @@ export class PostjobService {
 
 
   getPostJobsByUser(searchParam, type) {
-    console.log("List Service ..... 3"+this.PostJobc);
+    //console.log("List Service ..... 3"+this.PostJobc);
 
     if (type=='U') {
       this.pjCollection = this.afs.collection(FIREBASE_CONFIG.PostJob, ref =>
@@ -364,7 +364,7 @@ export class PostjobService {
   }
 
   getPostJobsById(id) {
-    console.log("List Service ..... 3 ::::::=> "+id);
+    //console.log("List Service ..... 3 ::::::=> "+id);
 
     //this.pjDoc = this.afs.doc(`${FIREBASE_CONFIG.PostJob}/${id}`).valueChanges()
     // this.pjobDoc = this.afs.doc(`${FIREBASE_CONFIG.PostJob}/${id}`);
@@ -420,13 +420,13 @@ export class PostjobService {
       { protocol: SEARCH_CONFIG.PROTOCOLS });
 
 
-      console.log("Delete Index :::: "+id);
+      //console.log("Delete Index :::: "+id);
       this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
 
       this.index.deleteObject(id, function(err, content) {
         if (err) throw err;
-        console.log("Delete Content :::::: "+content);
+       // console.log("Delete Content :::::: "+content);
       });
   /***** End *****/
   

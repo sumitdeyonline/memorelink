@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
     //console.log("UserName and PAssword");
     //this._auth.setLoginError('');
 
-    console.log("Login Componenet *******");
+    //console.log("Login Componenet *******");
     this.loginError ='';
     this._auth.login(loginComponent.username, loginComponent.password);
  
     
     setTimeout(() =>{
       if (this._auth.isAuthenticated()) {
-        console.log("Authenticated ....");
+        //console.log("Authenticated ....");
       } else {
         //this.login.username = '';
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.loginError ='Wrong Username or password';
 
         //console.log("ERROR ::::::::: --->>>>>"+this._auth.getLoginErrorMsg());
-        console.log("ERROR ::::::::: --->>>>>"+this.loginError);
+        //console.log("ERROR ::::::::: --->>>>>"+this.loginError);
       }
     }, 6000);    
     //this._authService.login();

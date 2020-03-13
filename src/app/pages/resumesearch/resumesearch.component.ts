@@ -39,7 +39,7 @@ export class ResumesearchComponent implements OnInit {
 
      /****** Need to open Later ********/
 
-    console.log("Search Parameter ::::: "+searchResume.value.ResumeSearch);
+    //("Search Parameter ::::: "+searchResume.value.ResumeSearch);
     const filter = 'isSearchable:true';
     this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
       { protocol: SEARCH_CONFIG.PROTOCOLS });
@@ -54,7 +54,7 @@ export class ResumesearchComponent implements OnInit {
 
 
       }).then((data) => {
-        console.log(data);
+        //console.log(data);
         //let j=0;
         //this.UserProfileFinal = [];
         this.UserProfile = data.hits;
@@ -91,7 +91,7 @@ export class ResumesearchComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.UserProfile.length, page);

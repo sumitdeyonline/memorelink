@@ -23,18 +23,18 @@ export class ResumedetailsComponent implements OnInit {
   ngOnInit() {
     this._activeRoute.paramMap.subscribe(params => {
       this.id = params.get('id');
-      console.log("Key Value :::::::: "+this.id);
+      //console.log("Key Value :::::::: "+this.id);
     }); 
     this._uprofile.getUserProfileById(this.id).subscribe(uprof=> {
       this.uprofile = uprof;
-      console.log("Profile Service  ::: "+this.uprofile.Username);
+      //console.log("Profile Service  ::: "+this.uprofile.Username);
       this._uprofile.getCountryName(this.uprofile.Country).subscribe(cname=> {
         this.county = cname;
-        console.log("Country Name :::: =====>>>> "+this.county[0].CountryName);
+        //console.log("Country Name :::: =====>>>> "+this.county[0].CountryName);
         this.uprofile.Country = this.county[0].CountryName;
         this._uResume.getResumeDetails(this.uprofile.Username).subscribe(uResume=> {
           this.uResumes = uResume;
-          console.log("Resuje URL :::::::: "+this.uResumes[0].ResumeFileName);
+          //console.log("Resuje URL :::::::: "+this.uResumes[0].ResumeFileName);
         })        
       })
 

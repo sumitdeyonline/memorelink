@@ -12,7 +12,7 @@ export class PagerService {
   getPager(totalItems: number, currentPage: number = SEARCH_CONFIG.CURRENT_PAGE, pageSize: number = SEARCH_CONFIG.PAGE_SIZE) {
     // calculate total pages
     let totalPages = Math.ceil(totalItems / pageSize);
-
+    //console.log("Total Pages ::: "+totalItems);
     // ensure current page isn't out of range
     if (currentPage < 1) { 
         currentPage = 1; 

@@ -43,30 +43,30 @@ export class PostjobvendorComponent implements OnInit {
   getCompany() {
     this.udetails.getUserDetails('', 'A').subscribe(udtl=> {
       this.userDetails = udtl;
-      console.log(" Length :::: "+this.userDetails.length);
+      //console.log(" Length :::: "+this.userDetails.length);
     })    
   }
 
   postjobSearch(postjobSearch) {
-    console.log("Username :: "+postjobSearch.username);
-    console.log("Role :: "+postjobSearch.company);
+    // console.log("Username :: "+postjobSearch.username);
+    // console.log("Role :: "+postjobSearch.company);
     
     if ((postjobSearch.username == null) || (postjobSearch.username == undefined) || (postjobSearch.username.trim() == '')) {
       if (postjobSearch.company == "") {
-        console.log("No Value");
+        //console.log("No Value");
       } else {
         this.pJob.getPostJobsByUser(postjobSearch.company,'C').subscribe(udtl=> {
           this.postJobc = udtl;
-          console.log(" Length :::: "+this.postJobc.length);
+          //console.log(" Length :::: "+this.postJobc.length);
     
     
           if (this.postJobc.length > 0) {
-            console.log("User Role ::: "+this.postJobc[0].Company);
+            //console.log("User Role ::: "+this.postJobc[0].Company);
             this.setPage(1);
     
     
           } else {
-            console.log("Company not found");
+            //console.log("Company not found");
             this.postJobc = null;
             this.pagedItems = null;
             this.setPage(1);
@@ -77,16 +77,16 @@ export class PostjobvendorComponent implements OnInit {
     } else {
       this.pJob.getPostJobsByUser(postjobSearch.username,'U').subscribe(udtl=> {
         this.postJobc = udtl;
-        console.log(" Length :::: "+this.postJobc.length);
+        //console.log(" Length :::: "+this.postJobc.length);
   
   
         if (this.postJobc.length > 0) {
-          console.log("User Role ::: "+this.postJobc[0].Company);
+          //console.log("User Role ::: "+this.postJobc[0].Company);
           this.setPage(1);
   
   
         } else {
-          console.log("User not found");
+          //console.log("User not found");
           this.postJobc = null;
           this.pagedItems = null;
           this.setPage(1); 
@@ -98,7 +98,7 @@ export class PostjobvendorComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     if (this.postJobc !=null) {

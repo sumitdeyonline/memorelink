@@ -58,15 +58,15 @@ export class ApplyjobComponent implements OnInit {
       this.checkApplied = false;
       this.rUploadService.downloadURLTempResume = '';
       this.pjob = data;
-      console.log("Apply To Email :::: " + this.pjob.ApplyToEmail);
+      //console.log("Apply To Email :::: " + this.pjob.ApplyToEmail);
 
       if (this.auth.isAuthenticated()) {
         this.rUploadService.getResumeDetails(this.auth.userProfile.name).subscribe(uRes=> {
           this.uResume = uRes;
           this.numberOfResume = this.uResume.length;
           if (this.numberOfResume > 0) {
-            console.log("Resume Name :::: "+this.uResume[0].ResumeFileName);
-            console.log("Resume URL :::: "+this.uResume[0].ResumeURL);
+            // console.log("Resume Name :::: "+this.uResume[0].ResumeFileName);
+            // console.log("Resume URL :::: "+this.uResume[0].ResumeURL);
           }
 
         });
@@ -125,7 +125,7 @@ export class ApplyjobComponent implements OnInit {
 
       // console.log("User name ::: "+this.applyJob.username);
       // console.log("Created Date ::: "+this.applyJob.CreatedDate);
-      console.log("Download URL ::: "+this.applyJob.fileUploadURL);
+      //console.log("Download URL ::: "+this.applyJob.fileUploadURL);
 
       this.ajob.addUpdateApplyJobs(this.applyJob);
       this.checkApplied = true;
@@ -150,7 +150,7 @@ export class ApplyjobComponent implements OnInit {
       if (this.pjob.CCToEmail.trim() !='') {
         this.sEmail.sendEmail(this.pjob.CCToEmail,'',vJobSublect,vBody);
       } else {
-        console.log("No CC email");
+        //console.log("No CC email");
       }
     }
 
@@ -215,7 +215,7 @@ export class ApplyjobComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
+    //console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
     if (this.validateFile(this.selectedFiles.item(0).name)) {
       this.filleUploadEnabled = true;
       this.currentFileUpload = new FileUpload(file);
@@ -233,7 +233,7 @@ export class ApplyjobComponent implements OnInit {
 
   validateFile(fileName: string) {
     let ext = fileName.substring(fileName.lastIndexOf('.')+1);
-    console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
+    //console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
     if ((ext.toLowerCase() == 'doc') || (ext.toLowerCase() == 'docx') || (ext.toLowerCase() == 'pdf') || (ext.toLowerCase() == 'ppt') || (ext.toLowerCase() == 'pptx')) {
       return true;
     } else {
@@ -243,7 +243,7 @@ export class ApplyjobComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log("Select Value ::: "+event);
+    //console.log("Select Value ::: "+event);
     if (event=='') {
       this.showUpload = true;
       this.rUploadService.downloadURLTempResume = '';

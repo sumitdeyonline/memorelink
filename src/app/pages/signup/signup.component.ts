@@ -45,14 +45,14 @@ export class SignupComponent implements OnInit {
           // refresh the list
           //alert("User Addred");
           this.signupSucessMessage = model.email+" has been Sucessfully Registered"
-          console.log(this.signupSucessMessage);
+          //console.log(this.signupSucessMessage);
           this.udetails.addUpdateUserDetails(null, model.email,FIREBASE_CONFIG.UserRole, model.company, model.companyAddress,model.phone,0);
           //this.router.navigate(['/signupconfirm']);
           return true;
       },
       error => {
         this.error = error;
-        console.log("Message 2 "+error);
+        //console.log("Message 2 "+error);
         //console.log("Message 1 "+error[1].name);
         //console.log("Message 2 "+error.description);
         //this.signupMessage = error; //   "This user already exists."

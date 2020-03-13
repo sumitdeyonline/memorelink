@@ -46,13 +46,13 @@ export class ApplyjobAdminComponent implements OnInit {
 
     this.udetails.getUserDetails('', 'A').subscribe(udtl=> {
       this.userDetails = udtl;
-      console.log(" Length ::::===>>>>>>>>>>>> "+this.userDetails.length); 
+      //console.log(" Length ::::===>>>>>>>>>>>> "+this.userDetails.length); 
     });
   }
 
   applyRole(apjob) {
-    console.log("Username :: "+apjob.username);
-    console.log("Company :::::: "+apjob.company);
+    // console.log("Username :: "+apjob.username);
+    // console.log("Company :::::: "+apjob.company);
     // if ((apjob.company == null) || (apjob.company == undefined) || (apjob.company.trim() == ''))  {
     //   console.log("Blank...");
     //   this.aJob = null;
@@ -67,20 +67,20 @@ export class ApplyjobAdminComponent implements OnInit {
     if ((apjob.username == null) || (apjob.username == undefined) || (apjob.username.trim() == '')) {
 
       if (apjob.company == "") {
-        console.log("No Value");
+        //console.log("No Value");
       } else {
         this.appjob.getApplyJobByCompany(apjob.company).subscribe(udtl=> {
 
           this.aJob = udtl;
-          console.log(" Length :::: "+this.aJob.length);
+         // console.log(" Length :::: "+this.aJob.length);
 
           if (this.aJob.length > 0) {
-            console.log("Company ::: "+this.aJob[0].company);
+            //console.log("Company ::: "+this.aJob[0].company);
             //this.setPage(1);
     
     
           } else {
-            console.log("Company not found");
+            //console.log("Company not found");
             this.aJob = null;
             this.pagedItems = null;
             //this.setPage(1);
@@ -95,14 +95,14 @@ export class ApplyjobAdminComponent implements OnInit {
 
       this.appjob.getApplyJobByUser(apjob.username).subscribe(udtl=> {
         this.aJob = udtl;
-        console.log(" Length :::: "+this.aJob.length);
+        //console.log(" Length :::: "+this.aJob.length);
   
   
         if (this.aJob.length > 0) {
-          console.log("User Role ::: "+this.aJob[0].ApplyToEmail);
+         // console.log("User Role ::: "+this.aJob[0].ApplyToEmail);
           this.setPage(1);
         } else {
-          console.log("User not found");
+          //console.log("User not found");
           this.aJob = null;
           this.pagedItems = null;
           this.setPage(1); 
@@ -117,7 +117,7 @@ export class ApplyjobAdminComponent implements OnInit {
 }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     if ((this.aJob !=null) && (this.aJob !=undefined)) {
     // get pager object from service

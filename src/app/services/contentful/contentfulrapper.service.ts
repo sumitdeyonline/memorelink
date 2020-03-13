@@ -8,9 +8,9 @@ import { ContentfulService } from './contentful.service';
 export class ContentfulrapperService extends ContentfulService{
 
   constructor() { 
-    console.log("ContentfulrapperService @@@###$$%% ");
+    //console.log("ContentfulrapperService @@@###$$%% ");
     //super(CONTENT_CONFIG.space, CONTENT_CONFIG.accessToken);  
     super();  
-    console.log("ContentfulrapperService ########### ");
+    //console.log("ContentfulrapperService ########### ");
   }
 }

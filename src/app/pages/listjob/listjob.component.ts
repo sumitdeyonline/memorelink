@@ -113,11 +113,11 @@ export class ListjobComponent implements OnInit {
     //   })
 
     this.route.queryParams.subscribe(params => {
-      console.log(params);
+      //console.log(params);
       this.keyword = params['keyword'];
-      console.log("Keyword " + this.keyword);
+      //console.log("Keyword " + this.keyword);
       this.location = params['location'];
-      console.log("Location " + this.location);
+      //console.log("Location " + this.location);
       this.getPostJobsAlgolia(this.keyword,this.location);
 
       // this.listjob.keyword = this.keyword;
@@ -128,7 +128,7 @@ export class ListjobComponent implements OnInit {
 
   ngOnInit() {
 
-
+    window.scroll(0,0);
   }
 
 
@@ -143,81 +143,94 @@ export class ListjobComponent implements OnInit {
       this.PostJobc = [];
       this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
-      console.log(" keyword :::: "+keyword+"location :::: "+location);
+      //console.log(" keyword :::: "+keyword+"location :::: "+location);
 
-      if ((keyword.trim() != "") || (location.trim() != "")) {
-        if (location.trim() != "") {
-
-          if (isNumeric(location)) {
-            console.log("This is number");
-            filter = 'JobZip:'+location;
-
-            /* Zipcode location service */
-            // this.locserv.getCityState(location).subscribe((data)=>{
-            //   console.log(data);
-            //   city = data['city'];
-            //   state = data['state'];
-            //   console.log("City ::::: "+city+"   State :::::: "+state);
-            // });
-
-
-
-
+      if ((keyword.trim() == "") && (location.trim() == "")) {
+        //console.log("Nothing ... ");
+        this.index.search({
+        }).then((data) => {
+          //let j=0;
+          //this.PostJobcFinal = [];
+          this.PostJobc = data.hits;
+          this.setPage(1);
+        });        
+      } else {
+        if ((keyword.trim() != "") || (location.trim() != "")) {
+          if (location.trim() != "") {
+  
+            if (isNumeric(location)) {
+              //console.log("This is number");
+              filter = 'JobZip:'+location;
+  
+              /* Zipcode location service */
+              // this.locserv.getCityState(location).subscribe((data)=>{
+              //   console.log(data);
+              //   city = data['city'];
+              //   state = data['state'];
+              //   console.log("City ::::: "+city+"   State :::::: "+state);
+              // });
+  
+  
+  
+  
+            } else {
+  
+              if (location.indexOf(",") > -1) {
+                state = this.isNull(location.split(",")[1].trim());
+                city = this.isNull(location.split(",")[0].trim());
+              } else {
+                city = this.isNull(location.trim());
+              }
+  
+  
+              if ((state !="") && (city !="")) {
+                filter = 'JobCity:'+city+' AND JobState:'+state;
+              } else if ((state == "") && (city !="")) {
+                filter = 'JobCity:'+city;
+              } else if ((state != "") && (city =="")){
+                filter = 'JobState:'+state;
+              } else {
+                filter ='';
+              }
+   
+            }
           } else {
-
-            if (location.indexOf(",") > -1) {
-              state = this.isNull(location.split(",")[1].trim());
-              city = this.isNull(location.split(",")[0].trim());
-            } else {
-              city = this.isNull(location.trim());
-            }
-
-
-            if ((state !="") && (city !="")) {
-              filter = 'JobCity:'+city+' AND JobState:'+state;
-            } else if ((state == "") && (city !="")) {
-              filter = 'JobCity:'+city;
-            } else if ((state != "") && (city =="")){
-              filter = 'JobState:'+state;
-            } else {
-              filter ='';
-            }
- 
+            filter ='';
           }
-        } else {
-          filter ='';
+  
+  
+  
+  
+        //console.log("Filter :::::: => "+filter);
+  
+        if (filter == '') {
+          this.index.search({
+            query: keyword
+  
+          }).then((data) => {
+            //let j=0;
+            //this.PostJobcFinal = [];
+            this.PostJobc = data.hits;
+            this.setPage(1);
+          });
+        } else  {
+  
+          this.index.search({
+            query: keyword,
+            filters: filter
+          }).then((data) => {
+            //let j=0;
+            //this.PostJobcFinal = [];
+            this.PostJobc = data.hits;
+            this.setPage(1);
+  
+          });
+  
         }
-
-
-
-
-      console.log("Filter :::::: => "+filter);
-
-      if (filter == '') {
-        this.index.search({
-          query: keyword
-
-        }).then((data) => {
-          //let j=0;
-          //this.PostJobcFinal = [];
-          this.PostJobc = data.hits;
-          this.setPage(1);
-        });
-      } else  {
-
-        this.index.search({
-          query: keyword,
-          filters: filter
-        }).then((data) => {
-          //let j=0;
-          //this.PostJobcFinal = [];
-          this.PostJobc = data.hits;
-          this.setPage(1);
-
-        });
-
+        }
       }
-      }
+
+
 
 /****** End *******/
 
@@ -272,18 +285,18 @@ export class ListjobComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.PostJobc.length, page);
-    //console.log("Page Count...1  ::: "+this.pager.length);
+    //console.log("Page Count...1  ::: "+this.PostJobc.length);
     // get current page of items
     this.pagedItems = this.PostJobc.slice(this.pager.startIndex, this.pager.endIndex + 1);
     //console.log("Page Count...1  ::: "+this.pagedItems.length);
   }
 
   jobDetails(jobid) {
-    console.log("Job ID::::: +",jobid);
+    //console.log("Job ID::::: +",jobid);
     // console.log("Search Componenet ******* "+jobsearchComponent.keyword+" Location "+jobsearchComponent.location);
     // this.router.navigate(['/jobdetails',jobid], { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });
     this.router.navigate(['/jobdetails',jobid], { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });

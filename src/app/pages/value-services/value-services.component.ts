@@ -46,14 +46,14 @@ export class ValueServicesComponent implements OnInit {
     this.resetForm();
     this.uProfile.getUserRoleDetails().subscribe(urole => {
       this.UserRole = urole;
-      console.log("User Role :::::::: => "+this.UserRole.length);
+      //console.log("User Role :::::::: => "+this.UserRole.length);
     })
 
     if (this._auth.isAuthenticated()) {
 
       this.udetails.getUserDetails(this._auth.userProfile.name, 'U').subscribe(udtl=> {
         this.userDetails = udtl;
-        console.log(" Length :::: "+this.userDetails.length);
+        //console.log(" Length :::: "+this.userDetails.length);
 
 
         if (this.userDetails.length > 0) {
@@ -86,16 +86,16 @@ export class ValueServicesComponent implements OnInit {
   }
 
   signUpValueServices(model: ValueServices) {
-    console.log("Value Radio Burron :::: "+model.userRole);
-    console.log("Company :::: "+model.company);
-    console.log("Company Address:::: "+model.companyAddress);
+    // console.log("Value Radio Burron :::: "+model.userRole);
+    // console.log("Company :::: "+model.company);
+    // console.log("Company Address:::: "+model.companyAddress);
     this.valueservicesMessage = '';
     model.client_id = AUTH_CONFIG.clientID;
     model.connection = AUTH_CONFIG.connection;
     model.response_type = AUTH_CONFIG.responseType;
     this.userActualRole = model.userRole;
     if ((model.userRole == null) || (model.userRole == undefined) || (model.userRole == '')) {
-      console.log("Value NULL");
+      //console.log("Value NULL");
     } else {
       if (this._auth.isAuthenticated()) {
         model.email = this._auth.userProfile.name;
@@ -113,7 +113,7 @@ export class ValueServicesComponent implements OnInit {
               // refresh the list
               //alert("User Addred");
               this.valueservicesSucessMessage = model.email+" has been Sucessfully Registered"
-              console.log(this.valueservicesSucessMessage);
+              //console.log(this.valueservicesSucessMessage);
               //console.log("Value Radio Burron ::::===>>>>>>> "+this.userActualRole);
               this.udetails.addUpdateUserDetails(this.userDetailsID, model.email, this.userActualRole, model.company, model.companyAddress,  model.phone,0);
               //this.router.navigate(['/signupconfirm']);
@@ -126,7 +126,7 @@ export class ValueServicesComponent implements OnInit {
           },
           error => {
             this.error = error;
-            console.log("Message 2 "+error);
+            //console.log("Message 2 "+error);
             //console.log("Message 1 "+error[1].name);
             //console.log("Message 2 "+error.description);
             //this.signupMessage = error; //   "This user already exists."
@@ -138,7 +138,7 @@ export class ValueServicesComponent implements OnInit {
   }
 
   changeRoleValue(role) {
-    console.log("Role Value ::: "+role.value);
+    //console.log("Role Value ::: "+role.value);
     this.udetails.selectedValueServices.userRole = role.value;
   }
     resetForm(valueservicesForm? : NgForm) {

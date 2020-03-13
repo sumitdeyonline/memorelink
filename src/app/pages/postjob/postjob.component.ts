@@ -68,11 +68,11 @@ export class PostjobComponent implements OnInit {
     //   // repassword: ['',Validators.required,Validators.minLength(5)]
     // })
 
-    console.log("Date :::::::: "+formatDate(new Date(), 'MM/dd/yyyy', 'en'));
+    //console.log("Date :::::::: "+formatDate(new Date(), 'MM/dd/yyyy', 'en'));
     this.signupMessage='';
     this._activeRoute.paramMap.subscribe(params => {
       this.id = params.get("id");
-      console.log("Key Value :::::::: "+this.id);
+      //console.log("Key Value :::::::: "+this.id);
     });
     this.resetForm();
 
@@ -80,7 +80,7 @@ export class PostjobComponent implements OnInit {
 
 
       if ((this.id == null) || (this.id == '')) {
-        console.log("NEW FORM ....");
+        //console.log("NEW FORM ....");
         this.userDetails = udtl;
         if (this.userDetails.length > 0) {
           this.postjobService.selectedPostJobc.Company = this.userDetails[0].company;
@@ -88,11 +88,11 @@ export class PostjobComponent implements OnInit {
           if (this.userDetails[0].postjobCount !== undefined) {
             this.postJobCount = this.userDetails[0].postjobCount;
           }
-          console.log("Number of Job Count "+this.postJobCount);
-          console.log("ID :::::: "+this.userDetails[0].id);
+          // console.log("Number of Job Count "+this.postJobCount);
+          // console.log("ID :::::: "+this.userDetails[0].id);
         }
       } else {
-        console.log("UPDATE FORM ....");
+        //console.log("UPDATE FORM ....");
 
         this.postjobService.getPostJobsById(this.id).subscribe(postJob=> {
           
@@ -132,7 +132,7 @@ export class PostjobComponent implements OnInit {
 
   JobPostSubmit(postJobForm : NgForm) {
     let type;
-    console.log ("postJobForm.value.EmploymentTypes ::: "+postJobForm.value.EmploymentTypes);
+    //console.log ("postJobForm.value.EmploymentTypes ::: "+postJobForm.value.EmploymentTypes);
     // postJobForm.value.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
     // console.log ("Datatat ::: "+postJobForm.value.CreatedDate);
     if (postJobForm.value.JobLength === undefined) {
@@ -187,7 +187,7 @@ export class PostjobComponent implements OnInit {
       this.postJobCount = this.postJobCount + 1;
       this.userDetails[0].postjobCount = this.postJobCount;
       this.postjobService.addUpdatePostJobs(postJobForm.value,this.id, new Date(), "", this.userDetails[0]);
-      console.log("NEW FORM ....");
+      //console.log("NEW FORM ....");
       type = "Created";
     } else {
       type = "Updated";
@@ -231,7 +231,7 @@ export class PostjobComponent implements OnInit {
       if (postJobForm.value.CCToEmail.trim() !='') {
         this.sEmail.sendEmail(postJobForm.value.CCToEmail,'',subject,body);
       } else {
-        console.log("No CC email");
+        //console.log("No CC email");
       }
     }    
  
@@ -257,14 +257,14 @@ export class PostjobComponent implements OnInit {
   getCountry() {
     this.uProfile.getCountry().subscribe(cprop => {
       this.countries = cprop;
-      console.log("Country :::::::: => "+this.countries.length);
+      //console.log("Country :::::::: => "+this.countries.length);
     })
   }
 
   getState(country) {
     this.uProfile.getStateDetails(country).subscribe(sprop => {
       this.state = sprop;
-      console.log("State :::::::: => "+this.state.length);
+      //console.log("State :::::::: => "+this.state.length);
     })
   }
 

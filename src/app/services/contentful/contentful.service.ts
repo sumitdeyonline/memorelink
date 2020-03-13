@@ -30,7 +30,7 @@ export class ContentfulService {
   private headers;
   //constructor(private http: Http,private url: string, private space: string, private accessToken: string, private contenttypeId: string, private contentId: string) {
   constructor() {
-   console.log("Content Server !!!!!!!!!!! ...... ");
+   //console.log("Content Server !!!!!!!!!!! ...... ");
   // console.log("Access Token ...... "+ this.at);
   }
   private cdaClient = contentful.createClient({
@@ -63,7 +63,7 @@ export class ContentfulService {
     //this.assignHeaderVariable();
   }
   getAllContent(fields?: string,query?: object, contenttypeId?: string): Promise<Entry<any>[]> {
-    console.log("Content Ful Service ........11111")
+    //console.log("Content Ful Service ........11111")
 
     //query =  this.contentId;
     return this.cdaClient.getEntries(Object.assign({
@@ -74,7 +74,7 @@ export class ContentfulService {
   }
 
   getAllContentOrderBy(fields?: string,query?: object, contenttypeId?: string, orderBy?: string): Promise<Entry<any>[]> {
-    console.log("Content Ful Service ........")
+    //console.log("Content Ful Service ........")
     //query =  this.contentId;
     return this.cdaClient.getEntries(Object.assign({
       select: fields,

@@ -63,11 +63,11 @@ export class UploadResumeService {
       },
       (error) => {
         // fail
-        console.log(error);
+        //console.log(error);
       },
       () => {
         this.task.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log('File available at', downloadURL);
+          //console.log('File available at', downloadURL);
           this.downloadURLTempResume = downloadURL;
           //console.log('File Key::::::::: => ', fileUpload.key);
           // fileUpload.url = downloadURL;
@@ -85,14 +85,14 @@ export class UploadResumeService {
     const storageRef = firebase.storage().ref();
 
     if (this.auth.userProfile == null) {
-      console.log('Null -> File Name ', "Generic_"+fileUpload.file.name);
+      //console.log('Null -> File Name ', "Generic_"+fileUpload.file.name);
       this.task =  storageRef.child(`${this.basePath}/${"Generic_"+fileUpload.file.name.replace(".","_")}`).put(fileUpload.file);
       //const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
     }
     else {
       let filename = this.auth.userProfile.name+"."+fileUpload.file.name.substring(fileUpload.file.name.lastIndexOf(".")+1);
       //console.log('Not Null -> File Name ', this.auth.userProfile.name.replace(".","_")+"."+fileUpload.file.name.substring(fileUpload.file.name.lastIndexOf(".")+1));
-      console.log('Not Null -> File Name '+filename);
+     // console.log('Not Null -> File Name '+filename);
 
       //this.task = storageRef.child(`${this.basePath}/${this.auth.userProfile.name+"_"+fileUpload.file.name}`).put(fileUpload.file);
       this.task = storageRef.child(`${this.basePath}/${filename}`).put(fileUpload.file);
@@ -117,14 +117,14 @@ export class UploadResumeService {
       },
       (error) => {
         // fail
-        console.log(error);
+        //console.log(error);
       },
       () => {
         // success
         uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
 
-          console.log('File available at', downloadURL);
-          console.log('File Key::::::::: => ', fileUpload.key);
+          //console.log('File available at', downloadURL);
+          //console.log('File Key::::::::: => ', fileUpload.key);
           fileUpload.url = downloadURL;
           fileUpload.name = fileUpload.file.name;
 
@@ -143,21 +143,21 @@ export class UploadResumeService {
           uResume.ResumeID =  "";
           uResume.ResumeExt =  this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
           if (id == null) {
-            console.log("It's a new upload");
+            //console.log("It's a new upload");
 
             uResume.CreatedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
             //this.selectedUploadResume = new uploadResume[];
             // this.uploadResume.ResumeFileName  =   this.fileName;
             // this.selectedUploadResume.ResumeURL  =   this.downloadURL;
-            console.log("It's a new upload -- Download URL ::: "+uResume.ResumeURL);
-            console.log("It's a new upload -- Download URL ::: "+uResume.ResumeFileName);
-            console.log("It's a new upload -- Download URL ::: "+uResume.ResumeExt);
-            console.log("It's a new upload -- Download URL ::: "+uResume.CreatedDate);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeURL);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeFileName);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeExt);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.CreatedDate);
             // this.selectedUploadResume.ResumeExt = this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
             // this.selectedUploadResume.ModifiedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
 
           } else {
-            console.log("It's a update >>><<<< "+id);
+            //console.log("It's a update >>><<<< "+id);
             uResume.ModifiedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
           }
           this.addUpdateUserResume(uResume, id);
@@ -209,19 +209,19 @@ export class UploadResumeService {
 
 
   getResumeDetails(user) {
-    console.log("Resume Details "+user);
+    //console.log("Resume Details "+user);
 
 
     this.urCollection = this.afs.collection(FIREBASE_CONFIG.UploadResume, ref =>
           ref.where('Username','==',user));
-          console.log("List Service ..... 4");
+          //console.log("List Service ..... 4");
     this.UploadResumec = this.urCollection.snapshotChanges().pipe(map(changes => {
-      console.log("List Service ..... 5");
+      //console.log("List Service ..... 5");
       return changes.map(a => {
-        console.log("List Service ..... 6");
+        //console.log("List Service ..... 6");
         const data = a.payload.doc.data() as UploadResume;
         data.id = a.payload.doc.id;
-        console.log("List Service 11111 ..... 2");
+        //console.log("List Service 11111 ..... 2");
         return data;
       });
     }));
@@ -231,7 +231,7 @@ export class UploadResumeService {
 
   addUpdateUserResume(uResume: UploadResume, id: string) {
 
-    console.log("New Form ::: ------------->" + id);
+    //console.log("New Form ::: ------------->" + id);
     if ((id == null) || (id == '')) {
       uResume.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
       uResume.Username = this.auth.userProfile.name;
@@ -242,7 +242,7 @@ export class UploadResumeService {
       // console.log("NEW FORM ....Service");
       this.urCollection.add(uResume);
     } else {
-      console.log("UPDATE FORM ...." + id);
+      //console.log("UPDATE FORM ...." + id);
       //this.faqDoc = this.afs.doc(`faq/${faqc.id}`);
 
 

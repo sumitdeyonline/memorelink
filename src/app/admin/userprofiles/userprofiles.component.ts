@@ -31,15 +31,15 @@ export class UserprofilesComponent implements OnInit {
   }
 
   profileSearch(profilesearch) {
-    console.log("Username :: "+profilesearch.username);
-    console.log("Home Phone Number :: "+profilesearch.homephone);
-    console.log("Cell Phone Number :: "+profilesearch.cellphone);
+    // console.log("Username :: "+profilesearch.username);
+    // console.log("Home Phone Number :: "+profilesearch.homephone);
+    // console.log("Cell Phone Number :: "+profilesearch.cellphone);
 
     this.userProfile = null;
     if ((profilesearch.username == null) || (profilesearch.username == undefined) || (profilesearch.username.trim() == '')) {
       if ((profilesearch.homephone == null) || (profilesearch.homephone == undefined) || (profilesearch.homephone.trim() == '')) {
         if ((profilesearch.cellphone == null) || (profilesearch.cellphone == undefined) || (profilesearch.cellphone.trim() == '')) {
-          console.log("Enter Something");
+          //console.log("Enter Something");
         } else {
           this.uProfile.getUserDetails(profilesearch.cellphone,'CP').subscribe(uprofile=> {
             this.userProfile = uprofile;
@@ -66,7 +66,7 @@ export class UserprofilesComponent implements OnInit {
   }
 
   getUserResumeDetails(uname) {
-    console.log("UUUUNAME ::::: "+uname);
+    //console.log("UUUUNAME ::::: "+uname);
     this.uRes.getResumeDetails(uname).subscribe(ures=>{
       this.uResume = ures;
     })

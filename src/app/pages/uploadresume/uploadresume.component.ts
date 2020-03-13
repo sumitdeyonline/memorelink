@@ -29,14 +29,14 @@ export class UploadresumeComponent implements OnInit {
     this.rUploadService.getResumeDetails(this.auth.userProfile.name).subscribe(uprop=> {
       this.uResume = uprop;
       // this.resetForm();
-      console.log("Resume Upload");
+      //console.log("Resume Upload");
       if (this.uResume.length == 0) {
         this.isUpdate = false;
         this.isNewUpload = false;
-        console.log("NEW FORM ....11111");
+        //console.log("NEW FORM ....11111");
 
       } else {
-        console.log("Edit FORM .... FOR "+this.uResume.length);
+        //console.log("Edit FORM .... FOR "+this.uResume.length);
         //console.log('IDDDDDDDDDDDDDDDDDDDDD ::: ', this.rUploadService.selectedUploadResume.id);
         this.isUpdate = true;
         this.rUploadService.selectedUploadResume = {} as UploadResume;
@@ -69,7 +69,7 @@ export class UploadresumeComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
+    //console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
     if (this.validateFile(this.selectedFiles.item(0).name)) {
       this.selectedFiles = undefined;
       this.resumeUploadEnabled = true;
@@ -82,7 +82,7 @@ export class UploadresumeComponent implements OnInit {
       }
 
       this.isNewUpload = true;
-      console.log("isNewUpload   ======= > "+this.isNewUpload);
+      //console.log("isNewUpload   ======= > "+this.isNewUpload);
       // this.rUploadService.addUpdateUserResume(this.rUploadService.selectedUploadResume, this.rUploadService.selectedUploadResume.id);
     } else {
       this.isNewUpload = false;
@@ -95,7 +95,7 @@ export class UploadresumeComponent implements OnInit {
 
   validateFile(fileName: string) {
     let ext = fileName.substring(fileName.lastIndexOf('.')+1);
-    console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
+    //console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
     if ((ext.toLowerCase() == 'doc') || (ext.toLowerCase() == 'docx') || (ext.toLowerCase() == 'pdf') || (ext.toLowerCase() == 'ppt') || (ext.toLowerCase() == 'pptx')) {
       return true;
     } else {

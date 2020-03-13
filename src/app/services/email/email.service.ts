@@ -34,7 +34,9 @@ export class EmailService {
       `+body+`
       `
       // `<i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b> <br /> <b>Email: </b><br /> <b>Subject: </b><br /> <b>Message:</b> <br />  <br><br> <b>~End of Message.~</b> `
-      }).then( message => {console.log('Email :: '+message) } );
+      }).then( message => {
+        //console.log('Email :: '+message) 
+      });
   
     /* Email End */    
   }

@@ -13,7 +13,7 @@ export class CountrydialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private uPRofile: UserprofileService) { }
 
   ngOnInit() {  
-    console.log("This Data ::::::: -> > " +this.data);
+    //console.log("This Data ::::::: -> > " +this.data);
   }
 
   close() {

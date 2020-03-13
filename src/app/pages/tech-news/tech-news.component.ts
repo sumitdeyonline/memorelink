@@ -14,11 +14,11 @@ export class TechNewsComponent implements OnInit {
   public techNews: Entry<any>[] = [];
 
   constructor(private router: Router, private contentfulService: ContentfulrapperService) { 
-    console.log("ContentFul Constructor !!!!!");
+    //console.log("ContentFul Constructor !!!!!");
   }
 
   ngOnInit() {
-    console.log("ContentFul Constructor !!!!!1");
+    //console.log("ContentFul Constructor !!!!!1");
     this.contentfulService.getAllContent(CONTENT_CONFIG.PageBlockSectionFields,CONTENT_CONFIG.techNewsQueryString,CONTENT_CONFIG.contentTypeIds.PageBlockSection)
     .then(techNews => this.techNews = techNews)
   }

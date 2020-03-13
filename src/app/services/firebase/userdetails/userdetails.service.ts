@@ -56,11 +56,11 @@ export class UserdetailsService {
     //   udetails.userRole = "Users",
 
     // };
-    console.log("User Name ::::: "+uname);
-    console.log("User Role ::::: "+uRole);
-    console.log("company ::::: "+company);
-    console.log("companyAddress ::::: "+companyAddress);
-    console.log("phone ::::: "+phone);
+    // console.log("User Name ::::: "+uname);
+    // console.log("User Role ::::: "+uRole);
+    // console.log("company ::::: "+company);
+    // console.log("companyAddress ::::: "+companyAddress);
+    // console.log("phone ::::: "+phone);
     if ((company == undefined) || (company == undefined)) company = '';
     if ((companyAddress == undefined) || (companyAddress == undefined)) companyAddress = '';
     if ((phone == undefined) || (phone == undefined)) phone = '';
@@ -74,7 +74,7 @@ export class UserdetailsService {
 
       //const  uRole = "User";
 
-      console.log(udeatils);
+      //console.log(udeatils);
       this.udCollection.add(udeatils);
       // this.adUserDetails( uname);
       // this.userDetail.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
@@ -88,7 +88,7 @@ export class UserdetailsService {
       // // this.udCollection.add(udetails);
       // this.udCollection.add(uDetails);
     } else {
-      console.log("UPDATE FORM ...." + id);
+      //console.log("UPDATE FORM ...." + id);
       // //this.faqDoc = this.afs.doc(`faq/${faqc.id}`);
       this.udDoc = this.afs.doc(`${FIREBASE_CONFIG.UserDetails}/${id}`);
       this.udDoc.update(udeatils);
@@ -97,8 +97,8 @@ export class UserdetailsService {
   }
 
   getUserDetails(userOrRole, fieldType ) {
-    console.log("List Service ..... 3 "+userOrRole);
-    console.log("Field Type .....  "+fieldType);
+    // console.log("List Service ..... 3 "+userOrRole);
+    // console.log("Field Type .....  "+fieldType);
 
     if (fieldType == 'U') {
       this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails, ref =>

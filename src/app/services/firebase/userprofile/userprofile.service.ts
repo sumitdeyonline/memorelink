@@ -62,7 +62,7 @@ export class UserprofileService {
 
       this.upCollection.add(uprofile).then((entry) => {
 
-        console.log("Entry ISSSSS "+entry.id);
+        //console.log("Entry ISSSSS "+entry.id);
 
         this.AlgoliaObjectUpdate(id,uprofile,entry.id, createDate);
 
@@ -71,7 +71,7 @@ export class UserprofileService {
 
 
     } else {
-      console.log("UPDATE FORM ...." + id);
+      //console.log("UPDATE FORM ...." + id);
       //this.faqDoc = this.afs.doc(`faq/${faqc.id}`);
       this.upDoc = this.afs.doc(`${FIREBASE_CONFIG.UserProfile}/${id}`);
       this.upDoc.update(uprofile);
@@ -89,14 +89,14 @@ export class UserprofileService {
 
 
   getUserProfileById(id) {
-    console.log("List Service ..... 3 ::::::=> "+id);
+    //console.log("List Service ..... 3 ::::::=> "+id);
 
     return this.afs.doc(`${FIREBASE_CONFIG.UserProfile}/${id}`).valueChanges()
 
   }
 
   getUserDetails(usersearchparam, stype)  {
-    console.log("List Service ..... 3 "+usersearchparam);
+    //console.log("List Service ..... 3 "+usersearchparam);
 
     if (stype == 'U'){
       this.upCollection = this.afs.collection(FIREBASE_CONFIG.UserProfile, ref =>
@@ -116,7 +116,7 @@ export class UserprofileService {
         // console.log("List Service ..... 6");
         const data = a.payload.doc.data() as UserProfile;
         data.id = a.payload.doc.id;
-        console.log("List Service 11111 ..... 2--->>>>> Data load :: "+data.id);
+        //console.log("List Service 11111 ..... 2--->>>>> Data load :: "+data.id);
         return data;
       });
     }));
@@ -169,10 +169,10 @@ export class UserprofileService {
   addUpdateCountry(cnry :  Country, id) {
     if ((id == null) || (id == '')) {
       this.countryCollection.add(cnry).then((entry) => {
-        console.log("Country is "+entry.id);
+        //console.log("Country is "+entry.id);
       })      
     } else {
-      console.log("Update");
+      //console.log("Update");
       this.cDoc = this.afs.doc(`${FIREBASE_CONFIG.Country}/${id}`);
       this.cDoc.update(cnry);
     }
@@ -185,7 +185,7 @@ export class UserprofileService {
   }
 
   getStateDetails(country) {
-    console.log("Country Name "+country);
+    //console.log("Country Name "+country);
     this.stateCollection = this.afs.collection(FIREBASE_CONFIG.State, ref =>
           ref.where('CountryName','==',country).orderBy('StateDisplayName', 'asc'));
            //console.log("List Service ..... 4");
@@ -206,10 +206,10 @@ export class UserprofileService {
   addUpdateState(state :  State, id) {
     if ((id == null) || (id == '')) {
       this.stateCollection.add(state).then((entry) => {
-        console.log("Country is "+entry.id);
+        //console.log("Country is "+entry.id);
       })      
     } else {
-      console.log("Update");
+      //console.log("Update");
       this.sDoc = this.afs.doc(`${FIREBASE_CONFIG.State}/${id}`);
       this.sDoc.update(state);
     }

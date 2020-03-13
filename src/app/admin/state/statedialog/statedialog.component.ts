@@ -13,7 +13,7 @@ export class StatedialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private uPRofile: UserprofileService) { }
 
   ngOnInit() { 
-    console.log("This Data ::::::: -> > " +this.data.id);
+    //console.log("This Data ::::::: -> > " +this.data.id);
   }
 
   close() {

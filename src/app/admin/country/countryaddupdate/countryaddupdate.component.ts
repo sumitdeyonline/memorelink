@@ -30,10 +30,10 @@ export class CountryaddupdateComponent implements OnInit {
     if (data.id !=undefined) {
       this.isUpdate = true;
       this.Country  = data;
-      console.log("FB ID :"+data.id);
-      console.log("Country ID :"+data.countryID);
+      // console.log("FB ID :"+data.id);
+      // console.log("Country ID :"+data.countryID);
       
-      console.log("Country Name :"+data.CountryName);
+      // console.log("Country Name :"+data.CountryName);
       this.countryForm.setValue({
         countryID: data.countryID,
         CountryName: data.CountryName
@@ -53,8 +53,8 @@ export class CountryaddupdateComponent implements OnInit {
   }
 
   addUpdateCountry() {
-    console.log("Country ID :"+this.countryForm.get('countryID').value);
-    console.log("Country Name :"+this.countryForm.get('CountryName').value);
+    // console.log("Country ID :"+this.countryForm.get('countryID').value);
+    // console.log("Country Name :"+this.countryForm.get('CountryName').value);
 
     this.Country = { countryID: this.countryForm.get('countryID').value,
                      CountryName: this.countryForm.get('CountryName').value,

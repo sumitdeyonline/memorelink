@@ -44,14 +44,14 @@ export class UserProfileComponent implements OnInit {
       this.resetForm();
       //this.countries = ['USA', 'Canada', 'Uk'];
       this.getCountry();
-      console.log("TEEESSSTTTTTTTTTT ===>>>>>>>>> "+this.userProfile.length);
+      //console.log("TEEESSSTTTTTTTTTT ===>>>>>>>>> "+this.userProfile.length);
       if (this.userProfile.length == 0) {
 
-        console.log("NEW FORM ....");
+        //console.log("NEW FORM ....");
         this.isUpdate = false;
         this.isUpdateProfile = true;
       } else {
-        console.log("Edit FORM .... FOR "+this.userProfile.length+" ::::: ID :::::: => "+this.userProfile[0].id);
+        //console.log("Edit FORM .... FOR "+this.userProfile.length+" ::::: ID :::::: => "+this.userProfile[0].id);
         //this.fileUploadEnabled = true;
         this.isUpdate = true;
         this.isUpdateProfile = false;
@@ -82,14 +82,14 @@ export class UserProfileComponent implements OnInit {
   getCountry() {
     this.uProfile.getCountry().subscribe(cprop => {
       this.countries = cprop;
-      console.log("Country :::::::: => "+this.countries.length);
+      //console.log("Country :::::::: => "+this.countries.length);
     })
   }
 
   getState(country) {
     this.uProfile.getStateDetails(country).subscribe(sprop => {
       this.state = sprop;
-      console.log("Country :::::::: => "+this.state.length);
+      //console.log("Country :::::::: => "+this.state.length);
     })
   }
 
@@ -102,7 +102,7 @@ export class UserProfileComponent implements OnInit {
     else {
       this.editProfileText ="Edit Profile";
       this.isUpdateProfile = false;
-      console.log("Befire UserProfile .......*******>>>>>>");
+      //console.log("Befire UserProfile .......*******>>>>>>");
       this.resetForm();
       //this.getFieldForUpdate();
       this.uProfile.getUserDetails(this.auth.userProfile.name,'U').subscribe(uprop=> {
@@ -116,7 +116,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   userProfileSubmit(uprofileForm: NgForm) {
-    console.log("Start Saveing ");
+    //console.log("Start Saveing ");
 
     if (this.isUpdate) {
       this.userProfileAddUpdate(uprofileForm, this.uProfile.selectedUserProfile.id);
@@ -168,91 +168,91 @@ export class UserProfileComponent implements OnInit {
 
   userProfileAddUpdate(uprofileForm: NgForm, userid: string) {
 
-    console.log ('First Name  ::: '+ uprofileForm.value.FirstName);
-    console.log ('LastName  ::: '+ uprofileForm.value.LastName);
-    console.log ('Sex  ::: '+ uprofileForm.value.Sex);
-    console.log ('Email  ::: '+ uprofileForm.value.Email);
-    console.log ('HomePhone  ::: '+ uprofileForm.value.HomePhone);
-    console.log ('CellPhone  ::: '+ uprofileForm.value.CellPhone);
-    console.log ('Address1  ::: '+ uprofileForm.value.Address1);
+    // console.log ('First Name  ::: '+ uprofileForm.value.FirstName);
+    // console.log ('LastName  ::: '+ uprofileForm.value.LastName);
+    // console.log ('Sex  ::: '+ uprofileForm.value.Sex);
+    // console.log ('Email  ::: '+ uprofileForm.value.Email);
+    // console.log ('HomePhone  ::: '+ uprofileForm.value.HomePhone);
+    // console.log ('CellPhone  ::: '+ uprofileForm.value.CellPhone);
+    // console.log ('Address1  ::: '+ uprofileForm.value.Address1);
     if (uprofileForm.value.Address2 == undefined) {
       uprofileForm.value.Address2 = "";
     }
-    console.log ('Address2  ::: '+ uprofileForm.value.Address2);
-    console.log ('City  ::: '+ uprofileForm.value.City);
-    console.log ('State  ::: '+ uprofileForm.value.State);
+    // console.log ('Address2  ::: '+ uprofileForm.value.Address2);
+    // console.log ('City  ::: '+ uprofileForm.value.City);
+    // console.log ('State  ::: '+ uprofileForm.value.State);
     if (uprofileForm.value.FaceBookURL == undefined) {
       uprofileForm.value.FaceBookURL = "";
     }
-    console.log ('FaceBookURL  ::: '+ uprofileForm.value.FaceBookURL);
+    // console.log ('FaceBookURL  ::: '+ uprofileForm.value.FaceBookURL);
     if (uprofileForm.value.LinkedinURL == undefined) {
       uprofileForm.value.LinkedinURL = "";
     }
-    console.log ('LinkedinURL  ::: '+ uprofileForm.value.LinkedinURL);
+    // console.log ('LinkedinURL  ::: '+ uprofileForm.value.LinkedinURL);
     if (uprofileForm.value.PersonalWebsite == undefined) {
       uprofileForm.value.PersonalWebsite = "";
     }
-    console.log ('PersonalWebsite  ::: '+ uprofileForm.value.PersonalWebsite);
+    //console.log ('PersonalWebsite  ::: '+ uprofileForm.value.PersonalWebsite);
     if (uprofileForm.value.EmploymentType == undefined) {
       uprofileForm.value.EmploymentType = "";
     }
-    console.log ('EmploymentType  ::: '+ uprofileForm.value.EmploymentType);
+    //console.log ('EmploymentType  ::: '+ uprofileForm.value.EmploymentType);
     if (uprofileForm.value.DesiredPosition == undefined) {
       uprofileForm.value.DesiredPosition = "";
     }
-    console.log ('DesiredPosition  ::: '+ uprofileForm.value.DesiredPosition);
+    //console.log ('DesiredPosition  ::: '+ uprofileForm.value.DesiredPosition);
     if (uprofileForm.value.DesiredSalary == undefined) {
       uprofileForm.value.DesiredSalary = "";
     }
-    console.log ('DesiredSalary  ::: '+ uprofileForm.value.DesiredSalary);
+    //console.log ('DesiredSalary  ::: '+ uprofileForm.value.DesiredSalary);
     if (uprofileForm.value.IsRelocate == undefined) {
       uprofileForm.value.IsRelocate = false;
     }
-    console.log ('IsRelocate  ::: '+ uprofileForm.value.IsRelocate);
+    //console.log ('IsRelocate  ::: '+ uprofileForm.value.IsRelocate);
     if (uprofileForm.value.IsTravel == undefined) {
       uprofileForm.value.IsTravel = false;
     }
-    console.log ('IsTravel  ::: '+ uprofileForm.value.IsTravel);
+    //console.log ('IsTravel  ::: '+ uprofileForm.value.IsTravel);
     if (uprofileForm.value.YearsofExperince == undefined) {
       uprofileForm.value.YearsofExperince = "";
     }
-    console.log ('YearsofExperince  ::: '+ uprofileForm.value.YearsofExperince);
+    //console.log ('YearsofExperince  ::: '+ uprofileForm.value.YearsofExperince);
     if (uprofileForm.value.WorkAuthorization == undefined) {
       uprofileForm.value.WorkAuthorization = "";
     }
-    console.log ('WorkAuthorization  ::: '+ uprofileForm.value.WorkAuthorization);
+    //console.log ('WorkAuthorization  ::: '+ uprofileForm.value.WorkAuthorization);
     if (uprofileForm.value.SecurityClearance == undefined) {
       uprofileForm.value.SecurityClearance = "";
     }
-    console.log ('SecurityClearance  ::: '+ uprofileForm.value.SecurityClearance);
+    //console.log ('SecurityClearance  ::: '+ uprofileForm.value.SecurityClearance);
     if (uprofileForm.value.CoverLetter == undefined) {
       uprofileForm.value.CoverLetter = "";
     }
-    console.log ('CoverLetter  ::: '+ uprofileForm.value.CoverLetter);
+    //console.log ('CoverLetter  ::: '+ uprofileForm.value.CoverLetter);
     if (uprofileForm.value.institute == undefined) {
       uprofileForm.value.institute = "";
     }
-    console.log ('institute  ::: '+ uprofileForm.value.institute);
+    //console.log ('institute  ::: '+ uprofileForm.value.institute);
     if (uprofileForm.value.instituteCity == undefined) {
       uprofileForm.value.instituteCity = "";
     }
-    console.log ('instituteCity  ::: '+ uprofileForm.value.instituteCity);
+    //console.log ('instituteCity  ::: '+ uprofileForm.value.instituteCity);
     if (uprofileForm.value.instituteCountry == undefined) {
       uprofileForm.value.instituteCountry = "";
     }
-    console.log ('instituteCountry  ::: '+ uprofileForm.value.instituteCountry);
+    //console.log ('instituteCountry  ::: '+ uprofileForm.value.instituteCountry);
     if (uprofileForm.value.SkillSet == undefined) {
       uprofileForm.value.SkillSet = "";
     }
-    console.log ('SkillSet  ::: '+ uprofileForm.value.SkillSet);
+    //console.log ('SkillSet  ::: '+ uprofileForm.value.SkillSet);
     if (uprofileForm.value.Education == undefined) {
       uprofileForm.value.Education = "";
     }
-    console.log ('Education  ::: '+ uprofileForm.value.Education);
+    //console.log ('Education  ::: '+ uprofileForm.value.Education);
     //console.log ('SalaryExpectation  ::: '+ uprofileForm.value.SalaryExpectation);
 
-    console.log ('File Name   ::: '+ this.rUploadService.fileName);
-    console.log ('File URL   ::: '+ this.rUploadService.downloadURL);
+    //console.log ('File Name   ::: '+ this.rUploadService.fileName);
+    //console.log ('File URL   ::: '+ this.rUploadService.downloadURL);
 
     // this.fileUploadEnabled = true; // Enabled File Download
 
@@ -265,15 +265,15 @@ export class UserProfileComponent implements OnInit {
       uprofileForm.value.UserID = this.auth.userProfile.name;
       uprofileForm.value.Username = this.auth.userProfile.nickname;
 
-      console.log ('CreatedDate  ::: '+ uprofileForm.value.CreatedDate);
+      //console.log ('CreatedDate  ::: '+ uprofileForm.value.CreatedDate);
       //console.log ('ResumeID  ::: '+ uprofileForm.value.ResumeID);
       //console.log ('ResumeFileName  ::: '+ uprofileForm.value.ResumeFileName+' Extertion '+uprofileForm.value.ResumeFileName.substring(uprofileForm.value.ResumeFileName.length - 3,uprofileForm.value.ResumeFileName.length));
       //console.log ('ResumeFileName  ::: '+ uprofileForm.value.ResumeFileName+' Extertion '+uprofileForm.value.ResumeFileName.substring(uprofileForm.value.ResumeFileName.lastIndexOf(".")+1));
 
        //console.log ('ResumeURL  ::: '+ uprofileForm.value.ResumeURL);
        //console.log ('ResumeExt  ::: '+ uprofileForm.value.ResumeExt);
-      console.log ('UserID  ::: '+ uprofileForm.value.UserID);
-      console.log ('Username  ::: '+ uprofileForm.value.Username);
+      // console.log ('UserID  ::: '+ uprofileForm.value.UserID);
+      // console.log ('Username  ::: '+ uprofileForm.value.Username);
       this.uProfile.addUpdateUserProfile(uprofileForm.value, this.id, new Date());
     } else {
       //uprofileForm.value.ModifiedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
@@ -298,7 +298,7 @@ export class UserProfileComponent implements OnInit {
       //   uprofileForm.value.ResumeExt = this.rUploadService.fileName.substring(this.rUploadService.fileName.lastIndexOf(".")+1);
       // else
       //   uprofileForm.value.ResumeExt =  this.uProfile.selectedUserProfile.ResumeExt;
-      console.log ('CreatedDate  ::: '+ uprofileForm.value.CreatedDate);
+      //console.log ('CreatedDate  ::: '+ uprofileForm.value.CreatedDate);
       // if (uprofileForm.value.ResumeID == null) {
       //   uprofileForm.value.ResumeID
       // }
@@ -307,7 +307,7 @@ export class UserProfileComponent implements OnInit {
 
       // console.log ('ResumeURL  ::: '+ uprofileForm.value.ResumeURL);
       // console.log ('ResumeExt  ::: '+ uprofileForm.value.ResumeExt);
-      console.log ('UserID  ::: '+ uprofileForm.value.UserID);
+      //console.log ('UserID  ::: '+ uprofileForm.value.UserID);
       // console.log ('Resume File Name  ::: '+ this.uProfile.selectedUserProfile.ResumeFileName);
       this.uProfile.addUpdateUserProfile(uprofileForm.value, userid, this.userProfile[0].CreatedDate);
 
@@ -342,7 +342,7 @@ export class UserProfileComponent implements OnInit {
 
   validateFile(fileName: string) {
     let ext = fileName.substring(fileName.lastIndexOf('.')+1);
-    console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
+    //console.log("EXTESTION :::::::$$$&&&&&&& "+ext);
     if ((ext.toLowerCase() == 'doc') || (ext.toLowerCase() == 'docx') || (ext.toLowerCase() == 'pdf') || (ext.toLowerCase() == 'ppt') || (ext.toLowerCase() == 'pptx')) {
       return true;
     } else {
@@ -364,14 +364,14 @@ export class UserProfileComponent implements OnInit {
       )
     ).subscribe(fileUploads => {
       this.fileUploads = fileUploads;
-      console.log("File Upload Leanth =============================== "+this.fileUploads.length)
+      //console.log("File Upload Leanth =============================== "+this.fileUploads.length)
       for(let i=0;i<this.fileUploads.length; i++){
 
         if (dUrl == this.fileUploads[i].url) {
           this.uPloadFileKey = this.fileUploads[i].key;
-          console.log("File Key :::::::: " +this.fileUploads[i].key);
-          console.log("File URL :::::::: " +this.fileUploads[i].url);
-          console.log("File Name :::::::: " +this.fileUploads[i].name);
+          // console.log("File Key :::::::: " +this.fileUploads[i].key);
+          // console.log("File URL :::::::: " +this.fileUploads[i].url);
+          // console.log("File Name :::::::: " +this.fileUploads[i].name);
           break;
         }
 

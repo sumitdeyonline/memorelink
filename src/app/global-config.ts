@@ -86,7 +86,7 @@ export const SEARCH_CONFIG = {
     //ALGOLIA_FUNCTION_URL: 'https://us-central1-jobsite-c8333.cloudfunctions.net/addFirestorePostJobDataToAlgolia',
     LIST_JOB_DESC_WIDTH: 120,
     LIST_JOB_DESC_STATUS: 400,
-    PAGE_SIZE: 5,
+    PAGE_SIZE: 10,
     CURRENT_PAGE: 1,
     ZIPCODE_API_URL: 'https://www.zipcodeapi.com/rest/',
     ZIPCODE_API: 'GNSZy5dfcTtnYL78PeldQR4eyam3IzVMply2lWLfDsuu3WmpED29mn7x6DC87Ccv'

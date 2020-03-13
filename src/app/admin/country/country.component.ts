@@ -43,7 +43,7 @@ export class CountryComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     if (this.country !=null) {
@@ -74,7 +74,7 @@ export class CountryComponent implements OnInit {
   }  
 
   onUpdate(country) {
-    console.log("Country ID :"+country.id);
+    //console.log("Country ID :"+country.id);
     const dialogConfig = new MatDialogConfig();
     // dialogConfig.data = this.pjob.ApplyToEmail;
     //this.pjob.id = this.id;
@@ -85,7 +85,7 @@ export class CountryComponent implements OnInit {
   }
 
   onDelete(country) {
-    console.log("Country ID :"+country.id);
+    //console.log("Country ID :"+country.id);
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = country.id;

@@ -24,11 +24,11 @@ export class JobdetailsComponent implements OnInit {
   constructor(private _activeRoute:ActivatedRoute, private postservice: PostjobService, private dialog: MatDialog) {
     window.scroll(0,0);
     this._activeRoute.queryParams.subscribe(params => {
-      console.log(params);
+      //console.log(params);
       this.keyword = params['keyword'];
-      console.log("Keyword " + this.keyword);
+     // console.log("Keyword " + this.keyword);
       this.location = params['location'];
-      console.log("Location " + this.location);
+      //console.log("Location " + this.location);
       //this.getPostJobsAlgolia(this.keyword,this.location);
       // this.listjob.keyword = this.keyword;
       // this.listjob.location = this.location;
@@ -40,7 +40,7 @@ export class JobdetailsComponent implements OnInit {
 
     this._activeRoute.paramMap.subscribe(params => {
       this.id = params.get('id');
-      console.log("Key Value :::::::: "+this.id);
+      //console.log("Key Value :::::::: "+this.id);
     });
     this.postservice.getPostJobsById(this.id).subscribe(pjob=> {
       this.pjob = pjob;
@@ -51,7 +51,7 @@ export class JobdetailsComponent implements OnInit {
         this.travelReq = "Work from home not available";
       }
       //alert("Last Modifed Date :::::: "+this.pjob.LastModifiedDate);
-      console.log("List Service ..... 33333 ::::: "+this.pjob.Compensation);
+      //console.log("List Service ..... 33333 ::::: "+this.pjob.Compensation);
     })
 
   }
@@ -63,7 +63,7 @@ export class JobdetailsComponent implements OnInit {
   }
 
   onApply() {
-    console.log("Pst Job ID :::: "+this.pjob.ApplyToEmail);
+    //console.log("Pst Job ID :::: "+this.pjob.ApplyToEmail);
       const dialogConfig = new MatDialogConfig();
       // dialogConfig.data = this.pjob.ApplyToEmail;
       this.pjob.id = this.id;
@@ -81,7 +81,7 @@ export class JobdetailsComponent implements OnInit {
 
   getDateDiff(dateIput) {
     let lastModifyDate = new Date(dateIput);
-    console.log("Get Time :::::::===> "+dateIput.toDate().getTime());
+    //console.log("Get Time :::::::===> "+dateIput.toDate().getTime());
     //alert("Last Modifed Date :::::: "+this.pjob.LastModifiedDate);
     //return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
     return Math.round(Math.abs(new Date().getTime() - dateIput.toDate().getTime())/(24*60*60*1000));

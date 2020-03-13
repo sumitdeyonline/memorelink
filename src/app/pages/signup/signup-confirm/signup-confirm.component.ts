@@ -11,7 +11,7 @@ export class SignupConfirmComponent implements OnInit {
 
   @Input() signupSucessMessage: string;
   constructor(private router: Router, public _auth: AuthService) { 
-    console.log("SIGNUP CONFIRM ::::: "+this.signupSucessMessage);
+    //console.log("SIGNUP CONFIRM ::::: "+this.signupSucessMessage);
 
   }
 

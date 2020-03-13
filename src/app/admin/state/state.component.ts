@@ -47,12 +47,12 @@ export class StateComponent implements OnInit {
   getCountry() {
     this.uProfile.getCountry().subscribe(cntry => {
       this.country = cntry;
-      console.log("Country => "+this.country.length);
+      //console.log("Country => "+this.country.length);
     });
   }
 
   getState(country) {
-    console.log("Get Country ::::: "+country);
+    //console.log("Get Country ::::: "+country);
     this.countryToPass = country;
     if (country =="") {
       this.isAdd = false;
@@ -61,7 +61,7 @@ export class StateComponent implements OnInit {
     } else {
       this.uProfile.getStateDetails(country).subscribe(sprop => {
         this.state = sprop;
-        console.log("State :::::::: => "+this.state.length);
+        //console.log("State :::::::: => "+this.state.length);
         if (this.state.length > 0) {
           this.isDisplay = true;
           this.setPage(1);
@@ -95,7 +95,7 @@ export class StateComponent implements OnInit {
   }
 
   onUpdate(state) {
-    console.log("Country ID :"+state.id);
+    //console.log("Country ID :"+state.id);
     const dialogConfig = new MatDialogConfig();
     // dialogConfig.data = this.pjob.ApplyToEmail;
     //this.pjob.id = this.id;
@@ -106,7 +106,7 @@ export class StateComponent implements OnInit {
   }
 
   onDelete(state) {
-    console.log("Country ID :"+state.id);
+    //console.log("Country ID :"+state.id);
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = state;
@@ -117,7 +117,7 @@ export class StateComponent implements OnInit {
   }  
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.state.length, page);

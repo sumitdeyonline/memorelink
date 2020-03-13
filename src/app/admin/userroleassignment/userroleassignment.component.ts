@@ -44,34 +44,34 @@ export class UserroleassignmentComponent implements OnInit {
   getRoles() {
     this.uProfile.getUserAllRoles().subscribe(urole => {
       this.UserRole = urole;
-      console.log("User Role :::::::: => "+this.UserRole.length);
+      //console.log("User Role :::::::: => "+this.UserRole.length);
     });
   }
 
 
 
   roleSearch(roleSearch) {
-    console.log("Username :: "+roleSearch.username);
-    console.log("Role :: "+roleSearch.role);
+    // console.log("Username :: "+roleSearch.username);
+    // console.log("Role :: "+roleSearch.role);
 
     if (((roleSearch.username == null) || (roleSearch.username == undefined) || (roleSearch.username.trim() == '')) && (roleSearch.role == '')) {
-      console.log("Blank...");
+      //console.log("Blank...");
       this.userDetails = null;
     } else {
 
       if (roleSearch.role == '') {
         this.udetails.getUserDetails(roleSearch.username, 'U').subscribe(udtl=> {
           this.userDetails = udtl;
-          console.log(" Length :::: "+this.userDetails.length); 
+          //console.log(" Length :::: "+this.userDetails.length); 
     
     
           if (this.userDetails.length > 0) {
-            console.log("User Role ::: "+this.userDetails[0].userRole);
+            //console.log("User Role ::: "+this.userDetails[0].userRole);
             this.setPage(1);
     
     
           } else {
-            console.log("User not found");
+            //console.log("User not found");
             this.userDetails = null;
             this.pagedItems = null;
             this.setPage(1);
@@ -81,15 +81,15 @@ export class UserroleassignmentComponent implements OnInit {
       } else if ((roleSearch.username == null) || (roleSearch.username == undefined) || (roleSearch.username.trim() == '')) {
         this.udetails.getUserDetails(roleSearch.role, 'R').subscribe(udtl=> {
           this.userDetails = udtl;
-          console.log(" Length :::: "+this.userDetails.length);
+          //console.log(" Length :::: "+this.userDetails.length);
     
     
           if (this.userDetails.length > 0) {
-            console.log("User Role ::: "+this.userDetails[0].userRole);
+            //console.log("User Role ::: "+this.userDetails[0].userRole);
             this.setPage(1);
     
           } else {
-            console.log("User not found");
+            //console.log("User not found");
             this.userDetails = null;
             this.pagedItems = null;
             this.setPage(1);           
@@ -98,7 +98,7 @@ export class UserroleassignmentComponent implements OnInit {
         })  
       } else {
         this.userDetails = null;
-        console.log("Select One");
+       // console.log("Select One");
       }
 
     
@@ -106,7 +106,7 @@ export class UserroleassignmentComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log("Page Count");
+    //console.log("Page Count");
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.userDetails.length, page);

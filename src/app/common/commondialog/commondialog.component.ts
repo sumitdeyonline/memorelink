@@ -15,20 +15,21 @@ export class CommondialogComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<CommondialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private router: Router) {
-
+                window.scroll(0,0);
     }
 
   ngOnInit() {
+    window.scroll(0,0);
     // console.log("This Data ::::::: -> > " +this.data.split("|")[0]);
     // console.log("This Data 2::::::: -> > " +this.data.split("|")[1]);
 
-    console.log("This Data ::::::: -> > " +this.data);
+    //console.log("This Data ::::::: -> > " +this.data);
 
     let ID = this.data.split("||");
     this.Status = ID[0];
     this.routePage = ID[1];
-    console.log("This Data ::::::: 2 -> > " +ID[0]);
-    console.log("This Data ::::::: route -> > " +ID[1]);
+    // console.log("This Data ::::::: 2 -> > " +ID[0]);
+    // console.log("This Data ::::::: route -> > " +ID[1]);
 
     // if ((ID[0] === null) || (ID[0] === '')) {
     //   console.log("Entry ::::::::======>>>>");
