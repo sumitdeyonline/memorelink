@@ -57,6 +57,9 @@ export class AuthService {
     this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails);
     this.userRoleCollection = this.afs.collection(FIREBASE_CONFIG.UserRoles);
     //console.log("Auth Service ***** ");
+    if (JSON.parse(localStorage.getItem('expires_at')) > Date.now()) {
+      this.renewToken();
+    }
     if (this.isAuthenticated()) {
       this.userRoleAssignment();
     }
@@ -132,8 +135,15 @@ export class AuthService {
   }
 
   public handleAuthentication(): void {
+
+    // if (this.auth0) {
+    //   console.log("Auth0 Good");
+    // } else {
+    //   console.log("Auth0 bad");
+    // }
+
     this.auth0.parseHash((err, authResult) => {
-      //console.log("HanleAuth :::::: => Home Page"+authResult);
+     // console.log("HanleAuth :::::: => Home Page"+authResult);
       //if (authResult && authResult.accessToken && authResult.idToken) {
       if (authResult) {
         //console.log("HanleAuth :::::: => Home Page1");
@@ -143,9 +153,10 @@ export class AuthService {
         /* Set profile */
         this.setProfile((err, profile) => {
           this.userProfile = profile;
+          this.setSession(authResult);
           //console.log("Profile "+profile);
         });
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       } else if (err) {
         //alert("Login Error 22222" +err);
         //console.log("HanleAuth :::::: => Home Page2");
@@ -208,6 +219,7 @@ export class AuthService {
         self.userProfile = profile;
           //localStorage.setItem('profile', this.userProfile);
           localStorage.setItem(SESSION_CONFIG.profile, JSON.stringify(profile));
+ 
           //console.log("Profile Name "+profile.name);
           // Check for the employer Role
 
@@ -452,8 +464,20 @@ export class AuthService {
     return observableThrowError(new AppError(error));
   }
 
+  renewToken() {
+    // Check for valid Auth0 session
+    this.auth0.checkSession({}, (err, authResult) => {
+      if (authResult && authResult.accessToken) {
+        this.setProfile(authResult);
+      } else {
+        this._clearExpiration();
+      }
+    });
+  }
 
-
-
+  private _clearExpiration() {
+    // Remove token expiration from localStorage
+    localStorage.removeItem('expires_at');
+  }
 
 }

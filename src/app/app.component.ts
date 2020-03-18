@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(private _auth: AuthService) {
     //console.log("App Component .... ");
-    _auth.handleAuthentication();
+    // _auth.handleAuthentication();
     //console.log("App Component .... !!!!!");
   }
 

@@ -123,7 +123,10 @@ export const routing = RouterModule.forRoot([
         path: 'valueservices',
         component: ValueServicesComponent
       },       
-                 
+      {
+        path: 'home',
+        component: HomeComponent
+      },                 
       {
           path: '',
           component: HomeComponent

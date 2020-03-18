@@ -9,9 +9,15 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 export class HomeComponent implements OnInit {
 
   constructor(private _auth: AuthService) {
-    //console.log("Home Component .... ");
-    _auth.handleAuthentication();
+
     //console.log("App Component .... !!!!!");
+    _auth.handleAuthentication();
+
+    // setTimeout(() =>{
+    //   //console.log("Home Component .... ");
+    //   _auth.handleAuthentication();
+    // }, 1000);  
+
   }
 
   ngOnInit() {
