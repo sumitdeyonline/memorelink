@@ -62,7 +62,7 @@ import { AdvertisementComponent } from './pages/advertisement/advertisement.comp
 import { ResetpasswordComponent } from './pages/login/resetpassword/resetpassword.component';
 import { PagerService } from './services/common/pager.service';
 
-import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatProgressBarModule } from '@angular/material';
 import { DialogComponent } from './pages/jobdetails/dialog/dialog.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -81,7 +81,7 @@ import { AdminModule } from './admin/admin.module';
 import { adminRouting } from './admin/admin.routing';
 import { EmailService } from './services/email/email.service';
 import { LocationService } from './services/location/location.service';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -146,7 +146,10 @@ import { LocationService } from './services/location/location.service';
     AngularFontAwesomeModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    NgxSpinnerModule
   ],
   providers: [
     AuthService,

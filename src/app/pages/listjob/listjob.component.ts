@@ -12,6 +12,7 @@ import { PagerService } from 'src/app/services/common/pager.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import { LocationService } from 'src/app/services/location/location.service';
+//import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'listjob',
@@ -30,6 +31,7 @@ export class ListjobComponent implements OnInit {
   location: string;
   client: any;
   index: any;
+  loading: boolean = false;
 
   length: any = SEARCH_CONFIG.LIST_JOB_DESC_WIDTH;
 
@@ -45,7 +47,13 @@ export class ListjobComponent implements OnInit {
     pagedItems: any[];
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private postjob: PostjobService, public dformat: DateformatService, private pagerService: PagerService, private locserv: LocationService) {
+  constructor(private router: Router, 
+              private route: ActivatedRoute, 
+              private postjob: PostjobService, 
+              public dformat: DateformatService, 
+              private pagerService: PagerService, 
+              private locserv: LocationService) {
+              // private SpinnerService: NgxSpinnerService) {
 
     window.scroll(0,0);
     //this.PostJobc = null;
@@ -144,7 +152,8 @@ export class ListjobComponent implements OnInit {
       this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
       //console.log(" keyword :::: "+keyword+"location :::: "+location);
-
+      //this.SpinnerService.show(); 
+      this.loading = true;
       if ((keyword.trim() == "") && (location.trim() == "")) {
         //console.log("Nothing ... ");
         this.index.search({
@@ -152,6 +161,8 @@ export class ListjobComponent implements OnInit {
           //let j=0;
           //this.PostJobcFinal = [];
           this.PostJobc = data.hits;
+          // this.SpinnerService.hide();
+          this.loading = false; 
           this.setPage(1);
         });        
       } else {
@@ -211,6 +222,8 @@ export class ListjobComponent implements OnInit {
             //let j=0;
             //this.PostJobcFinal = [];
             this.PostJobc = data.hits;
+            //this.SpinnerService.hide(); 
+            this.loading = false; 
             this.setPage(1);
           });
         } else  {
@@ -222,6 +235,8 @@ export class ListjobComponent implements OnInit {
             //let j=0;
             //this.PostJobcFinal = [];
             this.PostJobc = data.hits;
+            //this.SpinnerService.hide(); 
+            this.loading = false; 
             this.setPage(1);
   
           });
