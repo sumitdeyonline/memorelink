@@ -28,6 +28,7 @@ export class ResumesearchComponent implements OnInit {
 
   // paged items
   pagedItems: any[];
+  loading: boolean = false;
 
   constructor(private route: ActivatedRoute, private pagerService: PagerService) { }
 
@@ -47,7 +48,7 @@ export class ResumesearchComponent implements OnInit {
 
       this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
 
-
+      this.loading = true;
       this.index.search({
         query: searchResume.value.ResumeSearch,
         filters: filter
@@ -58,6 +59,7 @@ export class ResumesearchComponent implements OnInit {
         //let j=0;
         //this.UserProfileFinal = [];
         this.UserProfile = data.hits;
+        this.loading = false;
         this.setPage(1);
 
 

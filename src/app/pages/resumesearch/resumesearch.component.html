@@ -55,6 +55,21 @@
 
 
                     <h2>Search Result</h2>
+
+                    <!-- loader.component.html -->
+                    <div ali class="progress-loader" [hidden]="!loading" >
+                    
+                      <mat-progress-spinner [mode]="'indeterminate'" [color]="'warn'" style="align-content: center;left:45%;">
+                      </mat-progress-spinner>
+                  
+                  </div>                
+
+                  <!-- <div ali class="progress-loader" [hidden]="!loading" style="align-content: center;left:45%;">
+                  
+                      <mat-progress-bar [mode]="'indeterminate'">
+                      </mat-progress-bar>
+                  
+                  </div>   -->                    
                     <!--div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab"-->
                     <div class="tab_grid" *ngFor="let rp of pagedItems">
                         <div class="jobs-item with-thumb">

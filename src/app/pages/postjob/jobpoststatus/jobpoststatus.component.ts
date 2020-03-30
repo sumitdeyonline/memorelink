@@ -42,6 +42,7 @@ export class JobpoststatusComponent implements OnInit {
 
   // paged items
   pagedItems: any[];
+  loading: boolean = false;
 
   constructor(private auth: AuthService,
       private postservice: PostjobService,
@@ -54,11 +55,12 @@ export class JobpoststatusComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0);
+    this.loading = true;
     this.postservice.getPostJobsByUser(this.auth.userProfile.name, 'U').subscribe(pjob=> {
       this.pjob = pjob;
       //console.log("Last Updated ::: "+ Math.round(Math.abs(new Date().getTime() - this.pjob[3].LastModifiedDate.toDate().getTime())/(24*60*60*1000));
       // console.log("Last Updated ::: "+ this.getDateDiff(this.pjob[3].LastModifiedDate));
-
+      this.loading = false;
       // Math.round(Math.abs(new Date().getTime() - this.pjob[0].LastModifiedDate.toDate().getTime())/(24*60*60*1000)
       this.setPage(1);
       //console.log("List Service ..... 33333 ::::: "+this.pjob[1].id);
