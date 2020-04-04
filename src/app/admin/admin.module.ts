@@ -21,6 +21,7 @@ import { StatedialogComponent } from './state/statedialog/statedialog.component'
 import { ApplyjobAdminComponent } from './applyjob-admin/applyjob-admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { UploadbulkprofileComponent } from './uploadbulkprofile/uploadbulkprofile.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
       StateComponent,
       StateaddupdateComponent,
       StatedialogComponent,
-      ApplyjobAdminComponent
+      ApplyjobAdminComponent,
+      UploadbulkprofileComponent
     ],
     entryComponents: [CountryaddupdateComponent, CountrydialogComponent, StatedialogComponent, StateaddupdateComponent],
     exports: [

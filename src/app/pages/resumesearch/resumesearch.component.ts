@@ -5,7 +5,7 @@ import * as algoliasearch from 'algoliasearch';
 import {isNumeric} from 'rxjs/util/isNumeric';
 import { SEARCH_CONFIG } from '../../global-config';
 import { UserProfile } from 'src/app/services/firebase/userprofile/userprofile.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { PagerService } from 'src/app/services/common/pager.service';
 
@@ -30,7 +30,7 @@ export class ResumesearchComponent implements OnInit {
   pagedItems: any[];
   loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private pagerService: PagerService) { }
+  constructor(private route: ActivatedRoute, private pagerService: PagerService, private router: Router, ) { }
 
   ngOnInit() {
   }
@@ -106,6 +106,18 @@ export class ResumesearchComponent implements OnInit {
     let lastModifyDate = new Date(dateIput);
     return Math.round(Math.abs(new Date().getTime() - lastModifyDate.getTime())/(24*60*60*1000));
     //return Math.round(Math.abs(new Date().getTime() - this.pjob[3].LastModifiedDate.toDate().getTime())/(24*60*60*1000);
+  }
+
+
+  resumeDetails(jobid) {
+    //console.log("Job ID::::: +",jobid);
+    // console.log("Search Componenet ******* "+jobsearchComponent.keyword+" Location "+jobsearchComponent.location);
+    // this.router.navigate(['/jobdetails',jobid], { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });
+    //this.router.navigate(['/jobdetails',jobid], { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });
+    this.router.navigate(['/resumedetails',jobid]);
+
+
+    // this.router.navigateByUrl('/jobdetails/'+jobid, { queryParams: {  keyword: this.keyword, 'location': this.location}, 'queryParamsHandling': 'merge' });
   }
 
 }

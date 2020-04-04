@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="single">
+        <div class="form-container">
+            <h2>Profile Bulk Upload</h2>
+            <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
+
+            <table>
+                <tr>
+                    <th>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label style="font-weight: bold;">Upload CSV file</label>
+                            </div>
+                            <div class="col">
+                                <label class="btn btn-default"> <input type="file" name="fileUpload" (change)="selectFile($event)">
+                                </label>&nbsp;&nbsp;&nbsp;
+                                <button class="btn btn-success" [disabled]="!selectedFiles || !resumeUploadEnabled" (click)="upload()">Upload</button>
+                                <!--a href="{{rUploadService.downloadURL}}" [hidden]="!resumeUploadEnabled" target="_blank">{{rUploadService.fileName}}</a-->
+                                &nbsp; <!--a href="{{rUploadService.downloadURL}}" [hidden]="!resumeUploadEnabled" target="_blank">Resume1</a-->
+                                <div style="color: green;" *ngIf="!resumeUploadEnabled">
+                                    Please Upload .csv file
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </table>
+
+            <table class="table table-responsive table-hover" border="1" 
+            style="width : 50%;">
+                <tbody>
+                    <ng-container *ngFor="let csvRec of csvRecords;let i=index">
+                        <tr>
+                            <ng-container *ngFor="let data of csvRec;let j=index"> 
+                                <td>{{data}}</td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>            
+
+            <table>
+              <tr *ngFor="let csvRec of csvRecords;let i=index">
+                <th *ngFor="let data of csvRec;let j=index">{{data}}</th>
+                <!-- <th windh="20%">Role Details</th>
+                <th windh="10%">Role Type</th>
+                <th windh="10%">Post Job</th>
+                <th windh="10%">Resume Search</th>
+                <th windh="10%">Admin Role</th>
+                <th windh="5%">Order By</th> -->
+                <th windh="5%">&nbsp;</th>
+              </tr>
+              <!-- <tr *ngFor="let urole of UserRole">
+                <td>{{urole.RoleName}}</td>
+                <td>{{urole.RoleDetails}}</td>
+                <td>{{urole.RoleType}}</td>
+                <td>{{urole.isEmployerPostJobRole}}</td>
+                <td>{{urole.isEmployerResumeSearchRole}}</td>
+                <td>{{urole.isAdminUserRole}}</td>
+                <td>{{urole.OrderBy}}</td>
+                <td><a [routerLink]="['/postjob']" class="fa fa-edit"></a>&nbsp;
+                </td>
+              </tr> -->
+          </table>
+  
+          </div>
+        </div>
+    </div>

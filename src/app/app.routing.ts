@@ -65,7 +65,7 @@ export const routing = RouterModule.forRoot([
     {
         path: 'resumedetails/:id',
         component: ResumedetailsComponent,
-        canActivate: [ScopeGuard] ,
+        canActivate: [ScopeGuard],
         data: { expectedScopes: ['write:messages']}
     },
     {

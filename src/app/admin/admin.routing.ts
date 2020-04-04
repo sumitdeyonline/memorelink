@@ -8,6 +8,7 @@ import { PostjobvendorComponent } from './postjobvendor/postjobvendor.component'
 import { CountryComponent } from './country/country.component';
 import { StateComponent } from './state/state.component';
 import { ApplyjobAdminComponent } from './applyjob-admin/applyjob-admin.component';
+import { UploadbulkprofileComponent } from './uploadbulkprofile/uploadbulkprofile.component';
 
 
 export const adminRouting = RouterModule.forChild([
@@ -50,7 +51,12 @@ export const adminRouting = RouterModule.forChild([
       path: 'applyjobadmin',
       component: ApplyjobAdminComponent,
       canActivate: [AdminGuardService]
-    }   
+    },
+    {
+      path: 'uploadbulkprofile',
+      component: UploadbulkprofileComponent,
+      canActivate: [AdminGuardService]
+    }        
            
     
     

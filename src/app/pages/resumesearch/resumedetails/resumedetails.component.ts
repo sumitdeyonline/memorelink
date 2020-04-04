@@ -18,7 +18,12 @@ export class ResumedetailsComponent implements OnInit {
   public uprofile: UserProfile;
   public uResumes: UploadResume[];
   county: Country[];
-  constructor(private _activeRoute:ActivatedRoute, private _uprofile: UserprofileService, private _uResume: UploadResumeService) { }
+  relocate: any;
+  travel: any;
+  security: any;
+  constructor(private _activeRoute:ActivatedRoute, private _uprofile: UserprofileService, private _uResume: UploadResumeService) {
+    window.scroll(0,0);
+   }
 
   ngOnInit() {
     this._activeRoute.paramMap.subscribe(params => {
@@ -27,6 +32,11 @@ export class ResumedetailsComponent implements OnInit {
     }); 
     this._uprofile.getUserProfileById(this.id).subscribe(uprof=> {
       this.uprofile = uprof;
+      if (this.uprofile != null) {
+        if (this.uprofile.IsRelocate) { this.relocate = "Yes"; } else { this.relocate = "No"; }
+        if (this.uprofile.IsTravel) { this.travel = "Yes"; } else { this.travel = "No"; }
+        if (this.uprofile.SecurityClearance) { this.security = "Yes"; } else { this.security = "No"; }
+      }
       //console.log("Profile Service  ::: "+this.uprofile.Username);
       this._uprofile.getCountryName(this.uprofile.Country).subscribe(cname=> {
         this.county = cname;
@@ -34,6 +44,7 @@ export class ResumedetailsComponent implements OnInit {
         this.uprofile.Country = this.county[0].CountryName;
         this._uResume.getResumeDetails(this.uprofile.Username).subscribe(uResume=> {
           this.uResumes = uResume;
+
           //console.log("Resuje URL :::::::: "+this.uResumes[0].ResumeFileName);
         })        
       })

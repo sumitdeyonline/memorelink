@@ -4,7 +4,10 @@ interface AuthSessionConfiguration {
     expireAt: string,
     profile: string,
     scope: string,
-    admin: string
+    admin: string,
+    PostJobRole: string,
+    ResumeSearchRole: string,
+    AdminRole: string,
 }
 
 export const SESSION_CONFIG: AuthSessionConfiguration = {
@@ -13,5 +16,9 @@ export const SESSION_CONFIG: AuthSessionConfiguration = {
     expireAt: 'expires_at',
     profile: 'profile',
     scope: 'scopes',
-    admin: 'admin'
+    admin: 'admin',
+    PostJobRole: 'PostJobRole',
+    ResumeSearchRole: 'ResumeSearchRole',
+    AdminRole: 'AdminRole'
+
 };

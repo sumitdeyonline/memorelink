@@ -15,6 +15,7 @@ import { HttpErrorResponse, HttpClient, HttpResponse, HttpRequest, HttpHeaders }
 import { UserDetails } from '../firebase/userdetails/userdetails.model';
 import { UserprofileService } from '../firebase/userprofile/userprofile.service';
 import { UserRole } from '../firebase/userprofile/userrole.model';
+import { analytics } from 'firebase';
 
 //import { UserDetails } from '../firebase/userdetails.model';
 
@@ -177,6 +178,11 @@ export class AuthService {
     localStorage.setItem(SESSION_CONFIG.idToken, authResult.idToken);
     localStorage.setItem(SESSION_CONFIG.expireAt, expiresAt);
     localStorage.setItem(SESSION_CONFIG.scope, JSON.stringify(scopes));
+    // localStorage.setItem(SESSION_CONFIG.PostJobRole,JSON.stringify(this.isEmployerPostJobRole));
+    // localStorage.setItem(SESSION_CONFIG.ResumeSearchRole,JSON.stringify(this.isEmployerResumeSearchRole));
+    // localStorage.setItem(SESSION_CONFIG.AdminRole,JSON.stringify(this.isAdminUserRole));
+    //console.log("Session ::::: "+localStorage.getItem(SESSION_CONFIG.PostJobRole));
+
   }
 
 
@@ -194,6 +200,9 @@ export class AuthService {
     localStorage.removeItem(SESSION_CONFIG.idToken);
     localStorage.removeItem(SESSION_CONFIG.expireAt);
     localStorage.removeItem(SESSION_CONFIG.profile);
+    localStorage.removeItem(SESSION_CONFIG.PostJobRole);
+    localStorage.removeItem(SESSION_CONFIG.ResumeSearchRole);
+    localStorage.removeItem(SESSION_CONFIG.AdminRole);
     // Go back to the home route
     this.router.navigate(['/login']);
   }
@@ -256,13 +265,14 @@ export class AuthService {
 
           //console.log("profile "+profile.roles);
       }
-      cb(err, profile);
+      //cb(err, profile);
     });
   }
 
-  private userRoleAssignment() {
+  public userRoleAssignment() {
     this.UserRole().subscribe(udetail=> {
       this.uDetail = udetail;
+      //let isEmployerPostJobRoleLocal, isEmployerResumeSearchRoleLocal, isAdminUserRoleLocal;
 
       if (this.uDetail[0] !=null) {
 
@@ -273,6 +283,13 @@ export class AuthService {
           this.isEmployerPostJobRole =  this.UserRoled[0].isEmployerPostJobRole;
           this.isEmployerResumeSearchRole =  this.UserRoled[0].isEmployerResumeSearchRole;
           this.isAdminUserRole =  this.UserRoled[0].isAdminUserRole;
+
+          localStorage.setItem(SESSION_CONFIG.PostJobRole,JSON.stringify(this.isEmployerPostJobRole));
+          localStorage.setItem(SESSION_CONFIG.ResumeSearchRole,JSON.stringify(this.isEmployerResumeSearchRole));
+          localStorage.setItem(SESSION_CONFIG.AdminRole,JSON.stringify(this.isAdminUserRole));
+          // console.log("Variable 1 "+this.isEmployerPostJobRole+ "  Session 1 :::::====>>> "+localStorage.getItem(SESSION_CONFIG.PostJobRole));
+          // console.log("Variable 2  :::::====>>> "+this.isEmployerResumeSearchRole + " Session 2  :::::====>>>"+localStorage.getItem(SESSION_CONFIG.ResumeSearchRole));
+          // console.log("Variable 3  :::::====>>> "+this.isAdminUserRole + "Session 3  :::::====>>> "+localStorage.getItem(SESSION_CONFIG.AdminRole));
 
 
         })
@@ -302,6 +319,7 @@ export class AuthService {
       }
       //console.log("List Service ..... 33333 ::::: "+this.pjob[1].id);
     })
+    //return this.uDetail;
   }
 
   public profileName() {
@@ -310,44 +328,34 @@ export class AuthService {
   }
 
   public isAdminRole() {
-    return this.isAdminUserRole;
-    // if (JSON.parse(localStorage.getItem(SESSION_CONFIG.profile)) !==null)
-    // //console.log("******* IsAdmin  ******* 1 "+localStorage.getItem(SESSION_CONFIG.profile));
-    // {
-    //   //if (JSON.parse(localStorage.getItem(SESSION_CONFIG.profile)).roles == SESSION_CONFIG.admin)
-    //   if (localStorage.getItem(SESSION_CONFIG.profile).indexOf('admin') !=null) {
-    //     //console.log(localStorage.getItem(SESSION_CONFIG.profile).indexOf('admin'));
-    //     if (localStorage.getItem(SESSION_CONFIG.profile).indexOf('admin') > -1)
-    //       return true;
-    //     else
-    //       return false;
-    //   }
-    // }
+
+    if (localStorage.getItem(SESSION_CONFIG.AdminRole)=='true')
+      return true;
+    return false;
+    //return this.isAdminUserRole;
   }
 
   public isPostJobRole() {
-    // if (this.userProfile !=null) {
-    //   this.UserRole().subscribe(udetail=> {
-    //     this.uDetail = udetail;
-    //     if (this.uDetail[0] !=null) {
-    //       if (this.uDetail[0].userRole == "Employer") {
-    //         //console.log("Employer Role :::::: ");
-    //         this.isEmployeeRole = true;
-    //       } else {
-    //         //console.log("Not a Employer Role :::::: ");
-    //         this.isEmployeeRole = false;
-    //       }
-    //     }
-    //     //console.log("List Service ..... 33333 ::::: "+this.pjob[1].id);
-    //   })
-    // }
-    //console.log("Employer Role ::::::: => "+this.isEmployerPostJobRole);
-    return this.isEmployerPostJobRole;
+
+    //return this.isEmployerPostJobRole;
+    if (localStorage.getItem(SESSION_CONFIG.PostJobRole) == 'true')
+      return true;
+    return false;
   }
 
+
   public isResumeSearchRole() {
-    return this.isEmployerResumeSearchRole;
+    //this.userRoleAssignment();
+    //console.log("this.isEmployerResumeSearchRole ::: "+this.isEmployerResumeSearchRole);
+    if (localStorage.getItem(SESSION_CONFIG.ResumeSearchRole) == 'true')
+      return true;
+    return false;
+    //return this.isEmployerResumeSearchRole;
+    //console.log("localStorage.getItem(SESSION_CONFIG.ResumeSearchRole) :::===>>> "+localStorage.getItem(SESSION_CONFIG.ResumeSearchRole));
+    //return localStorage.getItem(SESSION_CONFIG.ResumeSearchRole);
   }
+
+
 
   UserRole() {
     //console.log("USER ROLE ::::: -> UserName ::::: "+this.userProfile.name);
