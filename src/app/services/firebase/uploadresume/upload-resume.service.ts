@@ -98,10 +98,6 @@ export class UploadResumeService {
       this.task = storageRef.child(`${this.basePath}/${filename}`).put(fileUpload.file);
       //const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
 
-
-
-
-
     }
 
     //const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
@@ -176,6 +172,110 @@ export class UploadResumeService {
     );
 
   }
+
+
+
+
+  pushFileToStorageBulk(username: string,resumefilename:string, fileUpload: FileUpload,progress: { percentage: number }, id: string) {
+
+
+    const storageRef = firebase.storage().ref();
+
+      let filename = username+"."+resumefilename.substring(fileUpload.file.name.lastIndexOf(".")+1);
+      //let filename = username+"."+fileUpload.file.name.substring(fileUpload.file.name.lastIndexOf(".")+1);
+      //console.log('Not Null -> File Name ', this.auth.userProfile.name.replace(".","_")+"."+fileUpload.file.name.substring(fileUpload.file.name.lastIndexOf(".")+1));
+     // console.log('Not Null -> File Name '+filename);
+
+      //this.task = storageRef.child(`${this.basePath}/${this.auth.userProfile.name+"_"+fileUpload.file.name}`).put(fileUpload.file);
+      this.task = storageRef.child(`${this.basePath}/${filename}`).put(fileUpload.file);
+      //const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
+
+
+    //const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
+    const uploadTask = this.task;
+
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+
+        // in progress
+        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+
+      },
+      (error) => {
+        // fail
+        console.log(error);
+      },
+      () => {
+        // success
+        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+
+          //console.log('File available at', downloadURL);
+          //console.log('File Key::::::::: => ', fileUpload.key);
+          fileUpload.url = downloadURL;
+          fileUpload.name = fileUpload.file.name;
+
+
+          this.downloadURL = downloadURL;
+          this.fileName =  fileUpload.file.name;
+          //this.fUpload.name = fileUpload.file.name;
+          //this.fUpload.url = downloadURL;
+
+          this.saveFileData(fileUpload);
+          let uResume = {} as UploadResume;
+          uResume.ResumeFileName = this.fileName;
+          uResume.UserID =  this.auth.userProfile.name;
+          uResume.Username =  this.auth.userProfile.name;
+          uResume.ResumeURL =  this.downloadURL;
+          uResume.ResumeID =  "";
+          uResume.ResumeExt =  this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
+          if (id == null) {
+            //console.log("It's a new upload");
+
+            uResume.CreatedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
+            //this.selectedUploadResume = new uploadResume[];
+            // this.uploadResume.ResumeFileName  =   this.fileName;
+            // this.selectedUploadResume.ResumeURL  =   this.downloadURL;
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeURL);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeFileName);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeExt);
+            // console.log("It's a new upload -- Download URL ::: "+uResume.CreatedDate);
+            // this.selectedUploadResume.ResumeExt = this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
+            // this.selectedUploadResume.ModifiedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+
+          } else {
+            //console.log("It's a update >>><<<< "+id);
+            uResume.ModifiedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
+          }
+          this.addUpdateUserResume(uResume, id);
+          //this.selectedUploadResume = uResume;
+          //console.log('IDDDDDDDDDDDDDDDDDDDDD ::: ', this.selectedUploadResume.id);
+          // this.selectedUploadResume.ResumeFileName  =   this.fileName;
+          // this.selectedUploadResume.ResumeURL  =   this.downloadURL;
+          // this.selectedUploadResume.ResumeExt = this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
+          // this.selectedUploadResume.ModifiedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+          // this.addUpdateUserResume(this.selectedUploadResume, this.selectedUploadResume.id);
+
+        });
+
+      }
+
+    );
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   private saveFileData(fileUpload: FileUpload) {
 

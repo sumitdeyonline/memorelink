@@ -25,9 +25,14 @@
                     </th>
                 </tr>
             </table>
-
-            <table class="table table-responsive table-hover" border="1" 
-            style="width : 50%;">
+            <table>
+                <tr>
+                    <td>
+                        <button class="btn btn-success" [disabled]="!uploadToDBEnabled" (click)="uploadProfilesIntoDB()">Upload profile into Database</button>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-responsive table-hover" border="1"  style="width : 100%;">
                 <tbody>
                     <ng-container *ngFor="let csvRec of csvRecords;let i=index">
                         <tr>
@@ -37,31 +42,20 @@
                         </tr>
                     </ng-container>
                 </tbody>
-            </table>            
-
+            </table>             
+<!-- 
             <table>
               <tr *ngFor="let csvRec of csvRecords;let i=index">
                 <th *ngFor="let data of csvRec;let j=index">{{data}}</th>
-                <!-- <th windh="20%">Role Details</th>
-                <th windh="10%">Role Type</th>
-                <th windh="10%">Post Job</th>
-                <th windh="10%">Resume Search</th>
-                <th windh="10%">Admin Role</th>
-                <th windh="5%">Order By</th> -->
-                <th windh="5%">&nbsp;</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Sex</th>
+                <th>Address1</th>
+                <th>Address2</th>
+                <th>City</th>
+                <th>&nbsp;</th>
               </tr>
-              <!-- <tr *ngFor="let urole of UserRole">
-                <td>{{urole.RoleName}}</td>
-                <td>{{urole.RoleDetails}}</td>
-                <td>{{urole.RoleType}}</td>
-                <td>{{urole.isEmployerPostJobRole}}</td>
-                <td>{{urole.isEmployerResumeSearchRole}}</td>
-                <td>{{urole.isAdminUserRole}}</td>
-                <td>{{urole.OrderBy}}</td>
-                <td><a [routerLink]="['/postjob']" class="fa fa-edit"></a>&nbsp;
-                </td>
-              </tr> -->
-          </table>
+            </table> -->
   
           </div>
         </div>

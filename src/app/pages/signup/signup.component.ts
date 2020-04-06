@@ -69,6 +69,7 @@ export class SignupComponent implements OnInit {
       //     //return Observable.throw(error);
       // });
     }
+    
     resetForm(signupForm? : NgForm) {
       //this.signupError='';
       if (signupForm !=null)

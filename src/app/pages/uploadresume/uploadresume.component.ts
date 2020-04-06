@@ -69,7 +69,7 @@ export class UploadresumeComponent implements OnInit {
 
   upload() {
     const file = this.selectedFiles.item(0);
-    //console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
+    console.log("this.selectedFiles.item(0) :::::: => "+this.selectedFiles.item(0).name);
     if (this.validateFile(this.selectedFiles.item(0).name)) {
       this.selectedFiles = undefined;
       this.resumeUploadEnabled = true;
