@@ -30,6 +30,9 @@
                     <td>
                         <button class="btn btn-success" [disabled]="!uploadToDBEnabled" (click)="uploadProfilesIntoDB()">Upload profile into Database</button>
                     </td>
+                    <td style="color: red;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{SucessMessage}}
+                    </td>
                 </tr>
             </table>
             <table class="table table-responsive table-hover" border="1"  style="width : 100%;">

@@ -224,8 +224,8 @@ export class UploadResumeService {
           this.saveFileData(fileUpload);
           let uResume = {} as UploadResume;
           uResume.ResumeFileName = this.fileName;
-          uResume.UserID =  this.auth.userProfile.name;
-          uResume.Username =  this.auth.userProfile.name;
+          uResume.UserID =  username;
+          uResume.Username =  username;
           uResume.ResumeURL =  this.downloadURL;
           uResume.ResumeID =  "";
           uResume.ResumeExt =  this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
@@ -263,15 +263,6 @@ export class UploadResumeService {
     );
 
   }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -334,8 +325,8 @@ export class UploadResumeService {
     //console.log("New Form ::: ------------->" + id);
     if ((id == null) || (id == '')) {
       uResume.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
-      uResume.Username = this.auth.userProfile.name;
-      uResume.UserID = this.auth.userProfile.name;
+      // uResume.Username = this.auth.userProfile.name;
+      // uResume.UserID = this.auth.userProfile.name;
       //pjobc.JobTitle =
       // console.log ("Create Date ::: "+pjobc.CreatedDate);
       // console.log ("Created By ::: "+pjobc.CreatedBy);

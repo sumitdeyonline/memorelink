@@ -37,7 +37,7 @@ export class UserprofileService {
   userRoleCollection: AngularFirestoreCollection <UserRole>;
   userRoleProfilec: Observable<UserRole[]>;
 
-  userProfile = [];
+  //userProfile = [];
 
   constructor(private afs : AngularFirestore, private auth: AuthService, private http: HttpClient) {
     this.upCollection = this.afs.collection(FIREBASE_CONFIG.UserProfile);
@@ -85,6 +85,70 @@ export class UserprofileService {
 
     }
     //this.AlgoliaUpdate();
+  }
+
+
+  addUpdateUserProfileBulk(uprofile : UserProfile,username: string,createDate: Date) {
+    console.log("Bulk Upload");
+    let uUploadProfile = {} as UserProfile;
+    uUploadProfile.LastModifiedDate = new Date();
+    //uprofile.LastModifiedDate = new Date();
+    //console.log("UserProfile :::: "+uprofile.Username);
+      //uprofile.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+    // uprofile.CreatedDate = new Date();
+    // uprofile.Username = username;
+    // uprofile.isSearchable = true;
+    uUploadProfile.CreatedDate = new Date();
+    uUploadProfile.Username = username;
+    uUploadProfile.isSearchable = true; 
+    
+    uUploadProfile.FirstName = uprofile.FirstName;
+    uUploadProfile.LastName = uprofile.LastName;
+    uUploadProfile.Sex = uprofile.Sex;
+    uUploadProfile.Address1 = uprofile.Address1;
+    uUploadProfile.Address2 = uprofile.Address2;
+    uUploadProfile.City = uprofile.City;
+    uUploadProfile.State = uprofile.State;
+    uUploadProfile.ZipCode = uprofile.ZipCode;
+    uUploadProfile.Country = uprofile.Country;
+    uUploadProfile.CellPhone = uprofile.CellPhone;
+    uUploadProfile.HomePhone = uprofile.HomePhone;
+    uUploadProfile.Email = uprofile.Email;
+    uUploadProfile.CoverLetter = uprofile.CoverLetter;
+    uUploadProfile.DesiredPosition = uprofile.DesiredPosition;
+    uUploadProfile.DesiredSalary = uprofile.DesiredSalary;
+    uUploadProfile.SkillSet = uprofile.SkillSet;
+    uUploadProfile.Education = uprofile.Education;
+    uUploadProfile.EmploymentType = uprofile.EmploymentType;
+    uUploadProfile.Username = uprofile.Username;
+    uUploadProfile.UserID = uprofile.UserID;
+    uUploadProfile.LinkedinURL = uprofile.LinkedinURL;
+    uUploadProfile.PersonalWebsite = uprofile.PersonalWebsite;
+    uUploadProfile.FaceBookURL = uprofile.FaceBookURL;
+    uUploadProfile.IsRelocate = uprofile.IsRelocate;
+    uUploadProfile.IsTravel = uprofile.IsTravel;
+    uUploadProfile.SecurityClearance = uprofile.SecurityClearance;
+    uUploadProfile.WorkAuthorization = uprofile.WorkAuthorization;
+    uUploadProfile.YearsofExperince = uprofile.YearsofExperince;
+    uUploadProfile.institute = uprofile.institute;
+    uUploadProfile.instituteCity = uprofile.instituteCity;
+    uUploadProfile.instituteCountry = uprofile.instituteCountry;     
+      //pjobc.JobTitle =
+      // console.log ("Create Date ::: "+pjobc.CreatedDate);
+      // console.log ("Created By ::: "+pjobc.CreatedBy);
+      // console.log("NEW FORM ....Service");
+      //this.upCollection.add(uprofile);
+
+      //this.upCollection.add(uprofile).then((entry) => {
+      this.upCollection.add(uUploadProfile).then((entry) => {        
+
+        console.log("Entry ISSSSS "+entry.id);
+
+        //this.AlgoliaObjectUpdate(null,uprofile,entry.id, createDate);
+        this.AlgoliaObjectUpdate(null,uUploadProfile,entry.id, createDate);
+
+      });
+
   }
 
 
