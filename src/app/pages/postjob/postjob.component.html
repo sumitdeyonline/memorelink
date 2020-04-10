@@ -16,6 +16,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button (click)="myjobList()" class="btn btn-primary btn-sm">Back to My Post Job</button>&nbsp;&nbsp;
                    </td>
+                   
                 </tr>
               </table>
               
@@ -31,7 +32,21 @@
 
             <form #f="ngForm" (ngSubmit)="JobPostSubmit(f)">
 
-		           <h3 class="title" style="color: red;">Job Details</h3>&nbsp;
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3 class="title" style="color: red;">Job Details</h3>&nbsp;
+                    </div>
+                    <div class="col">&nbsp;</div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col">
+	
+                        <div class="form-actions floatRight">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit" [disabled]="!f.valid" class="btn btn-primary btn-sm">
+                        </div>
+                        <br>
+                    </div>
+                </div>                
 
 
                 <div class="row">

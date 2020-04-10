@@ -22,7 +22,7 @@ export class UserProfile {
 	IsTravel? : boolean;
 	YearsofExperince? : string;
 	WorkAuthorization? : string;
-	SecurityClearance? : string;
+	SecurityClearance? : boolean;
     // ResumeID? : string;
     // ResumeFileName? : string;
 	// ResumeURL? : string;

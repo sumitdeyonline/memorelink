@@ -239,7 +239,9 @@ export class PostjobComponent implements OnInit {
     dialogConfig.data = type+"||jobpoststatus";
     this.dialog.open(CommondialogComponent, dialogConfig);
     this.resetForm(postJobForm);
-
+    window.scroll(0,0);
+    this.router.navigate(['/jobpoststatus']);
+ 
 
     /*setTimeout(() => {
 

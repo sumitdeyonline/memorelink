@@ -54,7 +54,7 @@ export class JobpoststatusComponent implements OnInit {
       }
 
   ngOnInit() {
-    window.scroll(0,0);
+    
     this.loading = true;
     this.postservice.getPostJobsByUser(this.auth.userProfile.name, 'U').subscribe(pjob=> {
       this.pjob = pjob;
@@ -63,6 +63,7 @@ export class JobpoststatusComponent implements OnInit {
       this.loading = false;
       // Math.round(Math.abs(new Date().getTime() - this.pjob[0].LastModifiedDate.toDate().getTime())/(24*60*60*1000)
       this.setPage(1);
+      window.scroll(0,0);
       //console.log("List Service ..... 33333 ::::: "+this.pjob[1].id);
     })
   }

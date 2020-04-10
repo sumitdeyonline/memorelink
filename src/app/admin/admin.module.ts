@@ -13,7 +13,7 @@ import { UserprofilesComponent } from './userprofiles/userprofiles.component';
 import { PostjobvendorComponent } from './postjobvendor/postjobvendor.component';
 import { CountryComponent } from './country/country.component';
 import { CountryaddupdateComponent } from './country/countryaddupdate/countryaddupdate.component';
-import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatDialogModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule,  MatProgressSpinnerModule } from '@angular/material';
 import { CountrydialogComponent } from './country/countrydialog/countrydialog.component';
 import { StateComponent } from './state/state.component';
 import { StateaddupdateComponent } from './state/stateaddupdate/stateaddupdate.component';
@@ -22,7 +22,6 @@ import { ApplyjobAdminComponent } from './applyjob-admin/applyjob-admin.componen
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { UploadbulkprofileComponent } from './uploadbulkprofile/uploadbulkprofile.component';
-
 
 @NgModule({
     imports: [
@@ -36,7 +35,9 @@ import { UploadbulkprofileComponent } from './uploadbulkprofile/uploadbulkprofil
         MatTableModule,
         MatPaginatorModule,
         MatSortModule, 
-        AngularFireDatabaseModule,       
+        AngularFireDatabaseModule, 
+        MatProgressSpinnerModule
+
     ],
       declarations: [
       AdminhomeComponent,

@@ -17,6 +17,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { formatDate } from '@angular/common';
 import { AuthService } from '../../authentication/auth.service';
 import { FIREBASE_CONFIG } from 'src/app/global-config';
+import { UserProfile } from '../userprofile/userprofile.model';
+import { UserprofileService } from '../userprofile/userprofile.service';
 
 
 
@@ -44,7 +46,7 @@ export class UploadResumeService {
   fUpload: FileUpload;
 
 
-  constructor(private db: AngularFireDatabase, private afs : AngularFirestore, private auth: AuthService) {
+  constructor(private db: AngularFireDatabase, private afs : AngularFirestore, private auth: AuthService, public uProfileservice: UserprofileService) {
     this.urCollection = this.afs.collection(FIREBASE_CONFIG.UploadResume);
   }
 
@@ -176,7 +178,7 @@ export class UploadResumeService {
 
 
 
-  pushFileToStorageBulk(username: string,resumefilename:string, fileUpload: FileUpload,progress: { percentage: number }, id: string) {
+  pushFileToStorageBulk(username: string,resumefilename:string, fileUpload: FileUpload,progress: { percentage: number }, id: string, csvRecords) {
 
 
     const storageRef = firebase.storage().ref();
@@ -214,6 +216,7 @@ export class UploadResumeService {
           //console.log('File Key::::::::: => ', fileUpload.key);
           fileUpload.url = downloadURL;
           fileUpload.name = fileUpload.file.name;
+        
 
 
           this.downloadURL = downloadURL;
@@ -233,21 +236,13 @@ export class UploadResumeService {
             //console.log("It's a new upload");
 
             uResume.CreatedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
-            //this.selectedUploadResume = new uploadResume[];
-            // this.uploadResume.ResumeFileName  =   this.fileName;
-            // this.selectedUploadResume.ResumeURL  =   this.downloadURL;
-            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeURL);
-            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeFileName);
-            // console.log("It's a new upload -- Download URL ::: "+uResume.ResumeExt);
-            // console.log("It's a new upload -- Download URL ::: "+uResume.CreatedDate);
-            // this.selectedUploadResume.ResumeExt = this.fileName.substring(this.fileName.lastIndexOf(".")+1,this.fileName.length);
-            // this.selectedUploadResume.ModifiedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+
 
           } else {
             //console.log("It's a update >>><<<< "+id);
             uResume.ModifiedDate =  formatDate(new Date(), 'MM/dd/yyyy', 'en');
           }
-          this.addUpdateUserResume(uResume, id);
+          this.addUpdateUserResumeBulk(username,uResume, id,csvRecords);
           //this.selectedUploadResume = uResume;
           //console.log('IDDDDDDDDDDDDDDDDDDDDD ::: ', this.selectedUploadResume.id);
           // this.selectedUploadResume.ResumeFileName  =   this.fileName;
@@ -341,6 +336,71 @@ export class UploadResumeService {
       this.upDoc.update(uResume);
     }
     //this.AlgoliaUpdate();
+  }
+
+
+  
+  addUpdateUserResumeBulk(username: string,uResume: UploadResume, id: string,csvRecords) {
+    let uProfile:UserProfile;
+    //console.log("New Form ::: ------------->" + id);
+      uResume.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+      this.urCollection.add(uResume).then(() => {
+        uProfile = this.uProfileDataBulk(csvRecords);
+        //console.log("User ID ::: "+uProfile.Username);
+        this.uProfileservice.addUpdateUserProfileBulk(uProfile, username, new Date());
+
+      });
+
+    //this.AlgoliaUpdate();
+  }
+
+
+  private uProfileDataBulk(csvRec) {
+
+    let uProfile = new UserProfile();
+
+    uProfile.FirstName = csvRec[0];
+    //console.log("uProfile.FirstName = csvRec[0] :: "+uProfile.FirstName);
+    uProfile.LastName = csvRec[1];
+    uProfile.Sex = csvRec[2];
+    uProfile.Address1 = csvRec[3];
+    uProfile.Address2 = csvRec[4];
+    uProfile.City = csvRec[5];
+    uProfile.State = csvRec[6];
+    uProfile.ZipCode = csvRec[7];
+    uProfile.Country = csvRec[8];
+    uProfile.CellPhone = csvRec[9];
+    uProfile.HomePhone = csvRec[10];
+    uProfile.Email = csvRec[11];
+    uProfile.CoverLetter = csvRec[12];
+    uProfile.DesiredPosition = csvRec[13];
+    uProfile.DesiredSalary = csvRec[14];
+    uProfile.SkillSet = csvRec[15];
+    uProfile.Education = csvRec[16];
+    uProfile.EmploymentType = csvRec[17];
+    uProfile.Username = csvRec[18];
+    //uProfile.UserID = csvRec[19];
+    uProfile.LinkedinURL = csvRec[19];
+    uProfile.PersonalWebsite = csvRec[20];
+    uProfile.FaceBookURL = csvRec[21];
+    uProfile.IsRelocate = csvRec[22];
+    uProfile.IsTravel = csvRec[23];
+    uProfile.SecurityClearance = csvRec[24];
+    uProfile.WorkAuthorization = csvRec[25];
+    uProfile.YearsofExperince = csvRec[26];
+    uProfile.institute = csvRec[27];
+    uProfile.instituteCity = csvRec[28];
+    uProfile.instituteCountry = csvRec[29];  
+    
+    // this.uDetails = new UserDetails();
+    // this.uDetails.userName = csvRec[18];
+    // this.uDetails.userRole = "User";
+
+    // this.uResume = new UploadResume();
+    // this.uResume.Username = csvRec[18];
+    // this.uResume.UserID = csvRec[19];
+    return uProfile;
+
   }
 
 

@@ -154,25 +154,29 @@ export class ListjobComponent implements OnInit {
       //console.log(" keyword :::: "+keyword+"location :::: "+location);
       //this.SpinnerService.show(); 
       this.loading = true;
-      if ((keyword.trim() == "") && (location.trim() == "")) {
+      let locationLocal = location.trim();
+      let keywordLocal = keyword.trim();
+      if ((keywordLocal == "") && (locationLocal == "")) {
         //console.log("Nothing ... ");
         this.index.search({
         }).then((data) => {
           //let j=0;
           //this.PostJobcFinal = [];
           this.PostJobc = data.hits;
+
+          //console.log("All Data");
+
           // this.SpinnerService.hide();
           this.loading = false; 
           this.setPage(1);
         });        
       } else {
-        if ((keyword.trim() != "") || (location.trim() != "")) {
-          if (location.trim() != "") {
+        if ((keywordLocal != "") || (locationLocal != "")) {
+          if (locationLocal != "") {
   
-            if (isNumeric(location)) {
+            if (isNumeric(locationLocal)) {
               //console.log("This is number");
-              filter = 'JobZip:'+location;
-  
+              filter = 'JobZip:'+locationLocal;
               /* Zipcode location service */
               // this.locserv.getCityState(location).subscribe((data)=>{
               //   console.log(data);
@@ -186,62 +190,65 @@ export class ListjobComponent implements OnInit {
   
             } else {
   
-              if (location.indexOf(",") > -1) {
-                state = this.isNull(location.split(",")[1].trim());
-                city = this.isNull(location.split(",")[0].trim());
+              // Separated out state and city 
+              if (locationLocal.indexOf(",") > -1) {
+                state = this.isNull(locationLocal.split(",")[1].trim());
+                city = this.isNull(locationLocal.split(",")[0].trim());
               } else {
-                city = this.isNull(location.trim());
+                city = this.isNull(locationLocal.trim());
               }
-  
+              
+            
   
               if ((state !="") && (city !="")) {
-                filter = 'JobCity:'+city+' AND JobState:'+state;
+                filter = 'JobCity:"'+city+'" AND JobState:"'+state+'"';
               } else if ((state == "") && (city !="")) {
-                filter = 'JobCity:'+city;
+                filter = 'JobCity:"'+city+'"';
               } else if ((state != "") && (city =="")){
-                filter = 'JobState:'+state;
+                filter = 'JobState:"'+state+'"';
               } else {
                 filter ='';
               }
-   
+              // console.log("Filter :::: "+filter);
+              // console.log("keyword  :::: "+keywordLocal);              
             }
           } else {
             filter ='';
           }
   
-  
-  
-  
+ 
         //console.log("Filter :::::: => "+filter);
   
-        if (filter == '') {
-          this.index.search({
-            query: keyword
-  
-          }).then((data) => {
-            //let j=0;
-            //this.PostJobcFinal = [];
-            this.PostJobc = data.hits;
-            //this.SpinnerService.hide(); 
-            this.loading = false; 
-            this.setPage(1);
-          });
-        } else  {
-  
-          this.index.search({
-            query: keyword,
-            filters: filter
-          }).then((data) => {
-            //let j=0;
-            //this.PostJobcFinal = [];
-            this.PostJobc = data.hits;
-            //this.SpinnerService.hide(); 
-            this.loading = false; 
-            this.setPage(1);
-  
-          });
-  
-        }
+          if (filter == '') {
+            this.index.search({
+              query: keywordLocal
+    
+            }).then((data) => {
+              //let j=0;
+              //this.PostJobcFinal = [];
+              this.PostJobc = data.hits;
+              //console.log("No City State");
+              //this.SpinnerService.hide(); 
+              this.loading = false; 
+              this.setPage(1);
+            });
+          } else  {
+    
+            this.index.search({
+              query: keywordLocal,
+              filters: filter
+            }).then((data) => {
+              //let j=0;
+              //this.PostJobcFinal = [];
+              this.PostJobc = data.hits;
+              //this.SpinnerService.hide(); 
+              //console.log("City or State");
+              this.loading = false; 
+              this.setPage(1);
+    
+            });
+    
+          }
         }
       }
 

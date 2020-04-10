@@ -10,7 +10,7 @@ import { UserdetailsService } from 'src/app/services/firebase/userdetails/userde
 import { UploadResumeService } from 'src/app/services/firebase/uploadresume/upload-resume.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserprofileService } from 'src/app/services/firebase/userprofile/userprofile.service';
-
+import 'rxjs/add/operator/map'
 
 @Component({
   selector: 'uploadbulkprofile',
@@ -26,13 +26,14 @@ import { UserprofileService } from 'src/app/services/firebase/userprofile/userpr
 // }
 export class UploadbulkprofileComponent implements OnInit {
   SucessMessage: string ='';
+  CompleteMessage: string='';
   selectedFiles: FileList;
   resumeUploadEnabled: boolean = false;
   uploadToDBEnabled: boolean = false;
   //currentFileUpload: File;
   csvRecords = [];
   uProfile: UserProfile;
-  uDetails: UserDetails;
+  //uDetails: UserDetails;
   uResume: UploadResume;
   signup = new Signup();
   tokenDelimeter = "~";
@@ -45,6 +46,7 @@ export class UploadbulkprofileComponent implements OnInit {
   fUpload: FileUpload;
   progress: { percentage: number } = { percentage: 0 }; 
   bulkFile: File;
+  loading: boolean = false;
 
   constructor( public auth: AuthService,
                private udetails: UserdetailsService,
@@ -115,12 +117,13 @@ export class UploadbulkprofileComponent implements OnInit {
 
 
   uploadProfilesIntoDB() {
+    this.loading = true;
     this.uploadToDBEnabled = false;
     for(let i=0;i<this.csvRecords.length;i++) {
-      if (i>0) {
-        this.uProfileData(this.csvRecords[i]);
+      if (i>0) { // Ignore Header
+        //this.uProfileData(this.csvRecords[i]);
 
-        this.uRegistrtion(this.uProfile.Username,this.csvRecords[i][31],this.csvRecords[i][32],i);
+        this.uRegistrtion(this.csvRecords[i],this.csvRecords[i][18],this.csvRecords[i][30],this.csvRecords[i][31],this.csvRecords[i][32],i);
         //this.UploadResume(this.uProfile.Username,this.csvRecords[i][31],this.csvRecords[i][32]);
       }
       // for(let j=0;j<this.csvRecords[i].length;j++) {
@@ -128,16 +131,27 @@ export class UploadbulkprofileComponent implements OnInit {
       //   console.log("this.csvRecords[i].length ::: "+ i +" => "+j + "Value" +this.csvRecords[i][j]);
       // }
     }
-
+    this.loading = false;
+    setTimeout(() =>{
+      this.CompleteMessage = "Process has been sucessfully completed";
+    }, 2000*this.csvRecords.length); 
   }
 
-  private uRegistrtion(username,ResumeURL,ResumeFileName,i) {
+  private uRegistrtion(csvRecords,username,ResumeURL,ResumeFileName,contenttype,i) {
 
-    let signupSucessMessage = '';
+    let headers = new HttpHeaders({
+      // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Origin': "*",
+      'Access-Control-Allow-Methods': 'GET',
+      'Content-Type': contenttype
+      // 'Accept': "application/ms-word"
+    });    
+    let signupSucessMessage:string = '';
     this.signup.client_id = AUTH_CONFIG.clientID;
     this.signup.connection = AUTH_CONFIG.connection;
     this.signup.response_type = AUTH_CONFIG.responseType;
-    this.signup.email = this.uDetails.userName;
+    //this.signup.email = this.uDetails.userName;
+    this.signup.email = username;
     this.signup.password = "Memorelink1";
     this.signup.repassword = "Memorelink1";
 
@@ -146,12 +160,12 @@ export class UploadbulkprofileComponent implements OnInit {
       modelSignup => {
           // refresh the list
           //alert("User Addred");
-          signupSucessMessage = this.signup.email+" has been Sucessfully Registered"
-          console.log(signupSucessMessage);
-          this.udetails.addUpdateUserDetails(null, this.signup.email,FIREBASE_CONFIG.UserRole, this.signup.company, this.signup.companyAddress,this.signup.phone,0);
-          //this.router.navigate(['/signupconfirm']);
-          this.UploadResumeProfile(username,ResumeURL,ResumeFileName,i);  // Upload Resume
-          return true;
+          signupSucessMessage = this.signup.email+" has been Sucessfully Registered";
+          //console.log(signupSucessMessage);
+          //this.udetails.addUpdateUserDetailsBulk(null, username,FIREBASE_CONFIG.UserRole, this.signup.company, this.signup.companyAddress,this.signup.phone,0,ResumeURL,ResumeFileName,contenttype,csvRecords);
+          this.udetails.addUpdateUserDetailsBulk(null, username,FIREBASE_CONFIG.UserRole, this.signup.company, this.signup.companyAddress,this.signup.phone,0,ResumeURL,ResumeFileName,contenttype,csvRecords);
+          this.SucessMessage = username+" has been created. Recoed No : "+i;
+          //return true;
       },
       error => {
         this.error = error;
@@ -164,81 +178,45 @@ export class UploadbulkprofileComponent implements OnInit {
 
   }
 
-  private UploadResumeProfile(username,resumeURL,ResumeFileName,i) {
-    let headers = new HttpHeaders({
-      // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
-      'Access-Control-Allow-Origin': "*",
-      'Access-Control-Allow-Methods': 'GET',
-      // 'Content-Type':  'application/ms-word',
-      // 'Accept': "application/ms-word"
-    });  
-      let FileContains;
-      const file = resumeURL+ResumeFileName;
+  // private UploadResumeProfile(username,resumeURL,ResumeFileName,contenttype,i) {
+  //   let headers = new HttpHeaders({
+  //     // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+  //     'Access-Control-Allow-Origin': "*",
+  //     'Access-Control-Allow-Methods': 'GET',
+  //     'Content-Type': contenttype
+  //     // 'Accept': "application/ms-word"
+  //   });  
+  //     let FileContains;
+  //     const file = resumeURL+ResumeFileName;
 
-      // this.bulkFile = new File(file,ResumeFileName);
-      // this.currentFileUpload = new FileUpload(this.bulkFile);
-      // this.rUploadService.pushFileToStorageBulk(username,ResumeFileName, this.currentFileUpload, this.progress, null);   
+  //     // this.bulkFile = new File(file,ResumeFileName);
+  //     // this.currentFileUpload = new FileUpload(this.bulkFile);
+  //     // this.rUploadService.pushFileToStorageBulk(username,ResumeFileName, this.currentFileUpload, this.progress, null);   
 
 
-      this.http.get(file,{responseType: 'arraybuffer',headers: headers}).subscribe(data => {
-        FileContains = data;
-        let blob = new Blob([FileContains]);
-        //let blob = new Blob([FileContains], { type: "application/ms-word"});        
-        console.log(blob);
-        this.bulkFile = new File([blob],ResumeFileName);
+  //     this.http.get(file,{responseType: 'arraybuffer',headers: headers}).subscribe(data => {
+  //       FileContains = data;
+  //       let blob = new Blob([FileContains], { type: contenttype});
+  //       //let blob = new Blob([FileContains], { type: "application/ms-word"});        
+  //       //console.log(blob);
+  //       this.bulkFile = new File([blob],ResumeFileName);
 
-        this.currentFileUpload = new FileUpload(this.bulkFile);
-        this.rUploadService.pushFileToStorageBulk(username,ResumeFileName, this.currentFileUpload, this.progress, null);   
-        this.uProfileservice.addUpdateUserProfileBulk(this.uProfile, username, new Date());
-        this.SucessMessage = username+" has been created. Recoed No : "+i;
-      });
-  }
+  //       this.currentFileUpload = new FileUpload(this.bulkFile);
 
-  private uProfileData(csvRec) {
+  //       setTimeout(() =>{
+  //         this.rUploadService.pushFileToStorageBulk(username,ResumeFileName, this.currentFileUpload, this.progress, null,this.uProfile);  
 
-    this.uProfile = new UserProfile();
+  //         // Need to create this in the service. 
+  //         // setTimeout(() =>{ 
+  //         //   this.uProfileservice.addUpdateUserProfileBulk(this.uProfile, username, new Date());
+  //         //   this.SucessMessage = username+" has been created. Recoed No : "+i;            
+  //         // }, 2000);
 
-    this.uProfile.FirstName = csvRec[0];
-    this.uProfile.LastName = csvRec[1];
-    this.uProfile.Sex = csvRec[2];
-    this.uProfile.Address1 = csvRec[3];
-    this.uProfile.Address2 = csvRec[4];
-    this.uProfile.City = csvRec[5];
-    this.uProfile.State = csvRec[6];
-    this.uProfile.ZipCode = csvRec[7];
-    this.uProfile.Country = csvRec[8];
-    this.uProfile.CellPhone = csvRec[9];
-    this.uProfile.HomePhone = csvRec[10];
-    this.uProfile.Email = csvRec[11];
-    this.uProfile.CoverLetter = csvRec[12];
-    this.uProfile.DesiredPosition = csvRec[13];
-    this.uProfile.DesiredSalary = csvRec[14];
-    this.uProfile.SkillSet = csvRec[15];
-    this.uProfile.Education = csvRec[16];
-    this.uProfile.EmploymentType = csvRec[17];
-    this.uProfile.Username = csvRec[18];
-    this.uProfile.UserID = csvRec[19];
-    this.uProfile.LinkedinURL = csvRec[20];
-    this.uProfile.PersonalWebsite = csvRec[21];
-    this.uProfile.FaceBookURL = csvRec[22];
-    this.uProfile.IsRelocate = csvRec[23];
-    this.uProfile.IsTravel = csvRec[24];
-    this.uProfile.SecurityClearance = csvRec[25];
-    this.uProfile.WorkAuthorization = csvRec[26];
-    this.uProfile.YearsofExperince = csvRec[27];
-    this.uProfile.institute = csvRec[28];
-    this.uProfile.instituteCity = csvRec[29];
-    this.uProfile.instituteCountry = csvRec[30];  
-    
-    this.uDetails = new UserDetails();
-    this.uDetails.userName = csvRec[18];
-    this.uDetails.userRole = "User";
+  //       }, 2000);  
 
-    this.uResume = new UploadResume();
-    this.uResume.Username = csvRec[18];
-    this.uResume.UserID = csvRec[19];
+  //     });
+  // }
 
-  }
 
 
   validateFile(fileName: string) {

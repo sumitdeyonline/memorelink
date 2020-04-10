@@ -125,7 +125,7 @@ export class UserProfileComponent implements OnInit {
       // New Entry
        this.userProfileAddUpdate(uprofileForm, null);
        this.EnableEdit();
-       window.scroll(0,0);
+       //window.scroll(0,0);
 
 
 
@@ -159,6 +159,7 @@ export class UserProfileComponent implements OnInit {
     let body = '<b>Thank you '+uprofileForm.value.FirstName+' '+uprofileForm.value.LastName+' for upload your profile with us. Wish you best of luck for your future</b>  <br /><br /> <b>Thank you <br>MemoreLink Team</b> '
     this.sEmail.sendEmail(uprofileForm.value.Email,'',subject,body);
 
+    window.scroll(0,0);
     //this.getFilesWithDownloadURL(this.rUploadService.downloadURL);
 
 

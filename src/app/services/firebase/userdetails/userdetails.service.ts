@@ -19,6 +19,9 @@ import * as algoliasearch from 'algoliasearch';
 import { FIREBASE_CONFIG } from 'src/app/global-config';
 import { AuthService } from '../../authentication/auth.service';
 import { ValueServices } from '../../authentication/valueservices.model';
+import { FileUpload } from '../uploadresume/FileUpload';
+import { UploadResumeService } from '../uploadresume/upload-resume.service';
+import { UserProfile } from '../userprofile/userprofile.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +43,12 @@ export class UserdetailsService {
   //searchQuery: string ="sumitdey@yahoo.com" ;
   user = [];
 
-  constructor(private afs : AngularFirestore, private auth: AuthService, private http: HttpClient) {
+  currentFileUpload: FileUpload;
+  //fUpload: FileUpload;
+  progress: { percentage: number } = { percentage: 0 }; 
+  bulkFile: File;
+
+  constructor(private afs : AngularFirestore, private auth: AuthService, private http: HttpClient, public rUploadService: UploadResumeService) {
     this.udCollection = this.afs.collection(FIREBASE_CONFIG.UserDetails);
      // this.udCollection = this.afs.collection<UserDetails>('userDetail');
     this.userDetailc = this.udCollection.valueChanges();
@@ -95,6 +103,55 @@ export class UserdetailsService {
     }
 
   }
+
+  addUpdateUserDetailsBulk(id: string, uname: string,uRole: string, company: string, companyAddress: string, phone: string, postjobCount: number, ResumeURL:string,ResumeFileName:string,contenttype:string,csvRecords) {
+
+
+
+    if ((company == undefined) || (company == undefined)) company = '';
+    if ((companyAddress == undefined) || (companyAddress == undefined)) companyAddress = '';
+    if ((phone == undefined) || (phone == undefined)) phone = '';
+
+
+    const  cDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
+    const  udeatils: UserDetails = { userName: uname, userRole: uRole,company: company,companyAddress:companyAddress,phone:phone,createdDate: cDate, postjobCount: postjobCount };
+
+      this.udCollection.add(udeatils).then(() => {
+        this.UploadResumeProfileBulk(uname,ResumeURL,ResumeFileName,contenttype,csvRecords); 
+      });
+
+  }
+
+
+  private UploadResumeProfileBulk(username,resumeURL,ResumeFileName,contenttype,csvRecords) {
+    let headers = new HttpHeaders({
+      // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Origin': "*",
+      'Access-Control-Allow-Methods': 'GET',
+      'Content-Type': contenttype
+      // 'Accept': "application/ms-word"
+    });  
+      let FileContains;
+      const file = resumeURL+ResumeFileName;  
+      let blob;
+      this.http.get(file,{responseType: 'arraybuffer',headers: headers}).subscribe(data => {
+      // this.http.get(file,{responseType: contenttype,headers: headers}).subscribe(data => {
+        FileContains = data;
+        //console.log("Content Type ::: "+contenttype);
+        blob = new Blob([FileContains], { type: contenttype});        
+          
+        //let blob = new Blob([FileContains], { type: "application/ms-word"});        
+        //console.log(blob);
+        this.bulkFile = new File([blob],ResumeFileName);
+
+        this.currentFileUpload = new FileUpload(this.bulkFile);
+
+          this.rUploadService.pushFileToStorageBulk(username,ResumeFileName, this.currentFileUpload, this.progress, null,csvRecords);  
+
+      });
+  }
+
+
 
   getUserDetails(userOrRole, fieldType ) {
     // console.log("List Service ..... 3 "+userOrRole);

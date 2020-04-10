@@ -2,6 +2,21 @@
     <div class="single">
         <div class="form-container">
             <h2>Profile Bulk Upload</h2>
+
+            <!-- loader.component.html -->
+            <div ali class="progress-loader" [hidden]="!loading" >
+            
+                <mat-progress-spinner [mode]="'indeterminate'" [color]="'warn'" style="align-content: center;left:45%;">
+                </mat-progress-spinner>
+            
+            </div>                
+
+            <!-- <div ali class="progress-loader" [hidden]="!loading" style="align-content: center;left:45%;">
+            
+                <mat-progress-bar [mode]="'indeterminate'">
+                </mat-progress-bar>
+            
+            </div>   -->            
             <a routerLink="/postsadminhome" *ngIf="auth.isAdminRole()"><i class="fa fa-arrow-left" style="font-size:24px;color:rgb(14, 2, 43)"></i></a>
 
             <table>
@@ -45,7 +60,15 @@
                         </tr>
                     </ng-container>
                 </tbody>
-            </table>             
+            </table>  
+            <table>
+                <tr>
+                    <td style="color: red;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2 style="color: red;">{{CompleteMessage}}</h2>
+                    </td>
+                </tr>
+            </table>            
+            
 <!-- 
             <table>
               <tr *ngFor="let csvRec of csvRecords;let i=index">

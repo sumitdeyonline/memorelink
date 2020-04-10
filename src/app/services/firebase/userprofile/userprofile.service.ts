@@ -47,7 +47,6 @@ export class UserprofileService {
   }
 
   addUpdateUserProfile(uprofile :  UserProfile,id: string,createDate: Date) {
-
     uprofile.LastModifiedDate = new Date();
     if ((id == null) || (id == '')) {
       //uprofile.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
@@ -89,15 +88,10 @@ export class UserprofileService {
 
 
   addUpdateUserProfileBulk(uprofile : UserProfile,username: string,createDate: Date) {
-    console.log("Bulk Upload");
+    //console.log("Bulk Upload");
     let uUploadProfile = {} as UserProfile;
     uUploadProfile.LastModifiedDate = new Date();
-    //uprofile.LastModifiedDate = new Date();
-    //console.log("UserProfile :::: "+uprofile.Username);
-      //uprofile.CreatedDate = formatDate(new Date(), 'MM/dd/yyyy', 'en');
-    // uprofile.CreatedDate = new Date();
-    // uprofile.Username = username;
-    // uprofile.isSearchable = true;
+
     uUploadProfile.CreatedDate = new Date();
     uUploadProfile.Username = username;
     uUploadProfile.isSearchable = true; 
@@ -121,13 +115,33 @@ export class UserprofileService {
     uUploadProfile.Education = uprofile.Education;
     uUploadProfile.EmploymentType = uprofile.EmploymentType;
     uUploadProfile.Username = uprofile.Username;
-    uUploadProfile.UserID = uprofile.UserID;
+    uUploadProfile.UserID = uprofile.Username;
     uUploadProfile.LinkedinURL = uprofile.LinkedinURL;
     uUploadProfile.PersonalWebsite = uprofile.PersonalWebsite;
     uUploadProfile.FaceBookURL = uprofile.FaceBookURL;
+
+    // if (uprofile.IsRelocate == true)
+    //   uUploadProfile.IsRelocate = true;
+    // else 
+    //   uUploadProfile.IsRelocate = false;
+
     uUploadProfile.IsRelocate = uprofile.IsRelocate;
+
+    // if (uprofile.IsTravel == true)
+    //   uUploadProfile.IsTravel = true;
+    // else 
+    //   uUploadProfile.IsTravel = false;    
+
     uUploadProfile.IsTravel = uprofile.IsTravel;
+
+    // if (uprofile.SecurityClearance == true)
+    //   uUploadProfile.SecurityClearance = true;
+    // else 
+    //   uUploadProfile.SecurityClearance = false;    
+
     uUploadProfile.SecurityClearance = uprofile.SecurityClearance;
+
+
     uUploadProfile.WorkAuthorization = uprofile.WorkAuthorization;
     uUploadProfile.YearsofExperince = uprofile.YearsofExperince;
     uUploadProfile.institute = uprofile.institute;
@@ -142,10 +156,10 @@ export class UserprofileService {
       //this.upCollection.add(uprofile).then((entry) => {
       this.upCollection.add(uUploadProfile).then((entry) => {        
 
-        console.log("Entry ISSSSS "+entry.id);
+        //console.log("Entry ISSSSS "+entry.id);
 
         //this.AlgoliaObjectUpdate(null,uprofile,entry.id, createDate);
-        this.AlgoliaObjectUpdate(null,uUploadProfile,entry.id, createDate);
+        this.AlgoliaObjectUpdateBulk(null,uUploadProfile,entry.id, createDate);
 
       });
 
@@ -340,8 +354,10 @@ export class UserprofileService {
   }
 
   AlgoliaObjectUpdate(tranType, uprofile, id, createDate) {
-    console.log("Algolia Update Object..... :::::: "+createDate.seconds);
+    //console.log("Algolia Update Object..... :::::: "+createDate.seconds);
     let objects;
+
+
     if ((tranType == null) || (tranType == '')) {
       objects = [{
         id: id,
@@ -407,7 +423,6 @@ export class UserprofileService {
       }];
     }
 
- /****** Need to open Later ********/
 
     this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
       { protocol: SEARCH_CONFIG.PROTOCOLS });
@@ -420,7 +435,62 @@ export class UserprofileService {
         if (err) throw err;
         //console.log("Add Content :::::: "+content);
       });
-/***** End *******/
+
+  }
+
+
+
+  AlgoliaObjectUpdateBulk(tranType, uprofile, id, createDate) {
+    //console.log("Algolia Update Object..... :::::: "+createDate.seconds);
+    let objects;
+    //console.log("Username(Algolia) :::: "+uprofile.Username);
+
+    if ((tranType == null) || (tranType == '')) {
+      objects = [{
+        id: id,
+        objectID: id,
+        FirstName:uprofile.FirstName,
+        LastName:uprofile.LastName,
+        Sex:uprofile.Sex,
+        City:uprofile.City,
+        State:uprofile.State,
+        ZipCode:uprofile.ZipCode,
+        Country:uprofile.Country,
+        Email:uprofile.Email,
+        HomePhone:uprofile.HomePhone,
+        CellPhone:uprofile.CellPhone,
+        EmploymentType:uprofile.EmploymentType,
+        DesiredPosition:uprofile.DesiredPosition,
+        DesiredSalary:uprofile.DesiredSalary,
+        IsRelocate:uprofile.IsRelocate,
+        IsTravel:uprofile.IsTravel,
+        YearsofExperince:uprofile.YearsofExperince,
+        WorkAuthorization:uprofile.WorkAuthorization,
+        SecurityClearance:uprofile.SecurityClearance,
+        SkillSet:uprofile.SkillSet,
+        Education:uprofile.Education,
+        SalaryExpectation:uprofile.SalaryExpectation,
+        Username:uprofile.Username,
+        CreatedDate:uprofile.CreatedDate.getTime(),
+        LastModifiedDate:uprofile.LastModifiedDate.getTime(),
+        isSearchable:true,
+
+      }];
+    } 
+
+
+    this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
+      { protocol: SEARCH_CONFIG.PROTOCOLS });
+
+      this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME_PROFILE);
+      // pjobc.objectID = id;
+      // console.log("Content ::::::: "+objects);
+
+      this.index.saveObjects(objects, function (err, content) {
+        if (err) throw err;
+        //console.log("Add Content :::::: "+content);
+      });
+
   }
 
 }
