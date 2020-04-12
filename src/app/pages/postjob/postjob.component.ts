@@ -20,19 +20,12 @@ import { UserDetails } from 'src/app/services/firebase/userdetails/userdetails.m
 import { EmailService } from 'src/app/services/email/email.service';
 
 
-
-
-
 @Component({
   selector: 'postjob',
   templateUrl: './postjob.component.html',
   styleUrls: ['./postjob.component.css']
 })
 export class PostjobComponent implements OnInit {
-
-
-
-
 
   PostJobForm: any;
   // postjob = new PostJobc();
@@ -104,20 +97,9 @@ export class PostjobComponent implements OnInit {
           //this.selectedEmpTypes = this.postJob.EmploymentTypes;
         })
       }
-      // if (this.userDetails.length > 0) {
-      //     if (this.userDetails[0].postjobCount !== undefined) {
-      //       this.postJobCount = this.userDetails[0].postjobCount;
-      //     }
-      //   console.log("Number of Job Count "+this.postJobCount);
-      //   console.log("ID :::::: "+this.userDetails[0].id);
-      // }
 
 
     })
-
-
-
-
   }
 
   ngOnInit() {
@@ -235,11 +217,12 @@ export class PostjobComponent implements OnInit {
       }
     }    
  
+    window.scroll(0,0);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = type+"||jobpoststatus";
     this.dialog.open(CommondialogComponent, dialogConfig);
     this.resetForm(postJobForm);
-    window.scroll(0,0);
+ 
     this.router.navigate(['/jobpoststatus']);
  
 

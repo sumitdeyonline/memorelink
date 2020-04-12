@@ -10,8 +10,14 @@ import { PostJobc } from 'src/app/services/firebase/postjob/postjob.model';
 import { PostjobService } from 'src/app/services/firebase/postjob/postjob.service';
 import { PagerService } from 'src/app/services/common/pager.service';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+
+
 import { LocationService } from 'src/app/services/location/location.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CityDetails } from './city.model';
+import { NearestCityDetails } from './nearestcity.model';
+//import { ZipCityState } from './zipcity.model';
 //import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -22,7 +28,15 @@ import { LocationService } from 'src/app/services/location/location.service';
 })
 export class ListjobComponent implements OnInit {
 
-
+  headers = new HttpHeaders({
+    // 'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    'Access-Control-Allow-Origin': "*",
+    'Access-Control-Allow-Methods': 'GET',
+    'Content-Type': 'application/json',
+    "x-rapidapi-host": SEARCH_CONFIG.GEODB_API_HOST,
+    "x-rapidapi-key": SEARCH_CONFIG.GEODB_API_KEY    
+    // 'Accept': "application/ms-word"
+  });
 
   PostJobc: PostJobc[];
   // PostJobcFinal: PostJobc[] = [];
@@ -34,6 +48,9 @@ export class ListjobComponent implements OnInit {
   loading: boolean = false;
 
   length: any = SEARCH_CONFIG.LIST_JOB_DESC_WIDTH;
+  cityModel: CityDetails;
+  allCityUS = [];
+  noResultFound: string='';
 
   // ALGOLIA_APP_ID = "8I5VGLVBT1";
   // ALGOLIA_API_KEY = "378eba06830cc91d1dad1550dd4a5244";
@@ -51,7 +68,8 @@ export class ListjobComponent implements OnInit {
               private route: ActivatedRoute, 
               private postjob: PostjobService, 
               public dformat: DateformatService, 
-              private pagerService: PagerService, 
+              private pagerService: PagerService,
+              private http: HttpClient,
               private locserv: LocationService) {
               // private SpinnerService: NgxSpinnerService) {
 
@@ -143,7 +161,7 @@ export class ListjobComponent implements OnInit {
   getPostJobsAlgolia(keyword, location) {
 
  /****** Need to open Later ********/
-
+    this.noResultFound = '';
     this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
       { protocol: SEARCH_CONFIG.PROTOCOLS });
 
@@ -165,7 +183,9 @@ export class ListjobComponent implements OnInit {
           this.PostJobc = data.hits;
 
           //console.log("All Data");
-
+          if (this.PostJobc.length == 0)  {
+            this.notfoundAnything();
+          }
           // this.SpinnerService.hide();
           this.loading = false; 
           this.setPage(1);
@@ -176,6 +196,7 @@ export class ListjobComponent implements OnInit {
   
             if (isNumeric(locationLocal)) {
               //console.log("This is number");
+              this.getZipCodeSearch(locationLocal,keywordLocal);
               filter = 'JobZip:'+locationLocal;
               /* Zipcode location service */
               // this.locserv.getCityState(location).subscribe((data)=>{
@@ -185,7 +206,7 @@ export class ListjobComponent implements OnInit {
               //   console.log("City ::::: "+city+"   State :::::: "+state);
               // });
   
-  
+              
   
   
             } else {
@@ -201,109 +222,237 @@ export class ListjobComponent implements OnInit {
             
   
               if ((state !="") && (city !="")) {
-                filter = 'JobCity:"'+city+'" AND JobState:"'+state+'"';
-              } else if ((state == "") && (city !="")) {
-                filter = 'JobCity:"'+city+'"';
-              } else if ((state != "") && (city =="")){
-                filter = 'JobState:"'+state+'"';
-              } else {
-                filter ='';
+
+                //console.log("City state")
+                this.getCityStateSearch(city, state,keywordLocal);
+                //console.log("City state 1")
+
+                //filter = 'JobCity:"'+city+'" AND JobState:"'+state+'"';
+                } 
+                else if ((state == "") && (city !="")) {
+                  filter = 'JobCity:"'+city+'"';
+                  this.executeSearchFunction(keywordLocal,filter);
+                } else if ((state != "") && (city =="")){
+                  filter = 'JobState:"'+state+'"';
+                  this.executeSearchFunction(keywordLocal,filter);
+               } else {
+                //filter ='JobCity:"'+city+'" OR JobState:"'+state+'"';
+                // filter ='JobCity:"'+city+'"';
+                //this.executeSearchFunction(keywordLocal,filter);
+                  filter ='';
+                  this.executeSearchFunction(keywordLocal,filter);
               }
               // console.log("Filter :::: "+filter);
               // console.log("keyword  :::: "+keywordLocal);              
             }
           } else {
             filter ='';
+            this.executeSearchFunction(keywordLocal,filter);  //Execute the search 
           }
-  
+          
  
         //console.log("Filter :::::: => "+filter);
   
-          if (filter == '') {
-            this.index.search({
-              query: keywordLocal
+          // if (filter == '') {
+          //   this.index.search({
+          //     query: keywordLocal
     
-            }).then((data) => {
-              //let j=0;
-              //this.PostJobcFinal = [];
-              this.PostJobc = data.hits;
-              //console.log("No City State");
-              //this.SpinnerService.hide(); 
-              this.loading = false; 
-              this.setPage(1);
-            });
-          } else  {
+          //   }).then((data) => {
+          //     //let j=0;
+          //     //this.PostJobcFinal = [];
+          //     this.PostJobc = data.hits;
+          //     //console.log("No City State");
+          //     //this.SpinnerService.hide(); 
+          //     this.loading = false; 
+          //     this.setPage(1);
+          //   });
+          // } else  {
     
-            this.index.search({
-              query: keywordLocal,
-              filters: filter
-            }).then((data) => {
-              //let j=0;
-              //this.PostJobcFinal = [];
-              this.PostJobc = data.hits;
-              //this.SpinnerService.hide(); 
-              //console.log("City or State");
-              this.loading = false; 
-              this.setPage(1);
+          //   this.index.search({
+          //     query: keywordLocal,
+          //     filters: filter
+          //   }).then((data) => {
+          //     //let j=0;
+          //     //this.PostJobcFinal = [];
+          //     this.PostJobc = data.hits;
+          //     //this.SpinnerService.hide(); 
+          //     //console.log("City or State");
+          //     this.loading = false; 
+          //     this.setPage(1);
     
-            });
+          //   });
     
-          }
+          // }
+
+
         }
       }
 
+  }
 
+  getZipCodeSearch(zipcode,keywordLocal) {
+    //let getCcZipity  = new ZipCityState();
+    let getCity = SEARCH_CONFIG.GET_CITY_WITH_ZIP+zipcode;
+    //console.log("Zip URL :::: "+getCity);
+    //this.executeSearchFunction(keywordLocal,filter);  //Execute the search 
+    this.http.get(getCity,{responseType: 'json'}).subscribe((data: any[]) => {
+      // this.http.get(getCityID,{responseType: 'json',headers: headers})
+      //          .map((data: any[]) => {
+  
+        const array = JSON.parse(JSON.stringify(data)) as any[];
+        //console.log(array);
 
-/****** End *******/
+        this.getCityStateSearch(array['city'],array['state'],keywordLocal);
 
+    });
 
+  }
 
-  //   for(let i=0;i<this.PostJobc.length;i++) {
-  //     //console.log("Algolia Job ::::::::: =>  "+this.PostJobc[i].JobState);
-  //     //console.log("Algolia Job ::::::::: =>  "+this.PostJobc[i].JobTitle);
+  getCityStateSearch(city, state,keywordLocal) {
+    let cityD = new CityDetails();
+    let check:boolean=false; 
+    //console.log("this.cityModel.city");
+    //let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&limit=5&offset=0&hateoasMode=false";
+    let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID+"&limit=20&offset=0&hateoasMode=false";
+    //console.log("this.cityModel.city  ::: "+getCityID);
+    this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
+    // this.http.get(getCityID,{responseType: 'json',headers: headers})
+    //          .map((data: any[]) => {
 
-  //     if (location.trim() != "") {
+      const array = JSON.parse(JSON.stringify(data)) as any[];
+      //console.log(array['data']);
 
-  //       if (isNumeric(location)) {
-  //         console.log("This is number");
-  //         if (this.PostJobc[i].JobZip == location) {
-  //           this.PostJobcFinal[j] = this.PostJobc[i];
-  //           j++;
-  //         }
+      for(let i=0;i<array['data'].length;i++) {
+        cityD = array['data'][i];
 
-  //       } else {
+        if ((cityD.type.toLocaleUpperCase() == 'CITY') 
+            && (cityD.countryCode.toUpperCase() == 'US')
+            && (cityD.regionCode.toUpperCase() == state.toUpperCase())
+            && (cityD.city.toUpperCase().startsWith(city.toUpperCase()))) {
 
-  //         // console.log("This is not a number");
-  //         // console.log("City ::::: "+location.split(",")[0]);
-  //         // console.log("State ::::: "+location.split(",")[1]);
+              // console.log("ID : "+cityD.id);
+              // console.log("City : "+cityD.city);
+              // //console.log("name : "+this.cityModel.name);
+              // console.log("countryCode : "+cityD.countryCode);
+              // console.log("regionCode : "+cityD.regionCode);
+              check=true;
 
-  //         // console.log("City ::::: ...2"+this.PostJobc[i].JobCity);
-  //         // console.log("State :::::...2 "+this.PostJobc[i].JobState);
+              this.getNearByCities(cityD.id,city, state,keywordLocal);
+              return;
+        }
+      }
+      if (!check)
+        this.getCitySearhOnly(array,city, state,keywordLocal);
+      return;
 
+    });
+    // .toPromise();
 
-  //         //console.log("Test 1 ....5" + location.split(",")[0].trim().toUpperCase());
-  //         //console.log("Test 1 ....6" + location.split(",")[1].trim().toUpperCase());
-  //         if ((location.split(",")[0].trim().toUpperCase() == this.PostJobc[i].JobCity.toUpperCase()) && (this.isNull(location.split(",")[1]).trim().toUpperCase() == this.PostJobc[i].JobState.toUpperCase())) {
-  //           this.PostJobcFinal[j] = this.PostJobc[i];
-  //           j++;
-  //         } else if (location.split(",")[0].trim().toUpperCase() == this.PostJobc[i].JobState.toUpperCase()) {
-  //           this.PostJobcFinal[j] = this.PostJobc[i];
-  //           j++;
-  //         }
-  //         else if (location.split(",")[0].trim().toUpperCase() == this.PostJobc[i].JobCity.toUpperCase()) {
-  //           this.PostJobcFinal[j] = this.PostJobc[i];
-  //           j++;
-  //         }
-  //       }
-  //     } else {
-  //       this.PostJobcFinal[j] = this.PostJobc[i];
-  //       j++;
-  //     }
+  }
 
-  //   }
-  //   //return this.jobs;
-  // })
+  getCitySearhOnly(array,city, state,keywordLocal) {
+    let filter = 'JobCity:"'+city+'"';
+    this.executeSearchFunction(keywordLocal,filter)
 
+    // let cityD = new CityDetails();
+    // for(let i=0;i<array['data'].length;i++) {
+    //   cityD = array['data'][i];
+
+    //   if ((cityD.type.toLocaleUpperCase() == 'CITY') 
+    //       && (cityD.countryCode.toUpperCase() == 'US')
+    //       && (cityD.city.toUpperCase().startsWith(city.toUpperCase()))) {
+
+    //         //console.log("ID : "+cityD.id);
+    //         // console.log("City : "+cityD.city);
+    //         // //console.log("name : "+this.cityModel.name);
+    //         // console.log("countryCode : "+cityD.countryCode);
+    //         // console.log("regionCode : "+cityD.regionCode);
+
+    //         this.getNearByCities(cityD.id,city, state,keywordLocal);
+    //         return;
+    //   }
+    // }
+    // this.notfoundAnything()
+  }
+
+  notfoundAnything() {
+    this.noResultFound = "No Record Found";
+    this.loading = false; 
+
+  }
+
+  getNearByCities(cityID,city, state,keywordLocal) {
+    let ncityD = new NearestCityDetails();
+    //let filter = '(JobCity:"'+city+'" AND JobState:"'+state+'")';
+    let filter = '((JobCity:"'+city+'")';
+
+    //console.log("this.cityModel.city");
+    //let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&limit=5&offset=0&hateoasMode=false";
+    let getCityID = SEARCH_CONFIG.GEODB_API_URL+"/"+cityID+"/nearbyCities?radius=100&limit=20&offset=0&hateoasMode=false&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID;
+    //console.log("this.cityModel.city  ::: "+getCityID);
+    this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
+      // this.http.get(getCityID,{responseType: 'json',headers: headers})
+      //          .map((data: any[]) => {
+  
+        const array = JSON.parse(JSON.stringify(data)) as any[];
+        //console.log("Nearest City ::: "+array);
+        
+        for(let i=0;i<array['data'].length;i++) {
+          filter = filter+' OR (JobCity:"'+ncityD.city+'")';
+          //filter = filter+' OR (JobCity:"'+ncityD.city+'" AND JobState:"'+ncityD.regionCode+'")';
+          ncityD = array['data'][i];
+          //  console.log("ID : "+ncityD.id);
+          //  console.log("City : "+ncityD.city);
+          //  console.log("City : "+ncityD.regionCode);
+          // console.log("City : "+ncityD.distance);
+        }
+        filter = filter+') AND (JobState:"'+state+'")';
+        //console.log("filter ::: "+filter);
+        this.executeSearchFunction(keywordLocal,filter);
+
+    });
+    return;
+  }
+
+  executeSearchFunction(keywordLocal,filter) {
+    //console.log("filter ::: "+filter);
+    if (filter == '') {
+      this.index.search({
+        query: keywordLocal
+
+      }).then((data) => {
+        //let j=0;
+        //this.PostJobcFinal = [];
+        this.PostJobc = data.hits;
+        //console.log("No City State");
+        //this.SpinnerService.hide(); 
+        if (this.PostJobc.length == 0)  {
+          this.notfoundAnything();
+        }
+        this.loading = false; 
+
+        this.setPage(1);
+      });
+    } else  {
+
+      this.index.search({
+        query: keywordLocal,
+        filters: filter
+      }).then((data) => {
+        //let j=0;
+        //this.PostJobcFinal = [];
+        this.PostJobc = data.hits;
+        //this.SpinnerService.hide(); 
+        //console.log("City or State");
+        if (this.PostJobc.length == 0)  {
+          this.notfoundAnything();
+        }
+        this.loading = false; 
+        this.setPage(1);
+
+      });
+
+    }
   }
 
   setPage(page: number) {

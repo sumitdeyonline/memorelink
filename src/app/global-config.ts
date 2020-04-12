@@ -89,7 +89,15 @@ export const SEARCH_CONFIG = {
     PAGE_SIZE: 10,
     CURRENT_PAGE: 1,
     ZIPCODE_API_URL: 'https://www.zipcodeapi.com/rest/',
-    ZIPCODE_API: 'GNSZy5dfcTtnYL78PeldQR4eyam3IzVMply2lWLfDsuu3WmpED29mn7x6DC87Ccv'
+    ZIPCODE_API: 'GNSZy5dfcTtnYL78PeldQR4eyam3IzVMply2lWLfDsuu3WmpED29mn7x6DC87Ccv',
+    //GEODB_API_URL: 'http://geodb-free-service.wirefreethought.com/v1/geo/cities', // Free
+    GEODB_API_URL: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities', //paid
+    GEODB_API_HOST: 'wft-geo-db.p.rapidapi.com',
+    GEODB_API_KEY: '8c1c06616cmsh2bba6f77a4816bfp17c015jsn71bcba1596e9',
+    GEODB_COUNTRY_ID: 'US',
+    //GET_CITY_WITH_ZIP: 'http://api.zippopotam.us/us/' GET_CITY_WITH_ZIP: 'http://api.zippopotam.us/us/' // http://api.zippopotam.us/us/94551
+    GET_CITY_WITH_ZIP: 'https://ziptasticapi.com/' //http://ziptasticapi.com/94551
+
 }
 
 export const AUTH_CONFIG: AuthConfiguration = {
