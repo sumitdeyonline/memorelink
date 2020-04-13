@@ -82,7 +82,10 @@ import { adminRouting } from './admin/admin.routing';
 import { EmailService } from './services/email/email.service';
 import { LocationService } from './services/location/location.service';
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import { NgxTypeaheadModule } from 'ngx-typeahead';
+// import { TypeaheadModule } from 'ngx-bootstrap/typeahead'; 
+// import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbTypeaheadModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -149,7 +152,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxTypeaheadModule,
+    NgbTypeaheadModule
+    //TypeaheadModule
   ],
   providers: [
     AuthService,

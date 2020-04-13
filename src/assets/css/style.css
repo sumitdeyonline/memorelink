@@ -7,6 +7,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+[class*="list-group"] {
+    text-align-last: left !important;
+}
+
+
 h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}

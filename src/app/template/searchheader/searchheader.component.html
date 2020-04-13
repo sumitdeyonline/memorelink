@@ -5,12 +5,46 @@
 				<div id="search_form" class="clearfix">
 						&nbsp;
 					<h1>Start tech job search</h1>
-					<p>
-					<input type="text" class="text" required="required" ngModel name="keyword" #username="ngModel" id="keyword" placeholder="" value="{{ keyword }}" [ngModel]="keyword" placeholder="Skills or Job title">
-          <input type="text" class="text" required="required" value= "location" ngModel name="location" #username="ngModel" id="location" placeholder="" value="{{ location }}" [ngModel]="location" placeholder= "City, State or Zipcode">
+					<!-- <p> -->
+					<table>
+						<tr>
+							<td>
+								<input type="text" class="text" required="required" ngModel name="keyword" #username="ngModel" id="keyword" placeholder="" value="{{ keyword }}" [ngModel]="keyword" placeholder="Skills or Job title">
+							</td>
+							<td>
+								<!-- <input type="text" class="text" required="required" 
+								value= "location" 
+								ngModel name="location"
+								#username="ngModel" 
+								id="location" placeholder="" 
+								value="{{ location }}" 
+								[(ngModel)]="location" 
+								placeholder= "City, State or Zipcode"
+								ngxTypeahead
+								[taList]="states"
+								(taSelected)="selectedStatic($event,f.value)">	 -->
+								
+								
+								<input type="text" class="text" required="required" 
+								value= "location" 
+								ngModel name="location"
+								#username="ngModel" 
+								id="location" placeholder="" 
+								value="{{ location }}" 
+								[(ngModel)]="location" 
+								placeholder= "City, State or Zipcode"
+								[ngbTypeahead]="search" />	
+
+							</td>
+							<td>
+								<label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
+							</td>
+						</tr>
+					</table>
+
           <!--input type="text" class="text" required="required" value= "location" ngModel name="location" #username="ngModel" id="location" placeholder="{{ location }}" value="Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Location';}"-->
-					<label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
-					</p>
+
+					<!-- </p> -->
 
 				</div>
 			</form>
