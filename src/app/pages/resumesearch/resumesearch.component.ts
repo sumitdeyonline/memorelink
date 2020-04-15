@@ -29,6 +29,7 @@ export class ResumesearchComponent implements OnInit {
   // paged items
   pagedItems: any[];
   loading: boolean = false;
+  pagesize = SEARCH_CONFIG.PAGE_SIZE;
 
   constructor(private route: ActivatedRoute, private pagerService: PagerService, private router: Router, ) { }
 

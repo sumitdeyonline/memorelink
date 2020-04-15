@@ -33,12 +33,50 @@
 								value="{{ location }}" 
 								[(ngModel)]="location" 
 								placeholder= "City, State or Zipcode"
-								[ngbTypeahead]="search" />	
+								[ngbTypeahead]="search" 
+								(keyup)="zipcodeSearch($event.target.value)"/>	
+
+
+								<!-- <div class="autocomplete" style="width:300px;">
+									<input type="text" class="text" required="required" 
+									value= "location" 
+									ngModel name="location"
+									#username="ngModel" 
+									id="location" placeholder="" 
+									value="{{ location }}" 
+									[(ngModel)]="location" 
+									placeholder= "City, State or Zipcode"
+
+									[ngbTypeahead]="TypeaheadSearch()"
+									autocomplete="off" spellcheck="false" 
+									list="citystate"
+									/>	
+								</div> -->
+								
+								<!-- <datalist id="citystate">
+									<option *ngFor="let cityzipM of result" >  
+										{{ cityzipM.city }}, {{ cityzipM.state }}
+									</option>
+								 </datalist> -->
 
 							</td>
 							<td>
 								<label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
 							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+
+
+<!-- 
+								<ul *ngIf="showTypeAhead" class=".typeahead, .tt-query, .tt-hint ">
+									<li *ngFor="let cityzipM of result" > 
+										{{ cityzipM.city }}, {{ cityzipM.state }}
+									</li>
+								</ul> -->
+							</td>
+							<td></td>														
 						</tr>
 					</table>
 

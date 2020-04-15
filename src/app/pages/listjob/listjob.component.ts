@@ -62,6 +62,7 @@ export class ListjobComponent implements OnInit {
 
     // paged items
     pagedItems: any[];
+    pagesize = SEARCH_CONFIG.PAGE_SIZE;
 
 
   constructor(private router: Router, 
@@ -162,11 +163,15 @@ export class ListjobComponent implements OnInit {
 
  /****** Need to open Later ********/
     this.noResultFound = '';
+    this.PostJobc= [];
+    this.pagedItems=[];
+    this.pager = {};
+    
     this.client = algoliasearch(SEARCH_CONFIG.ALGOLIA_APP_ID, SEARCH_CONFIG.ALGOLIA_API_KEY,
       { protocol: SEARCH_CONFIG.PROTOCOLS });
 
       let filter = '', state='', city='';
-      this.PostJobc = [];
+      //this.PostJobc = [];
       this.index = this.client.initIndex(SEARCH_CONFIG.INDEX_NAME);
 
       //console.log(" keyword :::: "+keyword+"location :::: "+location);
@@ -292,10 +297,11 @@ export class ListjobComponent implements OnInit {
 
   getZipCodeSearch(zipcode,keywordLocal) {
     //let getCcZipity  = new ZipCityState();
-    let getCity = SEARCH_CONFIG.GET_CITY_WITH_ZIP+zipcode;
+    //let getCity = SEARCH_CONFIG.GET_CITY_WITH_ZIP+zipcode;
     //console.log("Zip URL :::: "+getCity);
     //this.executeSearchFunction(keywordLocal,filter);  //Execute the search 
-    this.http.get(getCity,{responseType: 'json'}).subscribe((data: any[]) => {
+    //this.http.get(getCity,{responseType: 'json'}).subscribe((data: any[]) => {
+      this.locserv.getCityStateFromZip(zipcode).subscribe((data: any[]) => {  
       // this.http.get(getCityID,{responseType: 'json',headers: headers})
       //          .map((data: any[]) => {
   
@@ -313,10 +319,13 @@ export class ListjobComponent implements OnInit {
     let check:boolean=false; 
     //console.log("this.cityModel.city");
     //let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&limit=5&offset=0&hateoasMode=false";
-    let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID+"&limit=20&offset=0&hateoasMode=false";
-    //console.log("this.cityModel.city  ::: "+getCityID);
-    this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
-    // this.http.get(getCityID,{responseType: 'json',headers: headers})
+    // let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID+"&limit=20&offset=0&hateoasMode=false";
+    // //console.log("this.cityModel.city  ::: "+getCityID);
+    //this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
+      this.locserv.getCityStateSearch(city).subscribe((data: any[]) => {
+
+      // this.http.get(getCityID,{responseType: 'json',headers: headers})
+
     //          .map((data: any[]) => {
 
       const array = JSON.parse(JSON.stringify(data)) as any[];
@@ -388,9 +397,10 @@ export class ListjobComponent implements OnInit {
 
     //console.log("this.cityModel.city");
     //let getCityID = SEARCH_CONFIG.GEODB_API_URL+"?namePrefix="+city+"&limit=5&offset=0&hateoasMode=false";
-    let getCityID = SEARCH_CONFIG.GEODB_API_URL+"/"+cityID+"/nearbyCities?radius=100&limit=20&offset=0&hateoasMode=false&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID;
+    //let getCityID = SEARCH_CONFIG.GEODB_API_URL+"/"+cityID+"/nearbyCities?radius=100&limit=20&offset=0&hateoasMode=false&countryIds="+SEARCH_CONFIG.GEODB_COUNTRY_ID;
     //console.log("this.cityModel.city  ::: "+getCityID);
-    this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
+    //this.http.get(getCityID,{responseType: 'json',headers: this.headers}).subscribe((data: any[]) => {
+      this.locserv.getNearByCities(cityID).subscribe((data: any[]) => {
       // this.http.get(getCityID,{responseType: 'json',headers: headers})
       //          .map((data: any[]) => {
   
@@ -460,7 +470,7 @@ export class ListjobComponent implements OnInit {
     window.scroll(0,0);
     // get pager object from service
     this.pager = this.pagerService.getPager(this.PostJobc.length, page);
-    //console.log("Page Count...1  ::: "+this.PostJobc.length);
+    console.log("Page Count...1  ::: "+this.pager.pages.length);
     // get current page of items
     this.pagedItems = this.PostJobc.slice(this.pager.startIndex, this.pager.endIndex + 1);
     //console.log("Page Count...1  ::: "+this.pagedItems.length);

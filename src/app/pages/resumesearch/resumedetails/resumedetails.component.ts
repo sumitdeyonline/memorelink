@@ -7,6 +7,7 @@ import { UploadResume } from 'src/app/services/firebase/uploadresume/uploadresum
 import { UploadResumeService } from 'src/app/services/firebase/uploadresume/upload-resume.service';
 import { Country } from 'src/app/services/firebase/userprofile/country.model';
 
+
 @Component({
   selector: 'resumedetails',
   templateUrl: './resumedetails.component.html',
@@ -21,6 +22,7 @@ export class ResumedetailsComponent implements OnInit {
   relocate: any;
   travel: any;
   security: any;
+
   constructor(private _activeRoute:ActivatedRoute, private _uprofile: UserprofileService, private _uResume: UploadResumeService) {
     window.scroll(0,0);
    }
