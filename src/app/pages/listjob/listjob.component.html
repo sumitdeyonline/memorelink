@@ -31,7 +31,7 @@
               <div id="myTabContent" class="tab-content">
 
                     <h2>Search Result</h2><br>
-                    <h4>{{noResultFound}}</h4>
+                    <h4 *ngIf="noResultFound !=''">{{noResultFound}}</h4>
 
                     <!-- loader.component.html -->
                     <div ali class="progress-loader" [hidden]="!loading" >
@@ -54,7 +54,6 @@
                           <div class="jobs-item with-thumb">
                             <div class="thumb"><a [routerLink]="['/jobdetails',pj.objectID]" target="_blank"><img src="assets/images/a2.png" class="img-responsive" alt=""/></a></div>
                             <div class="jobs_right">
-
                             <!--div class="date">{{ pj.LastModifiedDate.toDate() | date:'dd' }} <span>{{ dformat.monthNumToSigName(pj.LastModifiedDate.toDate() | date:'MM') }}</span></div-->
                             <div class="date">{{ pj.LastModifiedDate |  date:'dd'}} <span>{{ dformat.monthNumToSigName(pj.LastModifiedDate |  date:'MM') }}</span></div>
 
@@ -73,8 +72,8 @@
                               <li><a href="#" class="fa fa-link"></a></li-->
                             </ul>
                             <br>
-                            <div [innerHTML]="pj.JobDesc.substring(0,length)"></div>
-                            <a [routerLink]="['/jobdetails',pj.objectID]" (click) = "jobDetails(pj.objectID)">Read More ..</a>
+                            <div [innerHTML]="pj.JobDesc.substring(0,length)" class="jobdetails"></div>
+                            <!-- <a [routerLink]="['/jobdetails',pj.objectID]" (click) = "jobDetails(pj.objectID)">Read More ..</a> -->
 
                             <!--button (click)="jobDetails(pj.objectID)">Read More</button-->
 

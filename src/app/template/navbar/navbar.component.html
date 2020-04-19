@@ -84,7 +84,7 @@
     </ul>
     <ul class="nav navbar-nav">
       <li><a routerLink="/userprofile" *ngIf="auth.isAuthenticated()">Upload Resume</a></li>
-      <li><a routerLink="/login" *ngIf="!auth.isAuthenticated()">Login</a></li>
+      <li class="nav-item"><a routerLink="/login" *ngIf="!auth.isAuthenticated()">Login</a></li>
       <li><a routerLink="/signup" *ngIf="!auth.isAuthenticated()">Signup</a></li>
       <li *ngIf="auth.isAuthenticated() && auth.userProfile" class="username">
           | &nbsp;<img [src]="auth.userProfile?.picture" alt="{{ auth.userProfile.name }}"  height="20px" weidth="35px">&nbsp;{{ auth.userProfile.nickname }}&nbsp;|
